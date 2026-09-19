@@ -85,7 +85,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    geany #text editor
+    geany #graphical text editor
     foot
     nautilus
     firefox
@@ -108,6 +108,19 @@
     # dorion  #discord client
     vesktop
     lutris
+
+    #secrets and shit
+    sops
+    age
+
+    #dependencies for youtube music noctalia plugin
+    yt-dlp
+    mpv
+    jq
+    curl
+    netcat-openbsd
+
+    cine #mpv based video player
   ];
 
   fonts.packages = [pkgs.nerd-fonts.fira-code];

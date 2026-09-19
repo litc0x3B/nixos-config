@@ -8,19 +8,17 @@ enabled = true
 order = [ "default" ]
 
     [bar.default]
-    background_opacity = 0.4999999888241291
+    background_opacity = 0.51999998837709427
     capsule = true
     capsule_opacity = 0.79999998211860657
     center = [ "clock", "cpu", "ram", "wallhaven", "current" ]
     concave_edge_corners = false
     end = [
-        "media",
         "tray",
         "notifications",
         "clipboard",
         "network",
         "bluetooth",
-        "volume",
         "brightness",
         "keyboard_layout",
         "battery",
@@ -29,7 +27,18 @@ order = [ "default" ]
     ]
     margin_edge = 9
     margin_ends = 120
+    start = [ "launcher", "wallpaper", "workspaces", "group:g1" ]
     thickness = 44
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "widget", "volume", "media", "audio_visualizer" ]
+        opacity = 0.79999995231628418
+        padding = 22.0
 
 [control_center]
 hidden_tabs = [ "power", "bluetooth" ]
@@ -96,12 +105,15 @@ background_opacity = 0.4999999888241291
 [osd]
 background_opacity = 0.4999999888241291
 
+[plugin_settings."aabidk20/yt-music"]
+mini_open_near_click = true
+
 [plugin_settings."noctalia/wallhaven"]
 browser_open_near_click = true
 browser_placement = "floating"
 
 [plugins]
-enabled = [ "noctalia/wallhaven", "tordex/nvtop", "yocraft/desktop-launcher" ]
+enabled = [ "noctalia/wallhaven", "tordex/nvtop", "yocraft/desktop-launcher", "aabidk20/yt-music" ]
 
 [shell]
 external_ip_enabled = true
@@ -111,21 +123,26 @@ polkit_agent = true
     control_center_placement = "floating"
     open_near_click_control_center = true
     open_near_click_wallpaper = true
-    transparency_mode = "soft"
+    transparency_mode = "solid"
     wallpaper_placement = "floating"
+
+    [shell.screenshot]
+    confirm_region = true
+    directory = "/home/litc/Pictures/Screenshots"
+    remember_last_region = true
 
     [shell.window_switcher]
     mru = true
 
 [theme]
-builtin = "Catppuccin"
-community_palette = "Tomorrow"
+builtin = "Nord"
+community_palette = "Breeze"
 mode = "light"
 source = "wallpaper"
-wallpaper_scheme = "m3-rainbow"
+wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
-    builtin_ids = [ "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
+    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
     community_ids = [ "antigravity", "pywalfox-beta4", "discord", "telegram", "obsidian", "vscode", "heroiclauncher", "yazi" ]
 
 [wallpaper.default]
@@ -137,8 +154,15 @@ path = "/home/litc/Pictures/740164.png"
 [wallpaper.monitors.Virtual-1]
 path = "/home/litc/Pictures/740164.png"
 
+[widget.audio_visualizer]
+show_when_idle = true
+width = 90
+
 [widget.current]
 type = "thaer99ob/default-apps:current"
 
 [widget.wallhaven]
 type = "noctalia/wallhaven:wallhaven"
+
+[widget.widget]
+type = "aabidk20/yt-music:widget"

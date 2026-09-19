@@ -4,9 +4,15 @@ spawn-at-startup "noctalia"
 layout {
     // Либо настройка фокуса (если вы используете focus-ring вместо border)
     focus-ring {
-        width 2 // Толщина кольца фокуса
+        width 3 // Толщина кольца фокуса
     }
 }
+
+// cursor {
+//   xcursor-theme "Bibata-Modern-Classic"
+//   xcursor-size 24
+//   hide-after-inactive-ms 1000
+// }
 
 input {
     keyboard {
@@ -229,6 +235,10 @@ binds {
     // === System Controls ===
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+P { power-off-monitors; }
+
+    Mod+X {spawn-sh "noctalia msg panel-toggle aabidk20/yt-music:panel"; }
+
+    Mod+Shift+S {spawn-sh "noctalia msg screenshot-region"; }
 }
 
 layer-rule {

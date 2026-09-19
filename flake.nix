@@ -11,6 +11,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # noctalia = {
     #   url = "github:noctalia-dev/noctalia";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +42,11 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.litc = import ./home.nix;
+          home-manager.backupFileExtension = "backup";
+
+          home-manager.sharedModules = [
+            inputs.sops-nix.homeManagerModules.sops
+          ];
         }
       ];
     };
