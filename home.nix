@@ -2,18 +2,21 @@
   pkgs,
   inputs,
   lib,
+  config,
   ...
 }:
 let
   niriConfPath = ./niri-conf.kdl;
+  obsidianVault = rec {name = "Vault"; path = "Obsidian/${name}";};
 in
 {
-  imports = [
-    ./rclone-sync.nix
-  ];
-
   home.username = "litc";
   home.homeDirectory = "/home/litc";
+
+  home.sessionVariables = {
+    TERMINAL = "kitty";
+    NIXOS_OZONE_WL = "1";
+  };
 
   # Версия состояния Home Manager
   home.stateVersion = "26.05";
@@ -26,6 +29,10 @@ in
   };
 
   home.packages = with pkgs; [
+    nautilus
+    geany #graphical text editor
+    keepassxc
+    xdg-terminal-exec
     heroic
     # dorion  #discord client
     vesktop
@@ -34,6 +41,7 @@ in
     telegram-desktop
     file-roller
     rclone
+    obsidian
 
     #dependencies for youtube music noctalia plugin
     yt-dlp
@@ -54,10 +62,16 @@ in
       ]
     ))
 
+
     (callPackage ./agy-patched.nix {})
   ];
 
   programs.home-manager.enable = true;
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhs;
+  };
 
   programs.nh = {
     enable = true;
@@ -83,6 +97,10 @@ in
 
       [wallpaper.default]
       path = "${./wallpaper.png}"
+
+      [theme.templates.user.obsidian_extra]
+      input_path = "${config.home.homeDirectory}/.local/state/noctalia/community-templates/obsidian/obsidian.css"
+      output_path = "${config.home.homeDirectory}/${obsidianVault.path}/.obsidian/snippets/noctalia.css"
     '';
   };
 
@@ -94,19 +112,37 @@ in
         nativeBuildInputs = [ pkgs.niri ];
       }
       ''
-        niri validate --config ${niriConfPath}
+        ${pkgs.niri}/bin/niri validate --config ${niriConfPath}
         cat ${niriConfPath} > $out
       '';
 
-  programs.firefox.globalExtensions = with pkgs.nur.repos.rycee.firefox-addons; [
-    privacy-badger
-    {
-      package = ublock-origin;
-      settings = {
-        private_browsing = true;
-      };
-    }
-  ];
+  xdg.configFile."xdg-terminals.list".text = ''
+    kitty.desktop
+  '';
+
+
+  programs.firefox = {
+    enable = true;
+
+    nativeMessagingHosts = [
+      pkgs.pywalfox-native
+    ];
+
+    globalExtensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      ublock-origin
+      pywalfox
+      raindropio
+      # (buildFirefoxXpiAddon {
+      #   pname = "definer";
+      #   version = "2.0.2";
+      #   addonId = "definer@lumetrium.com";
+      #   url = "https://addons.mozilla.org/firefox/downloads/file/5032364/lumetrium_definer-2.0.2.xpi";
+      #   sha256 = "1d227b52d608471e145a94b5242fed5a827adaaab9412db1e8832b14db7715d6";
+      #   meta = { };
+      # })
+      unofficial-saladict-popup-dictionary
+    ];
+  };
 
   gtk = {
     enable = true;
@@ -117,9 +153,15 @@ in
     };
 
     iconTheme = {
-      name = "Zafiro-icons-Dark";
-      package = pkgs.zafiro-icons;
+      name = "Flat-Remix-Blue-Dark";
+      package = pkgs.flat-remix-icon-theme;
     };
+
+    # iconTheme = 
+    # {
+    #   package = pkgs.papirus-icon-theme;
+    #   name = "Papirus-Dark";
+    # };
   };
 
   programs.kitty = {
@@ -158,6 +200,11 @@ in
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    shellAliases = {
+      yazi = "y";
+      nt = "$TERMINAL --detach --directory .";
+    };
+
     initContent = lib.mkMerge [
       (lib.mkBefore "ZSH_DISABLE_COMPFIX=\"true\"")
       ''
@@ -173,13 +220,22 @@ in
 
           # Вызываем оригинальную функцию Oh My Zsh (для Python venv)
           _orig_virtualenv_prompt_info
-        }   
+        }
+
+        # 3. Синхронизация текущей директории с Yazi при выходе из subshell
+        if [[ -n "$YAZI_CWD_FILE" ]]; then
+          zshexit() {
+            pwd > "$YAZI_CWD_FILE"
+          }
+        fi
       ''
     ];
 
   };
 
   programs.yazi.enableZshIntegration = true;
+
+  programs.yazi.enable = true;
 
   programs.yazi.keymap = {
     # input.prepend_keymap = [
@@ -190,34 +246,63 @@ in
     # ];
     mgr.prepend_keymap = [
       {
-        run = "shell \"$SHELL\" --block";
-        on = [ "<alt> + s" ];
+        on = [ "!" ];
+        run = ''shell 'target="$(mktemp)"; trap "rm -f \"$target\"" EXIT; YAZI_CWD_FILE="$target" "$SHELL"; [ -s "$target" ] && ya emit cd "$(cat "$target")"' --block'';
+        desc = "Drop to shell and sync directory on exit";
+      }
+      {
+        on = [ "<A-s>" ];
+        run = ''shell --orphan "$TERMINAL"'';
+        desc = "Open new terminal in current directory";
       }
       # { run = "quit"; on = [ "q" ]; }
       # { run = "close"; on = [ "<C-q>" ]; }
     ];
   };
 
-  programs.yazi.settings = ''
-    [opener]
-    # 1. Открыть файл в текстовом редакторе (например, Neovim/Nano) в новом окне Kitty
-    term-edit = [
-        { run = 'kitty -- nvim "$@"', orphan = true, desc = "Edit in new Kitty window" }
-    ]
+  programs.yazi.settings = {
+    opener = {
+      # 1. Открыть файл в текстовом редакторе в новом окне Kitty
+      term-edit = [
+        {
+          run = ''$TERMINAL -- $EDITOR %s'';
+          orphan = true;
+          desc = "Edit in new terminal window";
+        }
+      ];
 
-    # 2. Если нужно просто запустить исполняемый скрипт/бинарник в новом терминале:
-    term-run = [
-        { run = 'kitty -- "$@"', orphan = true, desc = "Run in new Kitty window" }
-    ]
+      # 2. Запустить исполняемый скрипт/бинарник в новом терминале:
+      term-run = [
+        {
+          run = ''$TERMINAL -- %s'';
+          orphan = true;
+          desc = "Run in new Kitty window";
+        }
+      ];
+    };
 
-    [open]
-    rules = [
-        # Добавляем наш opener в список доступных для текстовых файлов:
-        { mime = "text/*", use = [ "edit", "term-edit" ] },
-        # Для скриптов:
-        { name = "*.sh",   use = [ "term-run", "term-edit", "edit" ] },
-    ]
-  '';
+    open = {
+      prepend_rules = [
+        # Текстовые файлы:
+        {
+          mime = "text/*";
+          use = [
+            "edit"
+            "term-edit"
+          ];
+        }
+        # Скрипты:
+        {
+          url = "*.sh";
+          use = [
+            "term-run"
+            "term-edit"
+            "edit"
+          ];
+        }
+      ];
+    };
+  };
 
   programs.btop = {
     enable = true;
@@ -234,6 +319,23 @@ in
       "text/x-csrc" = [ "geany.desktop" ];
     };
   };
+
+  # programs.firefox.preferences = {
+  #   "browser.tabs.tabmanager.enabled" = false;
+  # }
+  # ;
+
+  programs.obsidian = {
+    enable = true;
+    vaults."${obsidianVault.name}" = {
+      enable = true;
+      target = obsidianVault.path;
+    };
+  };
+
+  home.file."${obsidianVault.path}/.keep".text = "";
+
+
 
   # Периодическая двусторонняя синхронизация rclone bisync
   services.rclone-sync = {

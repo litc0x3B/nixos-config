@@ -127,14 +127,7 @@ vpn_panel_placement = "floating"
 vpn_panel_position = "top_center"
 
 [plugins]
-enabled = [
-    "noctalia/wallhaven",
-    "tordex/nvtop",
-    "yocraft/desktop-launcher",
-    "aabidk20/yt-music",
-    "umedbazarov/ruh-vpn",
-    "dotnetrob/cat"
-]
+enabled = [ "noctalia/wallhaven", "tordex/nvtop", "yocraft/desktop-launcher", "umedbazarov/ruh-vpn", "dotnetrob/cat" ]
 
 [shell]
 external_ip_enabled = true
@@ -165,7 +158,11 @@ wallpaper_scheme = "m3-fruit-salad"
 
     [theme.templates]
     builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
-    community_ids = [ "antigravity", "pywalfox-beta4", "discord", "telegram", "obsidian", "vscode", "heroiclauncher", "yazi" ]
+    community_ids = [ "antigravity", "pywalfox-beta4", "discord", "telegram", "vscode", "heroiclauncher", "yazi" ]
+
+        [theme.templates.user.obsidian_extra]
+        input_path = "obsidian/obsidian.css"
+        output_path = "/home/litc/Obsidian/Vault/.obsidian/snippets/noctalia.css"
 
 [wallpaper.default]
 path = "/home/litc/Pictures/wallpaperflare-cropped (5).jpg"
@@ -177,6 +174,8 @@ path = "/home/litc/Pictures/wallpaperflare-cropped (5).jpg"
 path = "/home/litc/Pictures/wallpaperflare-cropped (5).jpg"
 
 [widget.audio_visualizer]
+bands = 14
+color_2 = "secondary"
 show_when_idle = true
 width = 90
 

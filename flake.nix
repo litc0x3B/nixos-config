@@ -15,6 +15,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # noctalia = {
     #   url = "github:noctalia-dev/noctalia";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +47,7 @@
 
           home-manager.sharedModules = [
             inputs.sops-nix.homeManagerModules.sops
+            ./rclone-sync.nix
           ];
         }
       ];
@@ -50,6 +55,7 @@
    {
     nixosConfigurations.litc-nixos-pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = {inherit inputs;};
       modules = [
         disko.nixosModules.disko
         ./disko-config.nix

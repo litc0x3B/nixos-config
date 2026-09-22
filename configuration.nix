@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   # Use the GRUB 2 boot loader.
@@ -71,6 +71,8 @@
 			# SUDO_EDITOR = "geany";
 			NIXPKGS_ALLOW_UNFREE = 1;
       WLR_NO_HARDWARE_CURSORS = 1;
+      EDITOR = "vim";
+      SUDO_EDITOR = "vim";
       # Отключает аппаратные DRM-модификаторы, которые ломают картинку в ВМ
       # AQ_NO_MODIFIERS = 1;
       # LIBGL_ALWAYS_SOFTWARE=1;
@@ -79,18 +81,19 @@
 
   # programs.firefox.enable = true;
 
-  # List packages installed in system profile.
+  nixpkgs.overlays = [
+    inputs.nur.overlays.default
+  ];
+
+  # List packages installed	 in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    geany #graphical text editor
     foot
-    nautilus
-    firefox
-    keepassxc
+    # nautilus-python# probably needed for open-any-terminal
+
     git
-    vscode
     xeyes #x11 test utility
     xwayland-satellite
     nixd #nix lsp
@@ -99,7 +102,6 @@
     # antigravity-cli
     nodejs
     distrobox
-    kitty
     fastfetch
     yazi
     ouch-rar
@@ -161,6 +163,10 @@
   
   nixpkgs.config.allowUnfree = true; 
 
+  # programs.nautilus-open-any-terminal = {
+  #   enable = true;
+  #   terminal = "kitty";
+  # };
   
 
   # Copy the NixOS configuration file and link it from the resulting system

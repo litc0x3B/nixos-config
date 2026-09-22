@@ -8,15 +8,15 @@
                     "nixfmt"
                 ]
             },
-            "nixpkgs": {
-                "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".pkgs"
-            },
             "options": {
                 "nixos": {
-                    "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options"
+                    "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.\"litc-nixos-pc\".options"
                 },
                 "home-manager": {
-                    "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options.home-manager.users.type.getSubOptions []"
+                    "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.\"litc-nixos-pc\".options.home-manager.users.value.litc"
+                },
+                "nixpkgs": {
+                    "expr": "import <nixpkgs> { }"
                 }
             }
         }
