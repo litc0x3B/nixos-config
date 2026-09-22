@@ -10,8 +10,8 @@ order = [ "default" ]
     [bar.default]
     background_opacity = 0.51999998837709427
     capsule = true
-    capsule_opacity = 0.79999998211860657
-    center = [ "clock", "cpu", "ram", "wallhaven", "current" ]
+    capsule_opacity = 0.91999997943639755
+    center = [ "clock", "cat", "ram", "wallhaven", "current", "vpn_widget" ]
     concave_edge_corners = false
     end = [
         "tray",
@@ -62,6 +62,9 @@ margin_edge = 14
 pinned = [ "code", "firefox", "org.gnome.Nautilus", "kitty" ]
 show_dots = true
 
+[location]
+address = "Moscow, Russia"
+
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
@@ -76,7 +79,7 @@ widget_order = [ "lockscreen-login-box@Virtual-1" ]
     box_height = 196.0
     box_width = 810.0
     cx = 960.00006103515625
-    cy = 897.99981689453125
+    cy = 897.999755859375
     output = "Virtual-1"
     placement_height = 1080.0
     placement_width = 1920.0
@@ -100,23 +103,42 @@ widget_order = [ "lockscreen-login-box@Virtual-1" ]
         show_weather = true
 
 [notification]
-background_opacity = 0.4999999888241291
+background_opacity = 0.81999998167157173
 
 [osd]
-background_opacity = 0.4999999888241291
+background_opacity = 0.81999998167157173
 
 [plugin_settings."aabidk20/yt-music"]
 mini_open_near_click = true
+
+[plugin_settings."dotnetrob/cat"]
+panel_placement = "floating"
 
 [plugin_settings."noctalia/wallhaven"]
 browser_open_near_click = true
 browser_placement = "floating"
 
+[plugin_settings."tordex/nvtop"]
+sort_column_color = "on_surface"
+
+[plugin_settings."umedbazarov/ruh-vpn"]
+auto_start = true
+vpn_panel_placement = "floating"
+vpn_panel_position = "top_center"
+
 [plugins]
-enabled = [ "noctalia/wallhaven", "tordex/nvtop", "yocraft/desktop-launcher", "aabidk20/yt-music" ]
+enabled = [
+    "noctalia/wallhaven",
+    "tordex/nvtop",
+    "yocraft/desktop-launcher",
+    "aabidk20/yt-music",
+    "umedbazarov/ruh-vpn",
+    "dotnetrob/cat"
+]
 
 [shell]
 external_ip_enabled = true
+niri_overview_type_to_launch_enabled = true
 polkit_agent = true
 
     [shell.panel]
@@ -135,31 +157,42 @@ polkit_agent = true
     mru = true
 
 [theme]
-builtin = "Nord"
-community_palette = "Breeze"
-mode = "light"
-source = "wallpaper"
-wallpaper_scheme = "m3-tonal-spot"
+builtin = "Tokyo-Night"
+community_palette = "Tokyo Night Storm"
+mode = "dark"
+source = "builtin"
+wallpaper_scheme = "m3-fruit-salad"
 
     [theme.templates]
     builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
     community_ids = [ "antigravity", "pywalfox-beta4", "discord", "telegram", "obsidian", "vscode", "heroiclauncher", "yazi" ]
 
 [wallpaper.default]
-path = "/home/litc/Pictures/740164.png"
+path = "/home/litc/Pictures/wallpaperflare-cropped (5).jpg"
 
 [wallpaper.last]
-path = "/home/litc/Pictures/740164.png"
+path = "/home/litc/Pictures/wallpaperflare-cropped (5).jpg"
 
 [wallpaper.monitors.Virtual-1]
-path = "/home/litc/Pictures/740164.png"
+path = "/home/litc/Pictures/wallpaperflare-cropped (5).jpg"
 
 [widget.audio_visualizer]
 show_when_idle = true
 width = 90
 
+[widget.cat]
+cat_size = 35
+show_cpu_percent = true
+type = "dotnetrob/cat:cat"
+
+[widget.control-center]
+glyph = "brand-snowflake"
+
 [widget.current]
 type = "thaer99ob/default-apps:current"
+
+[widget.vpn_widget]
+type = "umedbazarov/ruh-vpn:vpn_widget"
 
 [widget.wallhaven]
 type = "noctalia/wallhaven:wallhaven"
