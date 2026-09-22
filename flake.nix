@@ -27,14 +27,11 @@
 
   
 
-  outputs = { self, nixpkgs, disko, home-manager, ... }@inputs: {
-    nixosConfigurations.litc-nixos-pc = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        disko.nixosModules.disko
-        ./disko-config.nix
+  outputs = { self, nixpkgs, disko, home-manager, ... }@inputs:
+  let
+    non-hardware-modules = 
+      [
         ./configuration.nix
-        ./hardware-configuration.nix
 
         home-manager.nixosModules.home-manager
         {
@@ -48,6 +45,23 @@
             inputs.sops-nix.homeManagerModules.sops
           ];
         }
+      ];
+  in
+   {
+    nixosConfigurations.litc-nixos-pc = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        disko.nixosModules.disko
+        ./disko-config.nix
+        ./hardware-configuration.nix
+      ] ++ non-hardware-modules;
+    };
+
+    nixosConfigurations.live-iso = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = non-hardware-modules ++ 
+      [
+        "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       ];
     };
   };

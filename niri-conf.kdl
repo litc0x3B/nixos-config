@@ -1,10 +1,12 @@
+include optional=true "noctalia.kdl"
+
 spawn-at-startup "noctalia"
 
 
 layout {
     // Либо настройка фокуса (если вы используете focus-ring вместо border)
     focus-ring {
-        width 3 // Толщина кольца фокуса
+        width 2 // Толщина кольца фокуса
     }
 }
 
@@ -51,7 +53,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-     focus-follows-mouse max-scroll-amount="40%"
+     focus-follows-mouse max-scroll-amount="0%"
 }
 
 prefer-no-csd
@@ -239,9 +241,12 @@ binds {
     Mod+X {spawn-sh "noctalia msg panel-toggle aabidk20/yt-music:panel"; }
 
     Mod+Shift+S {spawn-sh "noctalia msg screenshot-region"; }
+    Mod+A { toggle-window-floating; }
 }
 
 layer-rule {
   match namespace="^noctalia-backdrop"
   place-within-backdrop true
 }
+
+include optional=true "extra-config.kdl"

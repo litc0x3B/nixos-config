@@ -8,6 +8,10 @@ let
   niriConfPath = ./niri-conf.kdl;
 in
 {
+  imports = [
+    ./rclone-sync.nix
+  ];
+
   home.username = "litc";
   home.homeDirectory = "/home/litc";
 
@@ -21,7 +25,45 @@ in
     userEmail = "ur.waifu.is.explosive.loli@gmail.com";
   };
 
+  home.packages = with pkgs; [
+    heroic
+    # dorion  #discord client
+    vesktop
+    lutris
+    cine # mpv based video player
+    telegram-desktop
+    file-roller
+    rclone
+
+    #dependencies for youtube music noctalia plugin
+    yt-dlp
+    mpv
+    jq
+    curl
+    netcat-openbsd
+
+    #dependencies for ruh vpn noctalia plugin
+    sing-box
+    procps
+    (python3.withPackages (
+      ps: with ps; [
+        pydantic
+        aiofiles
+        aiohttp
+        aiohttp-socks
+      ]
+    ))
+
+    (callPackage ./agy-patched.nix {})
+  ];
+
   programs.home-manager.enable = true;
+
+  programs.nh = {
+    enable = true;
+    # Указываем путь к вашему репозиторию Flake
+    flake = "/home/litc/Nixos";
+  };
 
   home.pointerCursor = {
     enable = true;
@@ -53,9 +95,7 @@ in
       }
       ''
         niri validate --config ${niriConfPath}
-
         cat ${niriConfPath} > $out
-        printf "\n\ninclude \"noctalia.kdl\"\n" >> $out
       '';
 
   programs.firefox.globalExtensions = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -96,7 +136,7 @@ in
 
     settings = {
       confirm_os_window_close = 0;
-      window_padding_width = 3;
+      window_padding_width = 4;
       background_opacity = 0.9;
       shell_integration = "enabled";
       paste_actions = "quote-urls-at-prompt";
@@ -194,4 +234,26 @@ in
       "text/x-csrc" = [ "geany.desktop" ];
     };
   };
+
+  # Периодическая двусторонняя синхронизация rclone bisync
+  services.rclone-sync = {
+    enable = true;
+    autoResync = false;
+    resyncOnFirstRun = true;
+    intervalMinutes = 3; # n минут (max-lock автоматически будет установлен в (n - 1)m)
+    createPath1 = true; # автоматически создавать Path1, если отсутствует (по умолчанию false для безопасности)
+    createPath2 = true; # автоматически создавать Path2, если отсутствует (по умолчанию false)
+    paths = [
+      [ "/home/litc/Sync" "gd-vhivhi:save_files" ]
+      # Или с явными именами и переопределением createPath:
+      # {
+      #   path1 = "/home/litc/Pictures";
+      #   path2 = "remote:Pictures";
+      #   createPath1 = true;
+      #   createPath2 = true;
+      # }
+    ];
+  };
+
 }
+

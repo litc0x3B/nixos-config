@@ -14,7 +14,6 @@
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   networking.hostName = "litc-nixos-pc"; # Define your hostname.
-
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
@@ -47,12 +46,12 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  services.pulseaudio.enable = false;
+  # services.pulseaudio.enable = false;
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -104,24 +103,19 @@
     fastfetch
     yazi
     ouch-rar
-    heroic
-    # dorion  #discord client
-    vesktop
-    lutris
 
     #secrets and shit
     sops
     age
-
-    #dependencies for youtube music noctalia plugin
-    yt-dlp
-    mpv
-    jq
-    curl
-    netcat-openbsd
-
-    cine #mpv based video player
   ];
+
+  # security.wrappers.sing-box = {
+  #   source = "${pkgs.sing-box}/bin/sing-box";
+  #   capabilities = "cap_net_admin,cap_net_bind_service=+ep";
+  # };
+
+  security.polkit.enable = true;
+  security.polkit.enablePkexecWrapper = true;
 
   fonts.packages = [pkgs.nerd-fonts.fira-code];
 
