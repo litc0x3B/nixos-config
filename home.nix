@@ -7,7 +7,10 @@
 }:
 let
   niriConfPath = ./niri-conf.kdl;
-  obsidianVault = rec {name = "Vault"; path = "Obsidian/${name}";};
+  obsidianVault = rec {
+    name = "Vault";
+    path = "Obsidian/${name}";
+  };
 in
 {
   home.username = "litc";
@@ -29,11 +32,13 @@ in
   };
 
   home.packages = with pkgs; [
-    nautilus
-    geany #graphical text editor
+    # nautilus
+    geany # graphical text editor
     keepassxc
     xdg-terminal-exec
     heroic
+    noctalia
+
     # dorion  #discord client
     vesktop
     lutris
@@ -62,11 +67,23 @@ in
       ]
     ))
 
+    # for noctalia qt6 theming template
+    qt6Packages.qt6ct
 
-    (callPackage ./agy-patched.nix {})
+    #nix search plugin
+    nix-search-tv
+    fzf # also needed for zoxide
+
+    # development and shit
+    nodejs
+
+    zoxide #smart cd, supports yazi integration
+
+    (callPackage ./agy-patched.nix { })
   ];
 
   programs.home-manager.enable = true;
+  programs.nix-index.enable = true;
 
   programs.vscode = {
     enable = true;
@@ -77,6 +94,7 @@ in
     enable = true;
     # Указываем путь к вашему репозиторию Flake
     flake = "/home/litc/Nixos";
+
   };
 
   home.pointerCursor = {
@@ -88,21 +106,27 @@ in
     x11.enable = true;
   };
 
-  programs.noctalia = {
-    enable = true;
-    checkConfig = true;
-    settings = ''
-      [include]
-      files = ["${./noctalia-config.toml}"]
+  xdg.configFile."noctalia/config.toml".source =
+    pkgs.runCommand "noctalia-config-checked"
+      {
+        nativeBuildInputs = [ pkgs.noctalia ];
+        passAsFile = [ "noctaliaConfig" ];
+        noctaliaConfig = ''
+          [include]
+          files = ["${./noctalia/tokyo-night-new.toml}"]
 
-      [wallpaper.default]
-      path = "${./wallpaper.png}"
+          [wallpaper.default]
+          path = "${./wallpaper.png}"
 
-      [theme.templates.user.obsidian_extra]
-      input_path = "${config.home.homeDirectory}/.local/state/noctalia/community-templates/obsidian/obsidian.css"
-      output_path = "${config.home.homeDirectory}/${obsidianVault.path}/.obsidian/snippets/noctalia.css"
-    '';
-  };
+          [theme.templates.user.obsidian_extra]
+          input_path = "${config.home.homeDirectory}/.local/state/noctalia/community-templates/obsidian/obsidian.css"
+          output_path = "${config.home.homeDirectory}/${obsidianVault.path}/.obsidian/snippets/noctalia.css"
+        '';
+      }
+      ''
+        noctalia config validate $noctaliaConfigPath
+        cp $noctaliaConfigPath $out
+      '';
 
   # home-manager.users.litc.sops;
 
@@ -112,14 +136,13 @@ in
         nativeBuildInputs = [ pkgs.niri ];
       }
       ''
-        ${pkgs.niri}/bin/niri validate --config ${niriConfPath}
+        niri validate --config ${niriConfPath}
         cat ${niriConfPath} > $out
       '';
 
   xdg.configFile."xdg-terminals.list".text = ''
     kitty.desktop
   '';
-
 
   programs.firefox = {
     enable = true;
@@ -128,20 +151,26 @@ in
       pkgs.pywalfox-native
     ];
 
-    globalExtensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      ublock-origin
-      pywalfox
-      raindropio
-      # (buildFirefoxXpiAddon {
-      #   pname = "definer";
-      #   version = "2.0.2";
-      #   addonId = "definer@lumetrium.com";
-      #   url = "https://addons.mozilla.org/firefox/downloads/file/5032364/lumetrium_definer-2.0.2.xpi";
-      #   sha256 = "1d227b52d608471e145a94b5242fed5a827adaaab9412db1e8832b14db7715d6";
-      #   meta = { };
-      # })
-      unofficial-saladict-popup-dictionary
-    ];
+    profiles = {
+      "default" = {
+        id = 0;
+        path = "g2pc3f7n.default";
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          pywalfox
+          raindropio
+          # (buildFirefoxXpiAddon {
+          #   pname = "definer";
+          #   version = "2.0.2";
+          #   addonId = "definer@lumetrium.com";
+          #   url = "https://addons.mozilla.org/firefox/downloads/file/5032364/lumetrium_definer-2.0.2.xpi";
+          #   sha256 = "1d227b52d608471e145a94b5242fed5a827adaaab9412db1e8832b14db7715d6";
+          #   meta = { };
+          # })
+          unofficial-saladict-popup-dictionary
+        ];
+      };
+    };
   };
 
   gtk = {
@@ -152,15 +181,42 @@ in
       package = pkgs.adw-gtk3; # Пакет с темой в nixpkgs
     };
 
-    iconTheme = {
-      name = "Flat-Remix-Blue-Dark";
-      package = pkgs.flat-remix-icon-theme;
-    };
+    # theme = {
+    #   package = pkgs.tokyo-night-gtk;
+    #   name = "Flat-Remix-GTK-Blue-Dark";
+    # };
 
-    # iconTheme = 
-    # {
+    # iconTheme = {
+    #   name = "Flat-Remix-Blue-Dark";
+    #   package = pkgs.flat-remix-icon-theme;
+    # };
+
+    # iconTheme = {
     #   package = pkgs.papirus-icon-theme;
     #   name = "Papirus-Dark";
+    # };
+
+    iconTheme = {
+      package = pkgs.tela-icon-theme;
+      name = "Tela-blue-dark";
+    };
+
+    # iconTheme =
+    # {
+    #   package = pkgs.adwaita-icon-theme;
+    #   name = "Adwaita";
+    # };
+
+    # iconTheme =
+    # {
+    #   package = pkgs.colloid-icon-theme;
+    #   name = "Colloid";
+    # };
+
+    # iconTheme =
+    # {
+    #   package = pkgs.vimix-icon-theme;
+    #   name = "Vimix-doder-dark";
     # };
   };
 
@@ -228,6 +284,8 @@ in
             pwd > "$YAZI_CWD_FILE"
           }
         fi
+
+        eval "$(zoxide init zsh)"
       ''
     ];
 
@@ -265,7 +323,7 @@ in
       # 1. Открыть файл в текстовом редакторе в новом окне Kitty
       term-edit = [
         {
-          run = ''$TERMINAL -- $EDITOR %s'';
+          run = "$TERMINAL -- $EDITOR %s";
           orphan = true;
           desc = "Edit in new terminal window";
         }
@@ -274,7 +332,7 @@ in
       # 2. Запустить исполняемый скрипт/бинарник в новом терминале:
       term-run = [
         {
-          run = ''$TERMINAL -- %s'';
+          run = "$TERMINAL -- %s";
           orphan = true;
           desc = "Run in new Kitty window";
         }
@@ -320,6 +378,27 @@ in
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      # Замените niri на имя вашего композитора, если используете другой:
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      };
+    };
+  };
+
   # programs.firefox.preferences = {
   #   "browser.tabs.tabmanager.enabled" = false;
   # }
@@ -335,8 +414,6 @@ in
 
   home.file."${obsidianVault.path}/.keep".text = "";
 
-
-
   # Периодическая двусторонняя синхронизация rclone bisync
   services.rclone-sync = {
     enable = true;
@@ -346,16 +423,24 @@ in
     createPath1 = true; # автоматически создавать Path1, если отсутствует (по умолчанию false для безопасности)
     createPath2 = true; # автоматически создавать Path2, если отсутствует (по умолчанию false)
     paths = [
-      [ "/home/litc/Sync" "gd-vhivhi:save_files" ]
+      [
+        "/home/litc/Sync"
+        "gd-vhivhi:save_files"
+      ]
       # Или с явными именами и переопределением createPath:
       # {
       #   path1 = "/home/litc/Pictures";
       #   path2 = "remote:Pictures";
       #   createPath1 = true;
       #   createPath2 = true;
-      # }
     ];
   };
 
-}
+  # Автомонтирование внешних дисков для Wayland-окружения
+  services.udiskie = {
+    enable = true;
+    notify = true;
+    tray = "auto";
+  };
 
+}

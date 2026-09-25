@@ -1,0 +1,235 @@
+[appearance.theme]
+palette_source = "wallpaper"
+
+[backdrop]
+enabled = true
+
+[bar]
+order = [ "default" ]
+
+    [bar.default]
+    background_opacity = 0.52999998815357685
+    border = "primary"
+    border_width = 0.5
+    capsule = true
+    capsule_opacity = 0.0
+    center = [ "clock", "cat", "ram", "wallhaven", "current", "vpn_widget", "toggle", "widget_2" ]
+    concave_edge_corners = false
+    contact_shadow = true
+    end = [
+        "tray",
+        "notifications",
+        "clipboard",
+        "network",
+        "bluetooth",
+        "brightness",
+        "keyboard_layout",
+        "battery",
+        "control-center",
+        "session"
+    ]
+    margin_edge = 9
+    margin_ends = 120
+    start = [ "launcher", "wallpaper", "workspaces", "active-workspace", "group:g1" ]
+    thickness = 44
+    widget_spacing = 7
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "widget", "volume", "media", "audio_visualizer" ]
+        opacity = 0.0
+        padding = 22.0
+
+[control_center]
+hidden_tabs = [ "power", "bluetooth" ]
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+    [[control_center.shortcuts]]
+    type = "power_profile"
+
+[dock]
+background_opacity = 0.52999998815357685
+border = "secondary"
+border_width = 0.5
+concave_edge_corners = false
+enabled = true
+inactive_opacity = 0.99999997764825821
+launcher_position = "start"
+margin_edge = 14
+pinned = [ "code", "firefox", "org.gnome.Nautilus", "kitty" ]
+show_dots = true
+
+[keybinds]
+down = [ "Down", "Ctrl+n" ]
+up = [ "Up", "Ctrl+p" ]
+
+[location]
+address = "Moscow, Russia"
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@Virtual-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.00006103515625
+    cy = 897.999755859375
+    output = "Virtual-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[notification]
+background_opacity = 0.81999998167157173
+
+[osd]
+background_opacity = 0.56999998725950718
+
+[plugin_settings."aabidk20/yt-music"]
+mini_open_near_click = true
+
+[plugin_settings."dotnetrob/cat"]
+panel_placement = "floating"
+
+[plugin_settings."noctalia/wallhaven"]
+browser_open_near_click = true
+browser_placement = "floating"
+
+[plugin_settings."tordex/nvtop"]
+sort_column_color = "on_surface"
+
+[plugin_settings."umedbazarov/ruh-vpn"]
+auto_start = true
+vpn_panel_placement = "floating"
+vpn_panel_position = "top_center"
+
+[plugins]
+enabled = [
+    "noctalia/wallhaven",
+    "umedbazarov/ruh-vpn",
+    "dotnetrob/cat",
+    "thepunkoff/pomodoro",
+    "weinguyen/procmon",
+    "knyrps/nix-search",
+    "alexander/game-launcher",
+]
+
+[shell]
+external_ip_enabled = true
+niri_overview_type_to_launch_enabled = true
+polkit_agent = true
+
+    [shell.panel]
+    control_center_placement = "floating"
+    open_near_click_control_center = true
+    open_near_click_wallpaper = true
+    transparency_mode = "soft"
+    wallpaper_placement = "floating"
+
+    [shell.screenshot]
+    confirm_region = true
+    directory = "/home/litc/Pictures/Screenshots"
+    remember_last_region = true
+
+    [shell.shadow]
+    alpha = 0.99999997764825821
+
+    [shell.window_switcher]
+    mru = true
+
+[theme]
+builtin = "Kanagawa"
+community_palette = "Tomorrow"
+custom_palette = "_live_preview"
+mode = "light"
+source = "wallpaper"
+wallpaper_scheme = "m3-tonal-spot"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
+    community_ids = [ "antigravity", "pywalfox-beta4", "discord", "telegram", "vscode", "heroiclauncher", "yazi" ]
+
+        [theme.templates.user.obsidian_extra]
+        input_path = "/home/litc/.local/state/noctalia/community-templates/obsidian/obsidian.css"
+        output_path = "/home/litc/Obsidian/Vault/.obsidian/snippets/noctalia.css"
+
+        [theme.templates.user.palette_creator_live]
+        input_path = "/home/litc/.local/state/noctalia/plugins/materialized/community/palette-creator/templates/live-snapshot.tpl"
+        output_path = "/home/litc/.local/state/noctalia/plugin-data/kyle-palette-creator/live-snapshot.json"
+
+[wallpaper.default]
+path = "/home/litc/Pictures/740164.png"
+
+[wallpaper.last]
+path = "/home/litc/Pictures/740164.png"
+
+[wallpaper.monitors.Virtual-1]
+path = "/home/litc/Pictures/740164.png"
+
+[widget.active-workspace]
+type = "salemsayed/niri-active-workspace:active-workspace"
+
+[widget.audio_visualizer]
+bands = 14
+color_2 = "secondary"
+show_when_idle = true
+width = 90
+
+[widget.cat]
+cat_size = 35
+show_cpu_percent = true
+type = "dotnetrob/cat:cat"
+
+[widget.control-center]
+glyph = "brand-snowflake"
+
+[widget.current]
+type = "thaer99ob/default-apps:current"
+
+[widget.toggle]
+type = "decksters-lab/palette-creator:toggle"
+
+[widget.vpn_widget]
+type = "umedbazarov/ruh-vpn:vpn_widget"
+
+[widget.wallhaven]
+type = "noctalia/wallhaven:wallhaven"
+
+[widget.widget]
+type = "aabidk20/yt-music:widget"
+
+[widget.widget_2]
+type = "tadomika_ari/config-swap:widget"

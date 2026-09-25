@@ -91,7 +91,12 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     foot
-    # nautilus-python# probably needed for open-any-terminal
+    nautilus-python# probably needed for open-any-terminal
+    nautilus
+    loupe 
+    gnome-secrets
+    ffmpegthumbnailer
+    libheif
 
     git
     xeyes #x11 test utility
@@ -109,7 +114,23 @@
     #secrets and shit
     sops
     age
+
+    kdePackages.kate
+
+
+    # flat-remix-icon-theme
+    # fallbacks probably?
+    # adwaita-icon-theme
+    # hicolor-icon-theme
   ];
+
+  # services.dbus.packages = [
+  #   pkgs.loupe
+  #   pkgs.nautilus
+  #   pkgs.file-roller
+  # ];
+
+  environment.pathsToLink = [ "/share/icons" ];
 
   # security.wrappers.sing-box = {
   #   source = "${pkgs.sing-box}/bin/sing-box";
@@ -117,7 +138,12 @@
   # };
 
   security.polkit.enable = true;
-  security.polkit.enablePkexecWrapper = true;
+  # Нужно в unstable
+  # security.polkit.enablePkexecWrapper = true;
+  security.sudo.extraConfig = ''
+    # Символ \u0007 (BEL) заставит терминал среагировать при появлении промпта:
+    Defaults passprompt = "${builtins.fromJSON ''"\u0007"''}[sudo] password for %p: "
+  '';
 
   fonts.packages = [pkgs.nerd-fonts.fira-code];
 
@@ -127,6 +153,7 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
+  programs.nix-ld.enable = true;
   virtualisation.containers.registries.search = [ "docker.io" "quay.io" ];  
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -151,6 +178,33 @@
 
   programs.niri.enable = true;
   # programs.dms-shell.enable = true;
+
+  # Display Manager / Greeter
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --asterisks --cmd niri-session";
+        user = "greeter";
+      };
+    };
+  };
+
+  # GNOME Keyring & unlock via greetd PAM
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
+  # Ensure tuigreet cache directory exists for remembering user/session
+  systemd.tmpfiles.rules = [
+    "d '/var/cache/tuigreet' 0755 greeter greeter - -"
+  ];
+
+  # GNOME Services & Nautilus integration
+  services.gvfs.enable = true;             # Virtual filesystem (trash, smb, sftp, mtp)
+  services.udisks2.enable = true;          # Storage devices & external drive mounting
+  services.gnome.sushi.enable = true;      # File preview on Spacebar
+  services.gnome.tinysparql.enable = true; # File indexer & search database (Tracker)
+  services.gnome.localsearch.enable = true;
   virtualisation.virtualbox.guest.enable = false;
   virtualisation.virtualbox.guest.dragAndDrop = false;
   virtualisation.vmware.guest.enable = true;
@@ -163,10 +217,10 @@
   
   nixpkgs.config.allowUnfree = true; 
 
-  # programs.nautilus-open-any-terminal = {
-  #   enable = true;
-  #   terminal = "kitty";
-  # };
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "kitty";
+  };
   
 
   # Copy the NixOS configuration file and link it from the resulting system
