@@ -27,7 +27,7 @@ order = [ "default" ]
     ]
     margin_edge = 9
     margin_ends = 120
-    start = [ "launcher", "wallpaper", "workspaces", "group:g1" ]
+    start = [ "launcher", "wallpaper", "taskbar", "group:g1" ]
     thickness = 44
 
         [[bar.default.capsule_group]]
@@ -224,3 +224,13 @@ type = "aabidk20/yt-music:widget"
 
 [widget.widget_2]
 type = "tadomika_ari/config-swap:widget"
+
+[widget.taskbar]
+group_by_workspace = true
+workspace_group_content = "icons"
+show_workspace_label = true
+workspace_label_placement = "corner"
+group_single_icon_per_app = true
+hide_empty_workspaces = false
+workspace_group_capsule = true
+show_active_indicator = true

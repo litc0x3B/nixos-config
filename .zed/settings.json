@@ -1,0 +1,38 @@
+{
+  "lsp": {
+    "nixd": {
+      "settings": {
+        "formatting": {
+          "command": [
+            "nixfmt"
+          ]
+        },
+        "nixpkgs": {
+          "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".pkgs"
+        },
+        "options": {
+          "nixos": {
+            "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options"
+          },
+          "home-manager": {
+            "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options.home-manager.users.type.getSubOptions []"
+          }
+        }
+      }
+    }
+  },
+  "languages": {
+    "Nix": {
+      "language_servers": [
+        "nixd",
+        "!nil"
+      ],
+      "formatter": {
+        "external": {
+          "command": "nixfmt"
+        }
+      },
+      "tab_size": 2
+    }
+  }
+}

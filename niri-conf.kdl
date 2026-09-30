@@ -4,17 +4,17 @@ spawn-at-startup "noctalia"
 
 
 layout {
-    // Либо настройка фокуса (если вы используете focus-ring вместо border)
     focus-ring {
         width 2 // Толщина кольца фокуса
     }
     // border {
-    //   width 2
+    //     width 2
     // }
     tab-indicator {
       place-within-column
       position "top"
     }
+    gaps 10
 }
 
 
@@ -73,9 +73,15 @@ hotkey-overlay {
     skip-at-startup
 }
 
+animations {
+    window-resize {
+        spring damping-ratio=1.0 stiffness=2000 epsilon=0.0001
+    }
+}
+
 window-rule {
   // Rounded corners for a modern look.
-  geometry-corner-radius 20
+  geometry-corner-radius 10
   // Clips window contents to the rounded corner boundaries.
   clip-to-geometry true
   draw-border-with-background false
@@ -100,6 +106,7 @@ binds {
     Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
     Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
     Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
+    Mod+V { spawn-sh "noctalia msg panel-toggle clipboard"; }
     // Niri has a built-in window switcher you might want to try it to see which one you prefer.
 
     // Audio & Brightness
@@ -311,7 +318,7 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
+    // Mod+V       { toggle-window-floating; } // Note: toggle-window-floating is bound to Mod+Shift+T
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.

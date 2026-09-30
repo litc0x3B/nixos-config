@@ -33,7 +33,6 @@ in
 
   home.packages = with pkgs; [
     # nautilus
-    geany # graphical text editor
     keepassxc
     xdg-terminal-exec
     heroic
@@ -77,7 +76,9 @@ in
     # development and shit
     nodejs
 
-    zoxide #smart cd, supports yazi integration
+    zoxide # smart cd, supports yazi integration
+
+    lazygit
 
     (callPackage ./agy-patched.nix { })
   ];
@@ -143,6 +144,9 @@ in
   xdg.configFile."xdg-terminals.list".text = ''
     kitty.desktop
   '';
+
+  xdg.dataFile."noctalia/plugins/ruh-vpn".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Nixos/noctalia/plugins/ruh-vpn";
 
   programs.firefox = {
     enable = true;
@@ -374,7 +378,9 @@ in
     enable = true;
     defaultApplications = {
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-      "text/x-csrc" = [ "geany.desktop" ];
+      "text/plain" = [ "dev.zed.Zed.desktop" ];
+      "text/markdown" = [ "dev.zed.Zed.desktop" ];
+      "text/x-csrc" = [ "dev.zed.Zed.desktop" ];
     };
   };
 
@@ -433,6 +439,16 @@ in
       #   path2 = "remote:Pictures";
       #   createPath1 = true;
       #   createPath2 = true;
+    ];
+  };
+
+  programs.zed-editor = {
+    enable = true;
+    extensions = [
+      "nix"
+      "kdl"
+      "git-firefly"
+      "toml"
     ];
   };
 

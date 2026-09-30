@@ -9,6 +9,9 @@ NixOS flake configuration with Home Manager for host `litc-nixos-pc`.
 - `home.nix` — User-level configuration (Home Manager for user `litc`).
 - `niri-conf.kdl` — Niri Wayland compositor keybindings and layout.
 - `noctalia.kdl` — Noctalia status bar / desktop widget configuration.
+- `noctalia/` — Noctalia configuration variants and local plugins (e.g. `plugins/ruh-vpn`).
+- `noctalia/plugins/ruh-vpn` - Local version of noctalia ruh-vpn plugin with various fixes
+
 
 ## System Stack
 

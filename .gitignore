@@ -1,0 +1,21 @@
+# Nix build artifacts
+result
+result-*
+
+# Direnv
+.direnv/
+
+# Temporary files & editors (excluding .zed and .vscode)
+.idea/
+*.swp
+*.swo
+*~
+
+# Python cache & virtual environments (for plugins like ruh-vpn)
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+env/
+venv/
