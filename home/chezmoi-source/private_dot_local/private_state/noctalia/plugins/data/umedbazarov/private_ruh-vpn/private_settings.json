@@ -1,0 +1,18 @@
+{
+  "activeServerId": "d9af23b76a1d",
+  "mode": "rules",
+  "proxyMode": "tun",
+  "autoStart": false,
+  "rulesPort": 11081,
+  "globalPort": 11082,
+  "transportPort": 11080,
+  "refilterEnabled": true,
+  "healthCheckIntervalSec": 30,
+  "killSwitchEnabled": false,
+  "clashApiPort": 11089,
+  "showPingInBar": true,
+  "showTrafficInBar": false,
+  "activePresets": [
+    "ru"
+  ]
+}

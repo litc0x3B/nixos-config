@@ -1,0 +1,8 @@
+[
+  {
+    "id": "7ffa28031d02",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "2ip.io"
+  }
+]

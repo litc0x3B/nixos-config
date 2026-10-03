@@ -62,6 +62,26 @@
         "type": "github"
       }
     },
+    "niri-utils": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781917081,
+        "narHash": "sha256-/ERPjCb6KvROv2zt6Hf1dJBqV6sGvAcC8DgNUaZHHVc=",
+        "owner": "lazaroofarrill",
+        "repo": "niri-utils",
+        "rev": "31041f39239fb434c350e4d731cbbf9d2e590424",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lazaroofarrill",
+        "repo": "niri-utils",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -119,13 +139,35 @@
         "type": "github"
       }
     },
+    "rc-sync": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790994776,
+        "narHash": "sha256-WB2+8dmy2QTt7evvGOWfDNAEtfHJY1a9FkgaPM+gnjg=",
+        "owner": "litc0x3B",
+        "repo": "rc-sync",
+        "rev": "fde064c0bdde887eab69f91ea76a1df12ac2ea18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "litc0x3B",
+        "repo": "rc-sync",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
+        "niri-utils": "niri-utils",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
-        "nur": "nur"
+        "nur": "nur",
+        "rc-sync": "rc-sync"
       }
     }
   },

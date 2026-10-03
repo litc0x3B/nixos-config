@@ -3,36 +3,34 @@
     "nixd": {
       "settings": {
         "formatting": {
-          "command": [
-            "nixfmt"
-          ]
+          "command": ["nixfmt"],
         },
         "nixpkgs": {
-          "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".pkgs"
+          "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".pkgs",
         },
         "options": {
           "nixos": {
-            "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options"
+            "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options",
           },
           "home-manager": {
-            "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options.home-manager.users.type.getSubOptions []"
-          }
-        }
-      }
-    }
+            "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options.home-manager.users.type.getSubOptions []",
+          },
+        },
+      },
+    },
   },
   "languages": {
     "Nix": {
       "language_servers": [
         "nixd",
-        "!nil"
+        // "!nil"
       ],
       "formatter": {
         "external": {
-          "command": "nixfmt"
-        }
+          "command": "nixfmt",
+        },
       },
-      "tab_size": 2
-    }
-  }
+      "tab_size": 2,
+    },
+  },
 }

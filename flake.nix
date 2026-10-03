@@ -13,26 +13,19 @@
     };
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    # noctalia = {
-    #   url = "github:noctalia-dev/noctalia";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # sops-nix = {
-    #   url = "github:Mic92/sops-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # noctalia = {
-    #   url = "github:noctalia-dev/noctalia";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # niri = {
-    #   url = "github:sodiboo/niri-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    rc-sync = {
+      # url = "git+file:///home/litc/Projects/rc-sync";
+      url = "github:litc0x3B/rc-sync";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    niri-utils = {
+      url = "github:lazaroofarrill/niri-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -42,6 +35,7 @@
       disko,
       home-manager,
       nix-index-database,
+      rc-sync,
       ...
     }@inputs:
     let
@@ -51,15 +45,19 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.litc = import ./home.nix;
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+            inherit self;
+          };
+          home-manager.users.litc = import ./home;
           home-manager.backupFileExtension = "backup";
 
           home-manager.sharedModules = [
             # inputs.sops-nix.homeManagerModules.sops
             # inputs.noctalia.homeModules.default
-            ./rclone-sync.nix
+            ./home/rclone-sync.nix
             nix-index-database.homeModules.default
+            rc-sync.homeManagerModules.default
             # optional to also wrap and install comma
             { programs.nix-index-database.comma.enable = true; }
           ];
@@ -76,13 +74,6 @@
           ./hardware-configuration.nix
         ]
         ++ non-hardware-modules;
-      };
-
-      nixosConfigurations.live-iso = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = non-hardware-modules ++ [
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-        ];
       };
     };
 }

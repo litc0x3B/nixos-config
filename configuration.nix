@@ -2,7 +2,13 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Use the GRUB 2 boot loader.
@@ -26,17 +32,14 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
- #  console = {
- #    font = "Lat2-Terminus16";
- #    keyMap = "us";
- #    useXkbConfig = true; # use xkb.options in tty.
- #  };
+  #  console = {
+  #    font = "Lat2-Terminus16";
+  #    keyMap = "us";
+  #    useXkbConfig = true; # use xkb.options in tty.
+  #  };
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -65,24 +68,28 @@
       tree
     ];
   };
+  programs.zsh.enable = true;
 
-
-	environment.variables = {
-			# SUDO_EDITOR = "geany";
-			NIXPKGS_ALLOW_UNFREE = 1;
-      WLR_NO_HARDWARE_CURSORS = 1;
-      EDITOR = "vim";
-      SUDO_EDITOR = "vim";
-      # Отключает аппаратные DRM-модификаторы, которые ломают картинку в ВМ
-      # AQ_NO_MODIFIERS = 1;
-      # LIBGL_ALWAYS_SOFTWARE=1;
-      # WLR_RENDERER = "pixman";
-	};
+  environment.variables = {
+    # SUDO_EDITOR = "geany";
+    NIXPKGS_ALLOW_UNFREE = 1;
+    WLR_NO_HARDWARE_CURSORS = 1;
+    EDITOR = "vim";
+    SUDO_EDITOR = "vim";
+    # Отключает аппаратные DRM-модификаторы, которые ломают картинку в ВМ
+    # AQ_NO_MODIFIERS = 1;
+    # LIBGL_ALWAYS_SOFTWARE=1;
+    # WLR_RENDERER = "pixman";
+  };
 
   # programs.firefox.enable = true;
 
   nixpkgs.overlays = [
     inputs.nur.overlays.default
+    (final: prev: {
+      niri-window-pin = inputs.niri-utils.packages.${prev.system}.niri-window-pin;
+    })
+    inputs.rc-sync.overlays.default
   ];
 
   # List packages installed	 in system profile.
@@ -91,18 +98,18 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     foot
-    nautilus-python# probably needed for open-any-terminal
+    nautilus-python # probably needed for open-any-terminal
     nautilus
-    loupe 
+    loupe
     gnome-secrets
     ffmpegthumbnailer
     libheif
 
     git
-    xeyes #x11 test utility
+    xeyes # x11 test utility
     xwayland-satellite
-    nixd #nix lsp
-    nixfmt-rfc-style #nix code formatter 
+    nixd # nix lsp
+    nixfmt-rfc-style # nix code formatter
     btop
     # antigravity-cli
     nodejs
@@ -116,7 +123,6 @@
     age
 
     kdePackages.kate
-
 
     # flat-remix-icon-theme
     # fallbacks probably?
@@ -145,7 +151,7 @@
     Defaults passprompt = "${builtins.fromJSON ''"\u0007"''}[sudo] password for %p: "
   '';
 
-  fonts.packages = [pkgs.nerd-fonts.fira-code];
+  fonts.packages = [ pkgs.nerd-fonts.fira-code ];
 
   virtualisation.podman = {
     enable = true;
@@ -154,8 +160,14 @@
   };
 
   programs.nix-ld.enable = true;
-  virtualisation.containers.registries.search = [ "docker.io" "quay.io" ];  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  virtualisation.containers.registries.search = [
+    "docker.io"
+    "quay.io"
+  ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -200,52 +212,22 @@
   ];
 
   # GNOME Services & Nautilus integration
-  services.gvfs.enable = true;             # Virtual filesystem (trash, smb, sftp, mtp)
-  services.udisks2.enable = true;          # Storage devices & external drive mounting
-  services.gnome.sushi.enable = true;      # File preview on Spacebar
+  services.gvfs.enable = true; # Virtual filesystem (trash, smb, sftp, mtp)
+  services.udisks2.enable = true; # Storage devices & external drive mounting
+  services.gnome.sushi.enable = true; # File preview on Spacebar
   services.gnome.tinysparql.enable = true; # File indexer & search database (Tracker)
   services.gnome.localsearch.enable = true;
   virtualisation.virtualbox.guest.enable = false;
   virtualisation.virtualbox.guest.dragAndDrop = false;
   virtualisation.vmware.guest.enable = true;
-  
-  programs.zsh.ohMyZsh.enable = true;
-  programs.zsh.enable = true;
-  programs.zsh.syntaxHighlighting.enable = true;
-  programs.zsh.autosuggestions.enable = true;
-  # programs.zsh.ohMyZsh.plugins = ["git" "zsh-autosuggestions" "zsh-syntax-highlighting"];
-  
-  nixpkgs.config.allowUnfree = true; 
+
+  nixpkgs.config.allowUnfree = true;
 
   programs.nautilus-open-any-terminal = {
     enable = true;
     terminal = "kitty";
   };
-  
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
-  # to actually do that.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly.
-  #
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "26.05"; # Did you read the comment?
+  system.stateVersion = "26.05"; # DO NOT CHANGE THIS!
 
 }
-

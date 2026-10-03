@@ -1,6 +1,7 @@
 include optional=true "noctalia.kdl"
 
 spawn-at-startup "noctalia"
+spawn-at-startup "sh" "-c" "niri-window-pin -rules ~/.config/niri/pin-rules.json"
 
 
 layout {
@@ -94,6 +95,7 @@ window-rule {
   default-column-width { fixed 1080; }
   default-window-height { fixed 920; }
 }
+
 
 debug {
   // Allows notification actions and window activation from Noctalia.
@@ -368,4 +370,17 @@ layer-rule {
   place-within-backdrop true
 }
 
+layer-rule {
+    match namespace="^noctalia-"
+    exclude namespace="^noctalia-(backdrop|wallpaper)$"
+
+    background-effect {
+        // blur false
+        // xray false
+    }
+}
+
+
+
+include optional=true "window-rules.kdl"
 include optional=true "extra-config.kdl"
