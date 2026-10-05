@@ -5,6 +5,7 @@
     },
   },
   "project_panel": {
+    "hide_gitignore": false,
     "dock": "right",
   },
   "cli_default_open_behavior": "existing_window",
@@ -28,5 +29,6 @@
     "tokyo-night": true,
     "yaml": true,
     "csharp": true,
+    "lua": true,
   },
 }

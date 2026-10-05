@@ -52,6 +52,8 @@ in
     # "micro/settings.json"
     # "micro/bindings.json"
     { "noctalia/exported.toml" = "noctalia/tokyo-night-new-new-lmao.toml"; }
+
+    "nvim"
   ];
 
   xdg.dataFile = mkLinks "" {

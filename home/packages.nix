@@ -59,5 +59,15 @@
     (callPackage ./agy-patched.nix { })
     niri-window-pin
     rc-sync
+
+    #nvim kickstart
+    neovim
+    git
+    gcc
+    unzip
+    gnumake
+    ripgrep
+    fd
+    tree-sitter
   ];
 }

@@ -228,6 +228,13 @@
     terminal = "kitty";
   };
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8 * 1024;
+    }
+  ];
+
   system.stateVersion = "26.05"; # DO NOT CHANGE THIS!
 
 }

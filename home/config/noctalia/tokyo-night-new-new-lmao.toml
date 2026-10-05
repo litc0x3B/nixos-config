@@ -186,7 +186,7 @@ wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
     builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
-    community_ids = [ "antigravity", "pywalfox-beta4", "discord", "telegram", "vscode", "heroiclauncher", "yazi" ]
+    community_ids = [ "antigravity", "pywalfox-beta4", "discord", "telegram", "neovim", "vscode", "heroiclauncher", "yazi" ]
 
         [theme.templates.user.obsidian_extra]
         input_path = "/home/litc/.local/state/noctalia/community-templates/obsidian/obsidian.css"
@@ -196,14 +196,17 @@ wallpaper_scheme = "m3-tonal-spot"
         input_path = "/home/litc/.local/state/noctalia/plugins/materialized/community/palette-creator/templates/live-snapshot.tpl"
         output_path = "/home/litc/.local/state/noctalia/plugin-data/kyle-palette-creator/live-snapshot.json"
 
-[wallpaper.default]
-path = "/home/litc/Pictures/wallpaper.png"
+[wallpaper]
+transition_on_startup = true
 
-[wallpaper.last]
-path = "/home/litc/Pictures/wallpaper.png"
+    [wallpaper.default]
+    path = "/home/litc/Pictures/wallpaper.png"
 
-[wallpaper.monitors.Virtual-1]
-path = "/home/litc/Pictures/wallpaper.png"
+    [wallpaper.last]
+    path = "/home/litc/Pictures/wallpaper.png"
+
+    [wallpaper.monitors.Virtual-1]
+    path = "/home/litc/Pictures/wallpaper.png"
 
 [widget.active-workspace]
 type = "salemsayed/niri-active-workspace:active-workspace"
