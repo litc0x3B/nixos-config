@@ -12,7 +12,19 @@ order = [ "default" ]
     capsule = true
     capsule_group = []
     capsule_opacity = 0.91999997943639755
-    center = [ "cat", "ram", "wallhaven", "current", "vpn_widget", "widget", "media", "audio_visualizer" ]
+    center = [
+        "status",
+        "wallhaven",
+        "cat",
+        "ram",
+        "current",
+        "vpn_widget",
+        "widget",
+        "media",
+        "audio_visualizer",
+        "widget_3",
+        "widget_4"
+    ]
     concave_edge_corners = false
     end = [
         "tray",
@@ -28,8 +40,9 @@ order = [ "default" ]
         "control-center",
         "session"
     ]
-    margin_edge = 9
+    margin_edge = 8
     margin_ends = 9
+    radius = 22
     start = [ "launcher", "wallpaper", "taskbar" ]
     thickness = 45
 
@@ -51,9 +64,12 @@ concave_edge_corners = false
 enabled = true
 inactive_opacity = 0.99999997764825821
 launcher_position = "start"
-margin_edge = 14
+margin_edge = 8
 pinned = [ "code", "firefox", "org.gnome.Nautilus", "kitty", "dev.zed.Zed" ]
+radius = 32
+reserve_space = false
 show_dots = true
+smart_auto_hide = true
 
 [keybinds]
 down = [ "Down", "Ctrl+n" ]
@@ -111,6 +127,11 @@ mini_open_near_click = true
 [plugin_settings."dotnetrob/cat"]
 panel_placement = "floating"
 
+[plugin_settings."mindnbytes/nix-status"]
+details_placement = "floating"
+flake_dir = "/home/litc/Nixos"
+nixos_configuration = "litc-nixos-pc"
+
 [plugin_settings."noctalia/wallhaven"]
 browser_open_near_click = true
 browser_placement = "floating"
@@ -128,10 +149,11 @@ auto_update = "all"
 enabled = [
     "noctalia/wallhaven",
     "dotnetrob/cat",
-    "weinguyen/procmon",
     "knyrps/nix-search",
-    "setyvii/niri-rules-studio",
-    "umedbazarov/ruh-vpn"
+    "umedbazarov/ruh-vpn",
+    "kenn/keybind-cheatsheet",
+    "mindnbytes/nix-status",
+    "icefish/phone-operate"
 ]
 
 [shell]
@@ -149,7 +171,7 @@ polkit_agent = true
     [shell.screenshot]
     confirm_region = true
     directory = "/home/litc/Pictures/Screenshots"
-    remember_last_region = true
+    remember_last_region = false
 
     [shell.window_switcher]
     mru = true
@@ -208,6 +230,9 @@ hide_when_no_media = true
 max_length = 176
 title_scroll = "always"
 
+[widget.status]
+type = "mindnbytes/nix-status:status"
+
 [widget.taskbar]
 group_by_workspace = true
 group_single_icon_per_app = true
@@ -233,3 +258,9 @@ type = "aabidk20/yt-music:widget"
 
 [widget.widget_2]
 type = "tadomika_ari/config-swap:widget"
+
+[widget.widget_3]
+type = "tordex/processes:widget"
+
+[widget.widget_4]
+type = "weinguyen/procmon:widget"

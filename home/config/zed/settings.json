@@ -1,8 +1,8 @@
 {
   "agent_servers": {
     "antigravity-acp": {
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "project_panel": {
     "dock": "right",
@@ -27,5 +27,6 @@
     "toml": true,
     "tokyo-night": true,
     "yaml": true,
+    "csharp": true,
   },
 }

@@ -54,6 +54,7 @@
     chezmoi
 
     # rclone-ui
+    ncdu
 
     (callPackage ./agy-patched.nix { })
     niri-window-pin

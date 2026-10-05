@@ -4,5 +4,23 @@
     "enabled": true,
     "type": "force-proxy",
     "pattern": "2ip.io"
+  },
+  {
+    "id": "067e6c4460dd",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "2ip.ru"
+  },
+  {
+    "id": "e80c8618b80c",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.agentclientprotocol.com"
+  },
+  {
+    "id": "15e2522bf8cc",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "pathbuilder2e-data.b-cdn.net"
   }
 ]

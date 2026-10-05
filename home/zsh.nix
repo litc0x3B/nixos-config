@@ -5,6 +5,7 @@
     oh-my-zsh = {
       enable = true;
       theme = "gnzh";
+      plugins = [ "virtualenv" ];
     };
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
@@ -25,6 +26,15 @@
           # Если мы внутри Distrobox, выводим имя контейнера
           if [[ -n "$CONTAINER_ID" ]]; then
             print -rn -- "%F{magenta}[distrobox: $CONTAINER_ID]%f "
+          fi
+
+          # Если мы внутри subshell Yazi, выводим индикатор
+          if [[ -n "$YAZI_LEVEL" ]]; then
+            if [[ "$YAZI_LEVEL" -gt 1 ]]; then
+              print -rn -- "%F{cyan}[yazi: $YAZI_LEVEL]%f "
+            else
+              print -rn -- "%F{cyan}[yazi]%f "
+            fi
           fi
 
           # Вызываем оригинальную функцию Oh My Zsh (для Python venv)

@@ -49,8 +49,8 @@ in
     "zed/keymap.json"
     "niri"
     "kitty/kitty.conf"
-    "micro/settings.json"
-    "micro/bindings.json"
+    # "micro/settings.json"
+    # "micro/bindings.json"
     { "noctalia/exported.toml" = "noctalia/tokyo-night-new-new-lmao.toml"; }
   ];
 

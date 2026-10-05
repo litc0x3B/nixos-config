@@ -33,7 +33,6 @@ in
   programs.nh = {
     enable = true;
     flake = "/home/litc/Nixos";
-
   };
 
   home.pointerCursor = {
@@ -164,7 +163,7 @@ in
     enable = true;
     settings = {
       global_flags = "--resilient --recover --max-lock %tm";
-      sync_freq_minutes = 3;
+      sync_freq_minutes = 4;
       mappings = {
         sync = {
           path1 = "~/Sync";

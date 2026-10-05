@@ -1,9 +1,28 @@
+
+// Floating Noctalia settings window.
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
+}
+
+// window-rule {
+//     match is-floating=true
+//     default-window-height { fixed 800; }
+
+//     // opacity 0.9
+//     // baba-is-float true
+// }
+
 window-rule {
     match app-id="^firefox$" title="Picture-in-Picture"
     open-floating true
     open-fullscreen false
     open-maximized false
     open-maximized-to-edges false
-    default-window-height { proportion 0.100; }
-    default-floating-position x=5 y=5 relative-to="top-right"
+    // default-window-height { proportion 0.100; }
+    // opacity 0.5
+    default-floating-position x=20 y=5 relative-to="top-right"
+    // baba-is-float true
 }

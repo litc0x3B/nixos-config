@@ -18,7 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rc-sync = {
-      # url = "git+file:///home/litc/Projects/rc-sync";
       url = "github:litc0x3B/rc-sync";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -55,7 +54,6 @@
           home-manager.sharedModules = [
             # inputs.sops-nix.homeManagerModules.sops
             # inputs.noctalia.homeModules.default
-            ./home/rclone-sync.nix
             nix-index-database.homeModules.default
             rc-sync.homeManagerModules.default
             # optional to also wrap and install comma
