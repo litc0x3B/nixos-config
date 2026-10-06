@@ -9,14 +9,14 @@
                 ]
             },
             "nixpkgs": {
-                "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".pkgs"
+                "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-vm\".pkgs"
             },
             "options": {
                 "nixos": {
-                    "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options"
+                    "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-vm\".options"
                 },
                 "home-manager": {
-                    "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-pc\".options.home-manager.users.type.getSubOptions []"
+                    "expr": "(builtins.getFlake (toString ./.)).nixosConfigurations.\"litc-nixos-vm\".options.home-manager.users.type.getSubOptions []"
                 }
             }
         }

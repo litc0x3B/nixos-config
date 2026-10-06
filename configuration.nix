@@ -11,15 +11,9 @@
 }:
 
 {
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  # Настройки загрузчика (bootloader) перенесены в hosts/<hostName>/default.nix
 
-  networking.hostName = "litc-nixos-pc"; # Define your hostname.
+  # Hostname задается в flake.nix / hosts/<hostName>
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
@@ -64,6 +58,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
+    initialPassword = "1234";
     packages = with pkgs; [
       tree
     ];
@@ -80,6 +75,11 @@
     # AQ_NO_MODIFIERS = 1;
     # LIBGL_ALWAYS_SOFTWARE=1;
     # WLR_RENDERER = "pixman";
+  };
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
 
   # programs.firefox.enable = true;
@@ -180,7 +180,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -216,10 +216,7 @@
   services.udisks2.enable = true; # Storage devices & external drive mounting
   services.gnome.sushi.enable = true; # File preview on Spacebar
   services.gnome.tinysparql.enable = true; # File indexer & search database (Tracker)
-  services.gnome.localsearch.enable = true;
-  virtualisation.virtualbox.guest.enable = false;
-  virtualisation.virtualbox.guest.dragAndDrop = false;
-  virtualisation.vmware.guest.enable = true;
+  # Настройки гостевых дополнений виртуализации перенесены в hosts/litc-nixos-vm/default.nix
 
   nixpkgs.config.allowUnfree = true;
 

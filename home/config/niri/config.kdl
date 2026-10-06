@@ -47,6 +47,11 @@ input {
 
     //focus-follows-mouse
 
+    touchpad {
+        tap
+        natural-scroll
+    }
+
     trackpoint {
         // off
         // natural-scroll
@@ -444,3 +449,4 @@ recent-windows {
 
 include optional=true "window-rules.kdl"
 include optional=true "extra-config.kdl"
+include optional=true "host-overrides.kdl"

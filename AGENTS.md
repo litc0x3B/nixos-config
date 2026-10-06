@@ -1,13 +1,15 @@
 # Repository Guidelines for AI Agents
 
-NixOS flake configuration with Home Manager for host `litc-nixos-pc`.
+NixOS flake configuration with Home Manager for multiple hosts (`litc-nixos-vm`, `litc-nixos-laptop`).
 
 ## Project Structure
 
-- `flake.nix` — Flake entrypoint (inputs, outputs, host and home-manager integration).
-- `configuration.nix` — System-level NixOS configuration.
-- `hardware-configuration.nix` — Hardware detection and configuration.
+- `flake.nix` — Flake entrypoint (inputs, outputs, `mkHost` helper, and home-manager integration).
+- `configuration.nix` — Base system-level NixOS configuration shared across hosts.
 - `disko-config.nix` — Declarative disk partitioning configuration (Disko).
+- `hosts/` — Host-specific configurations:
+  - `hosts/litc-nixos-vm/` — VM host.
+  - `hosts/litc-nixos-laptop/` — Laptop host.
 - `home/` — Modular Home Manager configuration for user `litc`:
   - `home/default.nix` — Main entrypoint importing submodules.
   - `home/packages.nix` — User packages and utilities.
@@ -15,7 +17,7 @@ NixOS flake configuration with Home Manager for host `litc-nixos-pc`.
   - `home/zsh.nix` — Zsh shell and plugin configuration.
   - `home/env.nix` — Session environment variables
   - `home/misc.nix` — Miscellaneous settings (git, fonts, etc.).
-  - `home/noctalia.nix` — Sets wallpaper image from this repo.
+  - `home/noctalia.nix` — Sets wallpaper image and dynamic host status for noctalia.
   - `home/wallpaper.png` — Wallpaper image used by noctalia module.
   - `home/yazi.nix` — Yazi file manager configuration.
   - `home/rclone-sync.nix` — Background cloud sync service via rclone.
@@ -38,7 +40,7 @@ NixOS flake configuration with Home Manager for host `litc-nixos-pc`.
 
 - **Validation**: Always verify changes before recommending applying:
   ```bash
-  nix build .#nixosConfigurations.litc-nixos-pc.config.system.build.toplevel --dry-run
+  nix build .#nixosConfigurations.litc-nixos-vm.config.system.build.toplevel --dry-run
   ```
 - **Applying changes**: User applies system changes via `nh`:
   ```bash

@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    keepassxc
     xdg-terminal-exec # what is that?
     heroic
     noctalia
@@ -69,5 +68,8 @@
     ripgrep
     fd
     tree-sitter
+
+    nixos-anywhere
+    seahorse
   ];
 }

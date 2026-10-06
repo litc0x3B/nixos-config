@@ -38,40 +38,63 @@
       ...
     }@inputs:
     let
-      non-hardware-modules = [
+      myConfig = { hostName }: rec {
+        # TODO: сделать кастумизируемое им пользователя
+        # Вообще это скорее всего можно сделать через опции, а не колхозить свой cfg
+        basePath = "/home/litc/Nixos";
+        homePath = "home";
+        hostHomePath = "hosts/${hostName}/home";
+        fullHomePath = "${basePath}/${homePath}";
+        fullHostHomePath = "${basePath}/${hostHomePath}";
+        inherit hostName;
+      };
+
+      shared-modules = [
         ./configuration.nix
+        disko.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            inherit self;
-          };
           home-manager.users.litc = import ./home;
           home-manager.backupFileExtension = "backup";
 
           home-manager.sharedModules = [
-            # inputs.sops-nix.homeManagerModules.sops
-            # inputs.noctalia.homeModules.default
             nix-index-database.homeModules.default
             rc-sync.homeManagerModules.default
-            # optional to also wrap and install comma
             { programs.nix-index-database.comma.enable = true; }
           ];
         }
       ];
+
+      mkHost =
+        hostName: system:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit
+              inputs
+              self
+              ;
+            myConfig = myConfig { inherit hostName; };
+          };
+          modules = [
+            ./hosts/${hostName}
+            {
+              networking.hostName = hostName;
+              home-manager.extraSpecialArgs = {
+                inherit inputs self;
+                myConfig = myConfig { inherit hostName; };
+              };
+            }
+          ]
+          ++ shared-modules;
+        };
     in
     {
-      nixosConfigurations.litc-nixos-pc = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          disko.nixosModules.disko
-          ./disko-config.nix
-          ./hardware-configuration.nix
-        ]
-        ++ non-hardware-modules;
+      nixosConfigurations = {
+        litc-nixos-vm = mkHost "litc-nixos-vm" "x86_64-linux";
+        litc-nixos-laptop = mkHost "litc-nixos-laptop" "x86_64-linux";
       };
     };
 }
