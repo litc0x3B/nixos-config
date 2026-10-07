@@ -50,8 +50,6 @@
 
         eval "$(zoxide init zsh)"
 
-        export EDITOR="nvim";
-        export SUDO_EDITOR="nvim";
         export MICRO_TRUECOLOR=1;
       ''
     ];

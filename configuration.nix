@@ -68,9 +68,7 @@
   environment.variables = {
     # SUDO_EDITOR = "geany";
     NIXPKGS_ALLOW_UNFREE = 1;
-    WLR_NO_HARDWARE_CURSORS = 1;
-    EDITOR = "vim";
-    SUDO_EDITOR = "vim";
+    # WLR_NO_HARDWARE_CURSORS = 1;
     # Отключает аппаратные DRM-модификаторы, которые ломают картинку в ВМ
     # AQ_NO_MODIFIERS = 1;
     # LIBGL_ALWAYS_SOFTWARE=1;
