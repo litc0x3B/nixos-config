@@ -43,7 +43,6 @@
     zoxide # smart cd, supports yazi integration
 
     lazygit
-    zed-editor
     kitty
     micro
     chezmoi
@@ -67,5 +66,8 @@
 
     nixos-anywhere
     seahorse
+
+    # wl-gammactl
+    onlyoffice-desktopeditors
   ];
 }

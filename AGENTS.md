@@ -21,6 +21,7 @@ NixOS flake configuration with Home Manager for multiple hosts (`litc-nixos-vm`,
   - `home/wallpaper.png` — Wallpaper image used by noctalia module.
   - `home/kcolorscheme.colors` — KDE color scheme template for Noctalia & qtengine.
   - `home/yazi.nix` — Yazi file manager configuration.
+  - `home/zed.nix` — Zed editor configuration via Home Manager.
   - `home/rclone-sync.nix` — Background cloud sync service via rclone.
   - `home/chezmoi.nix` — Chezmoi configuration for mutable/stateful dotfiles.
   - `home/chezmoi-source/` — Source tree for state/configs managed by chezmoi.

@@ -11,5 +11,6 @@
     ./env.nix
     ./noctalia.nix
     ./chezmoi.nix
+    ./zed.nix
   ];
 }

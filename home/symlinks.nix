@@ -19,8 +19,6 @@ let
 in
 {
   xdg.configFile = mkLinks "config" [
-    "zed/settings.json"
-    "zed/keymap.json"
     "niri/config.kdl"
     "niri/pin-rules.json"
     "niri/window-rules.kdl"

@@ -404,16 +404,6 @@ layer-rule {
   place-within-backdrop true
 }
 
-layer-rule {
-    match namespace="^noctalia-"
-    exclude namespace="^noctalia-(backdrop|wallpaper)$"
-
-    background-effect {
-        // blur false
-        // xray false
-    }
-}
-
 recent-windows {
     // off
     debounce-ms 750

@@ -123,10 +123,6 @@
     kdePackages.kate
     kdePackages.breeze
 
-    # flat-remix-icon-theme
-    # fallbacks probably?
-    # adwaita-icon-theme
-    # hicolor-icon-theme
   ];
 
   # services.dbus.packages = [
@@ -159,6 +155,14 @@
   };
 
   programs.nix-ld.enable = true;
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d --keep 3 --optimise";
+    };
+    flake = "/home/litc/Nixos";
+  };
   virtualisation.containers.registries.search = [
     "docker.io"
     "quay.io"
@@ -195,6 +199,10 @@
     enable = lib.mkDefault true;
     package = pkgs.noctalia-greeter;
     passwordless-sync-users = [ "litc" ];
+    # cursorTheme = {
+    #   package = pkgs.bibata-cursors;
+    #   name = "Bibata-Modern-Ice";
+    # };
   };
 
   services.greetd = {

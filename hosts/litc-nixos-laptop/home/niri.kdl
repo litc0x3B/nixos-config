@@ -1,7 +1,29 @@
+
 output "eDP-1" {
     // scale 0.9 // или 1.25, 1.0, 0.9 — любой дробный коэффициент
 }
 environment {
     GDK_DPI_SCALE "0.9"
     // QT_SCALE_FACTOR "0.9"
+}
+
+layer-rule {
+    match namespace="^noctalia-"
+    exclude namespace="^noctalia-(backdrop|wallpaper)$"
+
+    background-effect {
+        blur false
+        xray false
+    }
+
+}
+
+layout {
+    gaps 4
+    struts {
+        left 2
+        right 2
+        top 3   // Adjust this value to change the gap under a top bar
+        bottom 0
+    }
 }

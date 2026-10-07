@@ -27,12 +27,12 @@ in
     { "kitty/host-overrides.conf" = "kitty.conf"; }
   ];
 
-  # services.wlsunset =
-  # {
-  #   enable = true;
-  #   gamma = 0.9;
-  #   sunset = null;
-  #   sunrise = null;
-  #   temperature =
-  # }
+  xdg.stateFile = mkLinks "" [
+    { "noctalia/settings.toml" = "noctalia.toml"; }
+  ];
+
+  programs.zed-editor.userSettings = {
+    ui_font_size = 14;
+    buffer_font_size = 13;
+  };
 }

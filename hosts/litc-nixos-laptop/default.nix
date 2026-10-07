@@ -49,57 +49,6 @@
   # Дополнительные настройки Home Manager для хоста litc-nixos-laptop
   home-manager.users.litc = import ./home;
 
-  # Оверлей для масштабирования и окружения приложений под экран ноутбука
-  nixpkgs.overlays = [
-    (final: prev: {
-      zed-editor =
-        (prev.symlinkJoin {
-          name = "${prev.zed-editor.name}-wrapped";
-          paths = [ prev.zed-editor ];
-          nativeBuildInputs = [ prev.makeBinaryWrapper ];
-          postBuild = ''
-            wrapProgram $out/bin/zeditor \
-              --set WAYLAND_DISPLAY "" \
-              --set GPUI_X11_SCALE_FACTOR "0.9"
-            ln -sf zeditor $out/bin/zed
-          '';
-        })
-        // {
-          meta = prev.zed-editor.meta or { };
-        };
-    })
-  ];
-
-  # Оверлей для масштабирования Electron/Chromium приложений под экран ноутбука
-  # nixpkgs.overlays = [
-  #   (final: prev:
-  #     let
-  #       wrapWithScale =
-  #         pkg: bin:
-  #         (prev.symlinkJoin {
-  #           name = "${pkg.name or "pkg"}-scaled";
-  #           paths = [ pkg ];
-  #           nativeBuildInputs = [ prev.makeBinaryWrapper ];
-  #           postBuild = ''
-  #             wrapProgram $out/bin/${bin} \
-  #               --add-flags "--force-device-scale-factor=0.9"
-  #           '';
-  #         })
-  #         // {
-  #           meta = pkg.meta or { };
-  #         };
-  #     in
-  #     {
-  #       obsidian = wrapWithScale prev.obsidian "obsidian";
-  #       vesktop = wrapWithScale prev.vesktop "vesktop";
-  #       heroic = wrapWithScale prev.heroic "heroic";
-  #       vscode = (wrapWithScale prev.vscode "code") // {
-  #         fhs = wrapWithScale prev.vscode.fhs "code";
-  #       };
-  #     }
-  #   )
-  # ];
-
   programs.qtengine = {
     enable = true;
     config = {
@@ -107,12 +56,12 @@
         font = {
           # family = "Sans Serif";
           size = 10;
-          weight = -1;
+          # weight = -1;
         };
         fontFixed = {
           # family = "FiraCode Nerd Font";
           size = 10;
-          weight = -1;
+          # weight = -1;
         };
       };
     };

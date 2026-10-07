@@ -30,11 +30,6 @@ in
     package = pkgs.vscode.fhs;
   };
 
-  programs.nh = {
-    enable = true;
-    flake = "/home/litc/Nixos";
-  };
-
   home.pointerCursor = {
     enable = true;
     package = pkgs.bibata-cursors;
@@ -59,6 +54,22 @@ in
       "default" = {
         id = 0;
         path = "g2pc3f7n.default";
+        settings = {
+          # "browser.startup.homepage" = "https://nixos.org";
+          # "browser.search.region" = "GB";
+          # "browser.search.isUS" = false;
+          # "distribution.searchplugins.defaultLocale" = "en-GB";
+          # "general.useragent.locale" = "en-GB";
+          # "browser.bookmarks.showMobileBookmarks" = true;
+          # "browser.newtabpage.pinned" = [{
+          #   title = "Gemini";
+          #   url = "https://gemini.google.com";
+          # }];
+          "browser.sessionstore.max_resumed_crashes" = 0;
+          "browser.newtabpage.activity-stream.showSearch" = false;
+          "browser.newtabpage.activity-stream.feeds.topsites" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        };
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           pywalfox
@@ -79,7 +90,7 @@ in
 
     iconTheme = {
       package = pkgs.tela-icon-theme;
-      name = "Tela-blue-dark";
+      name = "Tela-yellow-dark";
     };
   };
 
@@ -138,29 +149,6 @@ in
   };
 
   home.file."${obsidianVault.path}/.keep".text = "";
-
-  # Периодическая двусторонняя синхронизация rclone bisync
-  # services.rclone-sync = {
-  #   enable = true;
-  #   autoResync = false;
-  #   resyncOnFirstRun = true;
-  #   intervalMinutes = 3; # n минут (max-lock автоматически будет установлен в (n - 1)m)
-  #   createPath1 = true; # автоматически создавать Path1, если отсутствует (по умолчанию false для безопасности)
-  #   createPath2 = true; # автоматически создавать Path2, если отсутствует (по умолчанию false)
-  #   paths = [
-  #     [
-  #       "/home/litc/Sync"
-  #       "gd-vhivhi:save_files"
-  #     ]
-  #     # Или с явными именами и переопределением createPath:
-  #     # {
-  #     #   path1 = "/home/litc/Pictures";
-  #     #   path2 = "remote:Pictures";
-  #     #   createPath1 = true;
-  #     #   createPath2 = true;
-  #   ];
-  # };
-  #
 
   services.rc-sync = {
     enable = true;

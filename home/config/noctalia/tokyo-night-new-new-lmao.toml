@@ -1,6 +1,9 @@
 [appearance.theme]
 palette_source = "wallpaper"
 
+[audio]
+enable_sounds = true
+
 [backdrop]
 enabled = true
 
@@ -10,41 +13,100 @@ order = [ "default" ]
     [bar.default]
     background_opacity = 0.67999998480081558
     capsule = true
-    capsule_group = []
     capsule_opacity = 0.91999997943639755
-    center = [
-        "status",
-        "wallhaven",
-        "cat",
-        "ram",
-        "current",
-        "vpn_widget",
-        "widget",
-        "media",
-        "audio_visualizer",
-        "widget_3",
-        "widget_4"
-    ]
+    center = [ "group:g3", "group:g5", "group:g7" ]
     concave_edge_corners = false
-    end = [
-        "tray",
-        "notifications",
-        "clipboard",
-        "network",
-        "bluetooth",
-        "brightness",
-        "keyboard_layout",
-        "battery",
-        "clock",
-        "volume",
-        "control-center",
-        "session"
-    ]
+    end = [ "group:g4", "group:g6", "group:g2", "group:g8", "session" ]
     margin_edge = 8
     margin_ends = 9
     radius = 22
-    start = [ "launcher", "wallpaper", "taskbar" ]
+    start = [ "launcher", "group:g1", "taskbar", "status" ]
     thickness = 45
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "end"
+    border = ""
+    enabled = true
+    fill = "surface"
+    id = "g1"
+    members = [ "wallpaper", "wallhaven" ]
+    opacity = 0.91999995708465576
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "start"
+    border = ""
+    enabled = true
+    fill = "surface"
+    id = "g2"
+    members = [ "battery", "brightness", "volume" ]
+    opacity = 0.91999995708465576
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border = ""
+    enabled = true
+    fill = "surface"
+    id = "g3"
+    members = [ "cat", "ram" ]
+    opacity = 0.91999995708465576
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "start"
+    border = ""
+    enabled = true
+    fill = "surface"
+    id = "g4"
+    members = [ "tray_group_icon", "tray" ]
+    opacity = 0.91999995708465576
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "end"
+    border = ""
+    enabled = true
+    fill = "surface"
+    id = "g5"
+    members = [ "audio_visualizer", "media" ]
+    opacity = 0.91999995708465576
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface"
+    id = "g6"
+    members = [ "network", "bluetooth" ]
+    opacity = 0.91999995708465576
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface"
+    id = "g7"
+    members = [ "group_icon", "launcher_2", "vpn_widget" ]
+    opacity = 0.91999995708465576
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface"
+    id = "g8"
+    members = [ "notifications", "keyboard_layout", "clock", "control-center" ]
+    opacity = 0.91999995708465576
+    padding = 6.0
 
 [control_center]
 hidden_tabs = [ "power", "bluetooth" ]
@@ -135,6 +197,7 @@ nixos_configuration = "litc-nixos-pc"
 [plugin_settings."noctalia/wallhaven"]
 browser_open_near_click = true
 browser_placement = "floating"
+download_dir = "/home/litc/Pictures/Wallpapers/Wallheaven"
 
 [plugin_settings."tordex/nvtop"]
 sort_column_color = "on_surface"
@@ -153,7 +216,8 @@ enabled = [
     "umedbazarov/ruh-vpn",
     "kenn/keybind-cheatsheet",
     "mindnbytes/nix-status",
-    "icefish/phone-operate"
+    "icefish/phone-operate",
+    "alexander/game-launcher"
 ]
 
 [shell]
@@ -186,7 +250,7 @@ wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
     builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
-    community_ids = [ "antigravity", "pywalfox-beta4", "discord", "telegram", "neovim", "vscode", "heroiclauncher", "yazi" ]
+    community_ids = [ "antigravity", "pywalfox", "discord", "telegram", "neovim", "obsidian", "vscode", "zed", "heroiclauncher", "yazi" ]
 
         [theme.templates.user.obsidian_extra]
         input_path = "/home/litc/.local/state/noctalia/community-templates/obsidian/obsidian.css"
@@ -197,13 +261,14 @@ wallpaper_scheme = "m3-tonal-spot"
         output_path = "/home/litc/.local/state/noctalia/plugin-data/kyle-palette-creator/live-snapshot.json"
 
 [wallpaper]
+directory = "/home/litc/Pictures/Wallpapers"
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/home/litc/Pictures/wallpaper.png"
+    path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 
     [wallpaper.last]
-    path = "/home/litc/Pictures/wallpaper.png"
+    path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 
     [wallpaper.monitors.Virtual-1]
     path = "/home/litc/Pictures/wallpaper.png"
@@ -222,16 +287,33 @@ cat_size = 35
 show_cpu_percent = true
 type = "dotnetrob/cat:cat"
 
+[widget.clipboard]
+enabled = false
+
 [widget.control-center]
 glyph = "brand-snowflake"
 
 [widget.current]
 type = "thaer99ob/default-apps:current"
 
+[widget.group_icon]
+glyph = "layout-sidebar-left-expand-filled"
+tooltip = "Expand Group"
+type = "custom_button"
+
+    [widget.group_icon.actions]
+    left = "none"
+
+[widget.launcher_2]
+type = "alexander/game-launcher:launcher"
+
 [widget.media]
 hide_when_no_media = true
 max_length = 176
 title_scroll = "always"
+
+[widget.network]
+show_label = false
 
 [widget.status]
 type = "mindnbytes/nix-status:status"
@@ -250,10 +332,16 @@ workspace_label_placement = "corner"
 [widget.toggle]
 type = "decksters-lab/palette-creator:toggle"
 
+[widget.tray_group_icon]
+glyph = "chevron-left"
+type = "custom_button"
+
 [widget.vpn_widget]
+show_ping = false
 type = "umedbazarov/ruh-vpn:vpn_widget"
 
 [widget.wallhaven]
+glyph = "cloud-download"
 type = "noctalia/wallhaven:wallhaven"
 
 [widget.widget]
