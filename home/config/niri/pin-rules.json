@@ -1,1 +1,4 @@
-/nix/store/603hapmjbf8v6f3x6lsmcc1h798rzjgm-home-manager-files/.config/niri/pin-rules.json
+{
+  "title": "Picture-in-Picture",
+  "is_floating": true
+}
