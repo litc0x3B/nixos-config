@@ -172,6 +172,11 @@ in
           path1 = "~/Sync";
           path2 = "gd-vhivhi:save_files";
         };
+        wallpaper =
+        {
+          path1 = "~/Pictures/Wallpapers";
+          path2 = "gd-vhivhi:linux-sync/wallpapers";
+        }
       };
     };
   };
