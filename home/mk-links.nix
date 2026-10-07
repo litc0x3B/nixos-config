@@ -28,7 +28,8 @@ let
               null;
         in
         builtins.seq _ {
-          source = mkSymlink (builtins.trace "evaluated path ${realFullPath}" realFullPath);
+          # source = mkSymlink (builtins.trace "evaluated path ${realFullPath}" realFullPath);
+          source = mkSymlink realFullPath;
         };
       toPair =
         entry:

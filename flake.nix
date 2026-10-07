@@ -25,6 +25,14 @@
       url = "github:lazaroofarrill/niri-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    qtengine = {
+      url = "github:kossLAN/qtengine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -35,6 +43,8 @@
       home-manager,
       nix-index-database,
       rc-sync,
+      noctalia-greeter,
+      qtengine,
       ...
     }@inputs:
     let
@@ -52,6 +62,8 @@
       shared-modules = [
         ./configuration.nix
         disko.nixosModules.default
+        noctalia-greeter.nixosModules.default
+        qtengine.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

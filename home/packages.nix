@@ -33,10 +33,6 @@
       ]
     ))
 
-    # for noctalia qt6 theming template
-    qt6Packages.qt6ct
-    #btw template dosen't work
-
     #nix search plugin
     nix-search-tv
     fzf # also needed for zoxide and yazi (yazi probably has it as dependency?)

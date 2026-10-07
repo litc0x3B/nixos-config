@@ -99,4 +99,22 @@
   #     }
   #   )
   # ];
+
+  programs.qtengine = {
+    enable = true;
+    config = {
+      theme = {
+        font = {
+          # family = "Sans Serif";
+          size = 10;
+          weight = -1;
+        };
+        fontFixed = {
+          # family = "FiraCode Nerd Font";
+          size = 10;
+          weight = -1;
+        };
+      };
+    };
+  };
 }

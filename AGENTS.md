@@ -19,6 +19,7 @@ NixOS flake configuration with Home Manager for multiple hosts (`litc-nixos-vm`,
   - `home/misc.nix` — Miscellaneous settings (git, fonts, etc.).
   - `home/noctalia.nix` — Sets wallpaper image and dynamic host status for noctalia.
   - `home/wallpaper.png` — Wallpaper image used by noctalia module.
+  - `home/kcolorscheme.colors` — KDE color scheme template for Noctalia & qtengine.
   - `home/yazi.nix` — Yazi file manager configuration.
   - `home/rclone-sync.nix` — Background cloud sync service via rclone.
   - `home/chezmoi.nix` — Chezmoi configuration for mutable/stateful dotfiles.
@@ -32,7 +33,7 @@ NixOS flake configuration with Home Manager for multiple hosts (`litc-nixos-vm`,
 
 - **OS**: NixOS (branch `nixos-26.05`).
 - **Compositor**: Niri (launched via `niri-session`).
-- **Login Manager**: `greetd` + `tuigreet`.
+- **Login Manager**: `greetd` + `noctalia-greeter` (default) / `tuigreet` (VM override).
 - **Default Shell**: Zsh (`oh-my-zsh`).
 - **Default Terminal**: Kitty.
 

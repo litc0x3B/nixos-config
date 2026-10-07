@@ -3,4 +3,5 @@ output "eDP-1" {
 }
 environment {
     GDK_DPI_SCALE "0.9"
+    // QT_SCALE_FACTOR "0.9"
 }

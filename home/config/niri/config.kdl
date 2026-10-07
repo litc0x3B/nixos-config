@@ -73,7 +73,7 @@ input {
 
 prefer-no-csd
 environment {
-  QT_QPA_PLATFORMTHEME "qt6ct"
+  QT_QPA_PLATFORMTHEME "qtengine"
 }
 hotkey-overlay {
     skip-at-startup
@@ -395,6 +395,8 @@ binds {
     Mod+A { toggle-window-floating; }
     Mod+X { spawn-sh "noctalia msg panel-toggle launcher \"/win \""; }
     Mod+Return { spawn-sh "noctalia msg panel-toggle launcher \"/win \""; }
+
+    Mod+G {spawn-sh "noctalia msg panel-toggle alexander/game-launcher:original";}
 }
 
 layer-rule {

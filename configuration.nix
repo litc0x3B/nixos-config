@@ -123,6 +123,7 @@
     age
 
     kdePackages.kate
+    kdePackages.breeze
 
     # flat-remix-icon-theme
     # fallbacks probably?
@@ -191,12 +192,17 @@
   programs.niri.enable = true;
   # programs.dms-shell.enable = true;
 
-  # Display Manager / Greeter
+  # Display Manager / Greeter (по умолчанию Noctalia Greeter)
+  services.displayManager.noctalia-greeter = {
+    enable = lib.mkDefault true;
+    package = pkgs.noctalia-greeter;
+    passwordless-sync-users = [ "litc" ];
+  };
+
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --asterisks --cmd niri-session";
         user = "greeter";
       };
     };
@@ -205,11 +211,6 @@
   # GNOME Keyring & unlock via greetd PAM
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
-
-  # Ensure tuigreet cache directory exists for remembering user/session
-  systemd.tmpfiles.rules = [
-    "d '/var/cache/tuigreet' 0755 greeter greeter - -"
-  ];
 
   # GNOME Services & Nautilus integration
   services.gvfs.enable = true; # Virtual filesystem (trash, smb, sftp, mtp)
@@ -231,6 +232,33 @@
       size = 8 * 1024;
     }
   ];
+
+  programs.qtengine = {
+    enable = true;
+    config = {
+      theme = {
+        colorScheme = "/home/litc/.local/share/color-schemes/noctalia.colors";
+        iconTheme = "Tela-blue-dark";
+        style = "breeze";
+
+        # font = {
+        #   family = "Sans Serif";
+        #   # size = 10;
+        #   weight = -1;
+        # };
+        # fontFixed = {
+        #   family = "FiraCode Nerd Font";
+        #   # size = 10;
+        #   weight = -1;
+        # };
+      };
+      # misc = {
+      #   singleClickActivate = false;
+      #   menusHaveIcons = true;
+      #   shortcutsForContextMenus = true;
+      # };
+    };
+  };
 
   system.stateVersion = "26.05"; # DO NOT CHANGE THIS!
 

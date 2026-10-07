@@ -26,4 +26,13 @@ in
     { "niri/host-overrides.kdl" = "niri.kdl"; }
     { "kitty/host-overrides.conf" = "kitty.conf"; }
   ];
+
+  # services.wlsunset =
+  # {
+  #   enable = true;
+  #   gamma = 0.9;
+  #   sunset = null;
+  #   sunrise = null;
+  #   temperature =
+  # }
 }

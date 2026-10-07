@@ -3,8 +3,8 @@
 window-rule {
   match app-id="dev.noctalia.Noctalia"
   open-floating true
-  default-column-width { fixed 1080; }
-  default-window-height { fixed 920; }
+  default-column-width { proportion 0.3; }
+  default-window-height { proportion 0.99; }
 }
 
 // window-rule {
