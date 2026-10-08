@@ -9,6 +9,10 @@
       "rev": "7183774e90841f4bd27a47cb6e75cf532fd1192d",
       "src": "https://github.com/RRethy/base16-nvim"
     },
+    "base46": {
+      "rev": "cb8a1257bbc2640f6e7415a01219b34d3efd1494",
+      "src": "https://github.com/AvengeMedia/base46"
+    },
     "blink.cmp": {
       "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp",

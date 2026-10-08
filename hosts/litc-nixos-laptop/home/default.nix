@@ -31,6 +31,11 @@ in
     { "noctalia/settings.toml" = "noctalia.toml"; }
   ];
 
+  iconTheme = {
+    package = pkgs.tela-icon-theme;
+    name = "Tela-yellow-dark";
+  };
+
   programs.zed-editor.userSettings = {
     ui_font_size = 14;
     buffer_font_size = 13;

@@ -14,6 +14,10 @@ layout {
     tab-indicator {
       place-within-column
       position "top"
+      width 15
+      gaps-between-tabs 2
+      length total-proportion=0.9
+      corner-radius 3
     }
     gaps 8
 }

@@ -1,0 +1,147 @@
+config_version = 14
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border = ""
+enabled = true
+fill = "surface"
+id = "g1"
+members = [ "wallpaper", "wallhaven" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = true
+accordion_direction = "start"
+border = ""
+enabled = true
+fill = "surface"
+id = "g2"
+members = [ "battery", "brightness", "volume" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border = ""
+enabled = true
+fill = "surface"
+id = "g3"
+members = [ "cat", "ram" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "start"
+border = ""
+enabled = true
+fill = "surface"
+id = "g4"
+members = [ "tray_group_icon", "tray" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border = ""
+enabled = true
+fill = "surface"
+id = "g5"
+members = [ "audio_visualizer", "media" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+enabled = true
+fill = "surface"
+id = "g6"
+members = [ "network", "bluetooth" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+enabled = true
+fill = "surface"
+id = "g7"
+members = [ "group_icon", "launcher_2", "vpn_widget" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+enabled = true
+fill = "surface"
+id = "g8"
+members = [ "notifications", "keyboard_layout", "clock", "control-center" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@Virtual-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.00006103515625
+    cy = 897.999755859375
+    output = "Virtual-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[shell]
+settings_show_advanced = false
+
+[theme]
+community_palette = "Tokyo Night Storm"
+mode = "dark"
+source = "community"
+wallpaper_scheme = "m3-tonal-spot"
+
+[wallpaper.default]
+path = "/home/litc/Pictures/Wallpapers/wallpaperflare-cropped (5).jpg"
+
+[wallpaper.last]
+path = "/home/litc/Pictures/Wallpapers/wallpaperflare-cropped (5).jpg"
+
+[wallpaper.monitors.Virtual-1]
+path = "/home/litc/Pictures/Wallpapers/wallpaperflare-cropped (5).jpg"
+
+[widget.group_icon]
+enabled = false
+
+[widget.tray_group_icon]
+enabled = false

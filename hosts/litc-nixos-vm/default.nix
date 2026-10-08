@@ -23,5 +23,5 @@
   ];
 
   # Дополнительные настройки Home Manager для хоста litc-nixos-vm
-  home-manager.users.litc = import ./home.nix;
+  home-manager.users.litc = import ./home;
 }

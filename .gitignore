@@ -19,3 +19,8 @@ __pycache__/
 .venv/
 env/
 venv/
+
+#nvim config
+home/config/nvim/lua/matugen.lua
+home/config/nvim/nvim.log
+.luarc.json

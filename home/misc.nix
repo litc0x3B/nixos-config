@@ -90,7 +90,7 @@ in
 
     iconTheme = {
       package = pkgs.tela-icon-theme;
-      name = "Tela-yellow-dark";
+      name = "Tela-blue-dark";
     };
   };
 
