@@ -400,6 +400,8 @@ binds {
     Mod+X { spawn-sh "noctalia msg panel-toggle launcher \"/win \""; }
     Mod+Return { spawn-sh "noctalia msg panel-toggle launcher \"/win \""; }
 
+
+    Mod+Z {spawn-sh "noctalia msg panel-toggle oldirtty/color_picker:panel";}
     Mod+G {spawn-sh "noctalia msg panel-toggle alexander/game-launcher:original";}
 }
 
@@ -416,7 +418,7 @@ recent-windows {
 
     highlight {
         // active-color "#999999ff"
-        // urgent-color "#ff9999ff"
+        // urgent-color "#ffl9ll999ff"l
         padding 10
         // corner-radius 0
     }

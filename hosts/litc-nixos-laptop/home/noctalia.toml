@@ -9,8 +9,9 @@ border = "primary"
 border_width = 1.0
 capsule_fill = "surface"
 capsule_opacity = 0.99999997764825821
-capsule_thickness = 0.7799999862909317
+capsule_thickness = 0.80999998562037945
 margin_edge = 4
+thickness = 42
 
 [control_center]
 hidden_tabs = []
@@ -31,7 +32,7 @@ hidden_tabs = []
 background_opacity = 0.8399999812245369
 border = "primary"
 border_width = 1.5
-icon_size = 40
+icon_size = 39
 margin_edge = 4
 
 [lockscreen_widgets]
@@ -73,9 +74,9 @@ widget_order = [ "lockscreen-login-box@winit", "lockscreen-login-box@eDP-1", "lo
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 196.0
-    box_width = 810.0
-    cx = 683.0
-    cy = 586.0
+    box_width = 720.0
+    cx = 683.00006103515625
+    cy = 586.0001220703125
     output = "eDP-1"
     placement_height = 768.0
     placement_width = 1366.0
@@ -128,29 +129,107 @@ widget_order = [ "lockscreen-login-box@winit", "lockscreen-login-box@eDP-1", "lo
 [osd]
 background_opacity = 0.82999998144805431
 
+[plugins]
+enabled = [
+    "noctalia/wallhaven",
+    "dotnetrob/cat",
+    "knyrps/nix-search",
+    "umedbazarov/ruh-vpn",
+    "kenn/keybind-cheatsheet",
+    "mindnbytes/nix-status",
+    "icefish/phone-operate",
+    "alexander/game-launcher",
+    "oldirtty/color_picker"
+]
+
+[[shell.session.actions]]
+action = "lock"
+countdown_seconds = 0.0
+enabled = true
+shortcut = "1"
+variant = "default"
+
+[[shell.session.actions]]
+action = "logout"
+countdown_seconds = 0.0
+enabled = true
+shortcut = "2"
+variant = "default"
+
+[[shell.session.actions]]
+action = "lock_and_suspend"
+countdown_seconds = 0.0
+enabled = true
+shortcut = "3"
+variant = "default"
+
+[[shell.session.actions]]
+action = "reboot"
+countdown_seconds = 0.0
+enabled = true
+shortcut = "4"
+variant = "default"
+
+[[shell.session.actions]]
+action = "command"
+command = "systemctl soft-reboot"
+countdown_seconds = 0.0
+enabled = true
+glyph = "building-wind-turbine"
+label = "Soft Reboot"
+shortcut = "5"
+variant = "default"
+
+[[shell.session.actions]]
+action = "shutdown"
+countdown_seconds = 0.0
+enabled = true
+shortcut = "6"
+variant = "destructive"
+
 [theme]
 builtin = "Ayu"
-community_palette = "Tokyo Night Storm"
+community_palette = "ADW"
+custom_palette = "ayu-edit"
 mode = "dark"
-source = "builtin"
-wallpaper_scheme = "soft"
+source = "custom"
+wallpaper_scheme = "m3-content"
 
-[wallpaper]
+    [theme.templates]
+    community_ids = [
+        "antigravity",
+        "pywalfox",
+        "discord",
+        "telegram",
+        "neovim",
+        "obsidian",
+        "vscode",
+        "zed",
+        "heroiclauncher",
+        "steam",
+        "yazi"
+    ]
 
-    [wallpaper.monitors.eDP-1]
-    path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
+[wallpaper.default]
+path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 
-    [[wallpaper.favorite]]
-    builtin_palette = "Ayu"
-    palette_source = "builtin"
-    path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-jx85w5.png"
-    theme_mode = "dark"
+[wallpaper.last]
+path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 
-    [[wallpaper.favorite]]
-    builtin_palette = "Ayu"
-    palette_source = "builtin"
-    path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
-    theme_mode = "dark"
+[wallpaper.monitors.eDP-1]
+path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
+
+[[wallpaper.favorite]]
+palette_source = "wallpaper"
+path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-jx85w5.png"
+theme_mode = "dark"
+wallpaper_scheme = "m3-content"
+
+[[wallpaper.favorite]]
+builtin_palette = "Ayu"
+palette_source = "builtin"
+path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
+theme_mode = "dark"
 
 [widget.media]
 max_length = 148

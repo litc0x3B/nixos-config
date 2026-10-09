@@ -1,5 +1,7 @@
 {
   pkgs,
+  config,
+  lib,
   ...
 }:
 let
@@ -27,7 +29,7 @@ in
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhs;
+    package = pkgs.vscode-fhs;
   };
 
   home.pointerCursor = {
@@ -42,6 +44,17 @@ in
   xdg.configFile."xdg-terminals.list".text = ''
     kitty.desktop
   '';
+
+  xdg.configFile."kdeglobals".text = ''
+    [General]
+    ColorScheme=noctalia
+
+    [Icons]
+    Theme=${config.gtk.iconTheme.name}
+  '';
+
+  xdg.dataFile."icons/${config.gtk.iconTheme.name}".source =
+    "${config.gtk.iconTheme.package}/share/icons/${config.gtk.iconTheme.name}";
 
   programs.firefox = {
     enable = true;
@@ -117,8 +130,19 @@ in
     };
   };
 
+  # home.packages =
+  #   let
+  #     handlr = pkgs.handlr-regex;
+  #   in
+  #   [
+  #     (pkgs.writeShellScriptBin "xdg-open" ''
+  #       exec ${lib.getExe handlr} open "$@"
+  #     '')
+  #   ];
+
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gnome
       pkgs.xdg-desktop-portal-gtk
@@ -129,14 +153,14 @@ in
           "gnome"
           "gtk"
         ];
-      };
-      niri = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gnome" ];
       };
+      # niri = {
+      #   default = [
+      #     "gnome"
+      #     "gtk"
+      #   ];
+      # };
     };
   };
 

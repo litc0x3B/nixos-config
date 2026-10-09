@@ -19,9 +19,19 @@ let
   };
 in
 {
-  # home.sessionVariables = {
-  #   GDK_DPI_SCALE = 0.85;
-  # };
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      text-scaling-factor = 0.85; # например, 0.9 или 1.25
+    };
+  };
+
+  gtk = {
+    iconTheme = {
+      package = lib.mkForce (pkgs.tela-icon-theme);
+      name = lib.mkForce "Tela-yellow-dark";
+    };
+  };
+
   xdg.configFile = mkLinks "" [
     { "niri/host-overrides.kdl" = "niri.kdl"; }
     { "kitty/host-overrides.conf" = "kitty.conf"; }
@@ -30,11 +40,6 @@ in
   xdg.stateFile = mkLinks "" [
     { "noctalia/settings.toml" = "noctalia.toml"; }
   ];
-
-  iconTheme = {
-    package = pkgs.tela-icon-theme;
-    name = "Tela-yellow-dark";
-  };
 
   programs.zed-editor.userSettings = {
     ui_font_size = 14;

@@ -7,7 +7,11 @@
 
     # dorion  #discord client
     vesktop
-    lutris
+    (lutris.override {
+      lutris-unwrapped = lutris-unwrapped.overridePythonAttrs (old: {
+        dependencies = (old.dependencies or [ ]) ++ [ python3Packages.pefile ];
+      });
+    })
     cine # mpv based video player
     telegram-desktop
     file-roller
@@ -49,6 +53,7 @@
 
     # rclone-ui
     ncdu
+    miktex
 
     (callPackage ./agy-patched.nix { })
     niri-window-pin
@@ -67,7 +72,7 @@
     nixos-anywhere
     seahorse
 
-    # wl-gammactl
+    hyprpicker
     onlyoffice-desktopeditors
   ];
 }

@@ -56,7 +56,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.litc = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "cdrom"
+    ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     initialPassword = "1234";
     packages = with pkgs; [
@@ -122,8 +125,12 @@
 
     kdePackages.kate
     kdePackages.breeze
-
   ];
+
+  programs.cdemu = {
+    enable = true;
+    gui = true;
+  };
 
   # services.dbus.packages = [
   #   pkgs.loupe
@@ -185,6 +192,9 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # Enable Flatpak service and portal integration
+  services.flatpak.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -244,7 +254,7 @@
     config = {
       theme = {
         colorScheme = "/home/litc/.local/share/color-schemes/noctalia.colors";
-        iconTheme = "Tela-blue-dark";
+        iconTheme = config.home-manager.users.litc.gtk.iconTheme.name;
         style = "breeze";
 
         # font = {
@@ -264,6 +274,12 @@
       #   shortcutsForContextMenus = true;
       # };
     };
+  };
+
+  programs.steam.enable = true;
+  programs.craftapps = {
+    enable = true;
+    apps.pdfcraft.enable = true;
   };
 
   system.stateVersion = "26.05"; # DO NOT CHANGE THIS!

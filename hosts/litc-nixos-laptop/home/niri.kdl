@@ -1,9 +1,9 @@
 
 output "eDP-1" {
-    // scale 0.9 // или 1.25, 1.0, 0.9 — любой дробный коэффициент
+    // scale 0.9
 }
 environment {
-    GDK_DPI_SCALE "0.9"
+    // GDK_DPI_SCALE "0.5"
     // QT_SCALE_FACTOR "0.9"
 }
 
@@ -21,9 +21,15 @@ layer-rule {
 layout {
     gaps 4
     struts {
-        left 2
-        right 2
+        left 5
+        right 5
         top 3   // Adjust this value to change the gap under a top bar
         bottom 0
     }
+    // focus-ring {
+    //     width 1.5 // Толщина кольца фокуса
+    // }
+    // border {
+    //     width 10
+    // }
 }

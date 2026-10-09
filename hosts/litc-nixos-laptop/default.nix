@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../disko-config.nix
+    ./electron-overlay.nix
   ];
 
   # Загрузчик для ноутбука (UEFI systemd-boot)

@@ -33,6 +33,14 @@
       url = "github:kossLAN/qtengine";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-craftapps = {
+      url = "github:olafkfreund/nix-craftapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,6 +53,8 @@
       rc-sync,
       noctalia-greeter,
       qtengine,
+      nix-flatpak,
+      nix-craftapps,
       ...
     }@inputs:
     let
@@ -61,6 +71,7 @@
 
       shared-modules = [
         ./configuration.nix
+        nix-craftapps.nixosModules.default
         disko.nixosModules.default
         noctalia-greeter.nixosModules.default
         qtengine.nixosModules.default
@@ -74,6 +85,7 @@
           home-manager.sharedModules = [
             nix-index-database.homeModules.default
             rc-sync.homeManagerModules.default
+            nix-flatpak.homeManagerModules.nix-flatpak
             { programs.nix-index-database.comma.enable = true; }
           ];
         }

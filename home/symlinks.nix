@@ -23,6 +23,7 @@ in
     "niri/pin-rules.json"
     "niri/window-rules.kdl"
     "kitty/kitty.conf"
+    "noctalia/palettes/"
     # "micro/settings.json"
     # "micro/bindings.json"
     # { "noctalia/exported.toml" = "noctalia/tokyo-night-new-new-lmao.toml"; }

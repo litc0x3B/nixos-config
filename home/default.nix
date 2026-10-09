@@ -12,5 +12,6 @@
     ./noctalia.nix
     ./chezmoi.nix
     ./zed.nix
+    ./flatpak.nix
   ];
 }

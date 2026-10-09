@@ -22,7 +22,7 @@
       };
       project_panel = {
         hide_gitignore = false;
-        dock = "right";
+        dock = "left";
       };
       cli_default_open_behavior = "existing_window";
       icon_theme = {

@@ -26,6 +26,7 @@ NixOS flake configuration with Home Manager for multiple hosts (`litc-nixos-vm`,
   - `home/chezmoi.nix` — Chezmoi configuration for mutable/stateful dotfiles.
   - `home/chezmoi-source/` — Source tree for state/configs managed by chezmoi.
   - `home/agy-patched.nix` — Custom package derivation for Antigravity CLI.
+  - `home/flatpak.nix` — Declarative Flatpak configuration via nix-flatpak.
   - `home/config/` — Dotfiles and application configurations (niri, noctalia, kitty, zed, micro).
   - `home/noctalia-plugins/ruh-vpn` — Local version of Noctalia ruh-vpn plugin with custom fixes.
 
