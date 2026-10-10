@@ -74,5 +74,7 @@
 
     hyprpicker
     onlyoffice-desktopeditors
+    # pixelorama
+    aseprites
   ];
 }

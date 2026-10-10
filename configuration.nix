@@ -277,10 +277,12 @@
   };
 
   programs.steam.enable = true;
-  programs.craftapps = {
-    enable = true;
-    apps.pdfcraft.enable = true;
-  };
+  # programs.craftapps = {
+  #   enable = true;
+  #   apps.pdfcraft.enable = true;
+  #   apps.wordcraft.enable = true;
+  #   apps.photocraft.enable = true;
+  # };
 
   system.stateVersion = "26.05"; # DO NOT CHANGE THIS!
 

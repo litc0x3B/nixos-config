@@ -29,7 +29,7 @@ in
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode-fhsWithPackages (ps: with ps; [ nodejs ]);
+    package = pkgs.vscode-fhsWithPackages (ps: with ps; []);
   };
 
   home.pointerCursor = {
@@ -121,15 +121,15 @@ in
     createDirectories = true;
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-      "text/plain" = [ "dev.zed.Zed.desktop" ];
-      "text/markdown" = [ "dev.zed.Zed.desktop" ];
-      "text/x-csrc" = [ "dev.zed.Zed.desktop" ];
-    };
-  };
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+  #     "text/plain" = [ "dev.zed.Zed.desktop" ];
+  #     "text/markdown" = [ "dev.zed.Zed.desktop" ];
+  #     "text/x-csrc" = [ "dev.zed.Zed.desktop" ];
+  #   };
+  # };
 
   # home.packages =
   #   let

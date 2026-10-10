@@ -28,7 +28,7 @@ order = [ "default" ]
     accordion_direction = "end"
     border = ""
     enabled = true
-    fill = "surface"
+    fill = "surface_variant"
     id = "g1"
     members = [ "wallpaper", "wallhaven" ]
     opacity = 0.91999995708465576
@@ -39,7 +39,7 @@ order = [ "default" ]
     accordion_direction = "start"
     border = ""
     enabled = true
-    fill = "surface"
+    fill = "surface_variant"
     id = "g2"
     members = [ "battery", "brightness", "volume" ]
     opacity = 0.91999995708465576
@@ -50,7 +50,7 @@ order = [ "default" ]
     accordion_direction = "end"
     border = ""
     enabled = true
-    fill = "surface"
+    fill = "surface_variant"
     id = "g3"
     members = [ "cat", "ram" ]
     opacity = 0.91999995708465576
@@ -61,7 +61,7 @@ order = [ "default" ]
     accordion_direction = "start"
     border = ""
     enabled = true
-    fill = "surface"
+    fill = "surface_variant"
     id = "g4"
     members = [ "tray_group_icon", "tray" ]
     opacity = 0.91999995708465576
@@ -72,7 +72,7 @@ order = [ "default" ]
     accordion_direction = "end"
     border = ""
     enabled = true
-    fill = "surface"
+    fill = "surface_variant"
     id = "g5"
     members = [ "audio_visualizer", "media" ]
     opacity = 0.91999995708465576
@@ -82,7 +82,7 @@ order = [ "default" ]
     accordion = false
     accordion_direction = "end"
     enabled = true
-    fill = "surface"
+    fill = "surface_variant"
     id = "g6"
     members = [ "network", "bluetooth" ]
     opacity = 0.91999995708465576
@@ -92,7 +92,7 @@ order = [ "default" ]
     accordion = true
     accordion_direction = "end"
     enabled = true
-    fill = "surface"
+    fill = "surface_variant"
     id = "g7"
     members = [ "group_icon", "launcher_2", "vpn_widget" ]
     opacity = 0.91999995708465576
@@ -102,7 +102,7 @@ order = [ "default" ]
     accordion = false
     accordion_direction = "end"
     enabled = true
-    fill = "surface"
+    fill = "surface_variant"
     id = "g8"
     members = [ "notifications", "keyboard_layout", "clock", "control-center" ]
     opacity = 0.91999995708465576
@@ -119,6 +119,9 @@ hidden_tabs = [ "power", "bluetooth" ]
 
     [[control_center.shortcuts]]
     type = "power_profile"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
 
 [dock]
 background_opacity = 0.68999998457729816
@@ -250,7 +253,22 @@ wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
     builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
-    community_ids = [ "antigravity", "pywalfox", "discord", "telegram", "neovim", "obsidian", "vscode", "zed", "heroiclauncher", "yazi" ]
+    community_ids = [
+        "antigravity",
+        "pywalfox",
+        "discord",
+        "telegram",
+        "neovim",
+        "obsidian",
+        "vscode",
+        "zed",
+        "heroiclauncher",
+        "yazi"
+    ]
+
+        [theme.templates.user.kcolorscheme]
+        input_path = "/home/litc/Nixos/home/kcolorscheme.colors"
+        output_path = "/home/litc/.local/share/color-schemes/noctalia.colors"
 
         [theme.templates.user.obsidian_extra]
         input_path = "/home/litc/.local/state/noctalia/community-templates/obsidian/obsidian.css"
@@ -320,7 +338,7 @@ type = "mindnbytes/nix-status:status"
 
 [widget.taskbar]
 group_by_workspace = true
-group_single_icon_per_app = true
+group_single_icon_per_app = false
 hide_empty_workspaces = false
 icon_scale = 1.2000000000000002
 show_active_indicator = false

@@ -21,5 +21,9 @@
     [theme.templates.user.kcolorscheme]
     input_path = "${myConfig.fullHomePath}/kcolorscheme.colors"
     output_path = "${config.home.homeDirectory}/.local/share/color-schemes/noctalia.colors"
+
+    [theme.templates.user.obsidian_extra]
+    input_path = "/home/litc/.local/state/noctalia/community-templates/obsidian/obsidian.css"
+    output_path = "/home/litc/Obsidian/Vault/.obsidian/snippets/noctalia.css"
   '';
 }
