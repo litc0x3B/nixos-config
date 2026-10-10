@@ -29,7 +29,7 @@ in
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode-fhs;
+    package = pkgs.vscode-fhsWithPackages (ps: with ps; [ nodejs ]);
   };
 
   home.pointerCursor = {
@@ -82,6 +82,7 @@ in
           "browser.newtabpage.activity-stream.showSearch" = false;
           "browser.newtabpage.activity-stream.feeds.topsites" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          "browser.ctrlTab.sortByRecentlyUsed" = true;
         };
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
