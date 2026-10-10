@@ -20,8 +20,21 @@
           type = "registry";
         };
       };
+
       project_panel = {
         hide_gitignore = false;
+        dock = "left";
+      };
+      outline_panel = {
+        dock = "left";
+      };
+      git_panel = {
+        dock = "left";
+      };
+      collaboration_panel = {
+        dock = "left";
+      };
+      agent_panel = {
         dock = "left";
       };
       cli_default_open_behavior = "existing_window";

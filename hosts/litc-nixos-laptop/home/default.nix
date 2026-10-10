@@ -44,5 +44,7 @@ in
   programs.zed-editor.userSettings = {
     ui_font_size = 14;
     buffer_font_size = 13;
+    project_panel.indent_size = 12;
+    project_panel.default_width = 120;
   };
 }
