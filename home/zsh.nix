@@ -8,9 +8,15 @@
       plugins = [ "virtualenv" ];
     };
     autosuggestion.enable = true;
+
     syntaxHighlighting.enable = true;
 
     plugins = [
+      {
+        name = "zsh-autocomplete";
+        src = pkgs.zsh-autocomplete;
+        file = "share/zsh-autocomplete/zsh-autocomplete.plugin.zsh";
+      }
       {
         name = "zsh-nix-shell";
         file = "nix-shell.plugin.zsh";
