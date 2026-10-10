@@ -12,8 +12,8 @@ layer-rule {
     exclude namespace="^noctalia-(backdrop|wallpaper)$"
 
     background-effect {
-        blur false
-        xray false
+        // blur false
+        // xray false
     }
 
 }

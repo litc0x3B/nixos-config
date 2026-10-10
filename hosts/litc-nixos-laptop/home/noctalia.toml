@@ -4,14 +4,99 @@ config_version = 14
 ui_scale = 0.90000000596046448
 
 [bar.default]
-background_opacity = 0.82999998144805431
+background_opacity = 0.96999997831881046
 border = "primary"
 border_width = 1.0
 capsule_fill = "surface"
-capsule_opacity = 0.99999997764825821
 capsule_thickness = 0.80999998562037945
 margin_edge = 4
+start = [ "launcher", "group:g1", "taskbar" ]
 thickness = 42
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "end"
+    border = ""
+    enabled = true
+    fill = "surface_variant"
+    id = "g1"
+    members = [ "wallpaper", "wallhaven" ]
+    opacity = 0.0
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "start"
+    border = ""
+    enabled = true
+    fill = "surface_variant"
+    id = "g2"
+    members = [ "battery", "brightness", "volume" ]
+    opacity = 0.0
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border = ""
+    enabled = true
+    fill = "surface_variant"
+    id = "g3"
+    members = [ "cat", "ram" ]
+    opacity = 0.0
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "start"
+    border = ""
+    enabled = true
+    fill = "surface_variant"
+    id = "g4"
+    members = [ "tray_group_icon", "tray" ]
+    opacity = 0.0
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "end"
+    border = ""
+    enabled = true
+    fill = "surface_variant"
+    id = "g5"
+    members = [ "audio_visualizer", "media" ]
+    opacity = 0.0
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface_variant"
+    id = "g6"
+    members = [ "network", "bluetooth" ]
+    opacity = 0.0
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = true
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface_variant"
+    id = "g7"
+    members = [ "group_icon", "status", "launcher_2", "vpn_widget" ]
+    opacity = 0.0
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    enabled = true
+    fill = "surface_variant"
+    id = "g8"
+    members = [ "notifications", "keyboard_layout", "clock", "control-center" ]
+    opacity = 0.0
+    padding = 6.0
 
 [control_center]
 hidden_tabs = []
@@ -29,7 +114,7 @@ hidden_tabs = []
     type = "bluetooth"
 
 [dock]
-background_opacity = 0.8399999812245369
+background_opacity = 0.96999997831881046
 border = "primary"
 border_width = 1.5
 icon_size = 39
@@ -126,8 +211,11 @@ widget_order = [ "lockscreen-login-box@winit", "lockscreen-login-box@eDP-1", "lo
         show_unlock_hint = true
         show_weather = true
 
+[notification]
+background_opacity = 0.96999997831881046
+
 [osd]
-background_opacity = 0.82999998144805431
+background_opacity = 0.96999997831881046
 
 [plugins]
 enabled = [
@@ -142,55 +230,64 @@ enabled = [
     "oldirtty/color_picker"
 ]
 
-[[shell.session.actions]]
-action = "lock"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "1"
-variant = "default"
+[shell]
+settings_show_advanced = false
 
-[[shell.session.actions]]
-action = "logout"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "2"
-variant = "default"
+    [shell.panel]
+    transparency_mode = "solid"
 
-[[shell.session.actions]]
-action = "lock_and_suspend"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "3"
-variant = "default"
+    [[shell.session.actions]]
+    action = "lock"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "1"
+    variant = "default"
 
-[[shell.session.actions]]
-action = "reboot"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "4"
-variant = "default"
+    [[shell.session.actions]]
+    action = "logout"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "2"
+    variant = "default"
 
-[[shell.session.actions]]
-action = "command"
-command = "systemctl soft-reboot"
-countdown_seconds = 0.0
-enabled = true
-glyph = "building-wind-turbine"
-label = "Soft Reboot"
-shortcut = "5"
-variant = "default"
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "3"
+    variant = "default"
 
-[[shell.session.actions]]
-action = "shutdown"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "6"
-variant = "destructive"
+    [[shell.session.actions]]
+    action = "reboot"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "4"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "command"
+    command = "systemctl soft-reboot"
+    countdown_seconds = 0.0
+    enabled = true
+    glyph = "building-wind-turbine"
+    label = "Soft Reboot"
+    shortcut = "5"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "6"
+    variant = "destructive"
+
+    [shell.shadow]
+    alpha = 0.82999998144805431
 
 [theme]
 builtin = "Ayu"
-community_palette = "ADW"
-custom_palette = "ayu-edit"
+community_palette = "Catppuccin Mocha Blue"
+custom_palette = "marisa-blue"
 mode = "dark"
 source = "custom"
 wallpaper_scheme = "m3-content"
@@ -220,14 +317,14 @@ path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 
 [[wallpaper.favorite]]
-palette_source = "wallpaper"
+custom_palette = "marisa-blue"
+palette_source = "custom"
 path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-jx85w5.png"
 theme_mode = "dark"
-wallpaper_scheme = "m3-content"
 
 [[wallpaper.favorite]]
-builtin_palette = "Ayu"
-palette_source = "builtin"
+custom_palette = "ayu-edit"
+palette_source = "custom"
 path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 theme_mode = "dark"
 
@@ -235,5 +332,5 @@ theme_mode = "dark"
 max_length = 148
 min_length = 50
 
-[widget.status]
-enabled = false
+[widget.taskbar]
+workspace_label_placement = "inside"
