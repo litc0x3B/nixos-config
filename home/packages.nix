@@ -1,9 +1,13 @@
 { pkgs, inputs, ... }:
 let
   pkgs-agy = import inputs.nixpkgs-agy {
-    inherit (pkgs) system config;
+    inherit (pkgs) config;
+    system = pkgs.stdenv.hostPlatform.system;
   };
-  pkgs-unfree = import inputs.nixpkgs-unfree { inherit (pkgs) system config; };
+  pkgs-unfree = import inputs.nixpkgs-unfree {
+    inherit (pkgs) config;
+    system = pkgs.stdenv.hostPlatform.system;
+  };
 in
 {
   home.packages = with pkgs; [
@@ -30,6 +34,9 @@ in
     jq
     curl
     netcat-openbsd
+
+    # search noctalia plugin
+    xdg-open
 
     #dependencies for ruh vpn noctalia plugin
     sing-box

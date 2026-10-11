@@ -88,7 +88,7 @@
   nixpkgs.overlays = [
     inputs.nur.overlays.default
     (final: prev: {
-      niri-window-pin = inputs.niri-utils.packages.${prev.system}.niri-window-pin;
+      niri-window-pin = inputs.niri-utils.packages.${prev.stdenv.hostPlatform.system}.niri-window-pin;
     })
     inputs.rc-sync.overlays.default
   ];
@@ -110,7 +110,7 @@
     xeyes # x11 test utility
     xwayland-satellite
     nixd # nix lsp
-    nixfmt-rfc-style # nix code formatter
+    nixfmt # nix code formatter
     btop
     # antigravity-cli
     nodejs
@@ -271,6 +271,13 @@
   #   apps.wordcraft.enable = true;
   #   apps.photocraft.enable = true;
   # };
+
+  documentation = {
+    nixos.enable = false;
+    man.enable = true;
+    info.enable = false;
+    doc.enable = false;
+  };
 
   system.stateVersion = "26.05"; # DO NOT CHANGE THIS!
 

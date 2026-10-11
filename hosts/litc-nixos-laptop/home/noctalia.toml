@@ -326,11 +326,11 @@ enabled = [
     "mindnbytes/nix-status",
     "icefish/phone-operate",
     "alexander/game-launcher",
-    "oldirtty/color_picker"
+    "oldirtty/color_picker",
+    "notfinaldev/web-search"
 ]
 
 [shell]
-lang = "ru"
 popup_shadows = false
 
     [shell.panel]
@@ -452,6 +452,7 @@ max_length = 148
 min_length = 50
 
 [widget.taskbar]
+inactive_opacity = 0.63
 workspace_label_placement = "inside"
 
 [widget.toggle_2]

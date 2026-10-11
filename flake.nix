@@ -36,14 +36,11 @@
       url = "github:kossLAN/qtengine";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-flatpak = {
-      url = "github:gmodena/nix-flatpak";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-craftapps = {
-      url = "github:olafkfreund/nix-craftapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    # nix-craftapps = {
+    #   url = "github:olafkfreund/nix-craftapps";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     agypatch = {
       type = "github";
       owner = "QNIX-Dev";
@@ -64,7 +61,7 @@
       noctalia-greeter,
       qtengine,
       nix-flatpak,
-      nix-craftapps,
+      # nix-craftapps,
       ...
     }@inputs:
     let
@@ -81,7 +78,7 @@
 
       shared-modules = [
         ./configuration.nix
-        nix-craftapps.nixosModules.default
+        # nix-craftapps.nixosModules.default
         disko.nixosModules.default
         noctalia-greeter.nixosModules.default
         qtengine.nixosModules.default

@@ -20,8 +20,16 @@ in
   # Программы и настройки пользователя
   programs.git = {
     enable = true;
-    userName = "litc0x3B";
-    userEmail = "ur.waifu.is.explosive.loli@gmail.com";
+    settings.user = {
+      name = "litc0x3B";
+      email = "ur.waifu.is.explosive.loli@gmail.com";
+    };
+  };
+
+  manual = {
+    html.enable = false;
+    manpages.enable = false;
+    json.enable = false;
   };
 
   programs.home-manager.enable = true;
