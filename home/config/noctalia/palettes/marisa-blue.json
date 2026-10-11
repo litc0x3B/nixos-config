@@ -8,7 +8,7 @@
     "mOnTertiary": "#0B0E14",
     "mSurface": "#151321",
     "mOnSurface": "#C7B8EA",
-    "mSurfaceVariant": "#312e43",
+    "mSurfaceVariant": "#242139",
     "mOnSurfaceVariant": "#C7B8EA",
     "mError": "#CC3B45",
     "mOnError": "#0B0E14",
@@ -40,7 +40,7 @@
       "selectionFg": "#FFFFFF",
       "selectionBg": "#285CB3",
       "cursorText": "#12101C",
-      "cursor": "#F2DF64"
+      "cursor": "#C7B8EA"
     },
     "mHover": "#39BAE6",
     "mOnHover": "#0B0E14"
