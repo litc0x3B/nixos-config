@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  pkgs-agy = import inputs.nixpkgs-agy {
+    inherit (pkgs) system config;
+  };
+  pkgs-unfree = import inputs.nixpkgs-unfree { inherit (pkgs) system config; };
+in
 {
   home.packages = with pkgs; [
     xdg-terminal-exec # what is that?
@@ -55,9 +61,13 @@
     ncdu
     miktex
 
-    (callPackage ./agy-patched.nix { })
+    (callPackage ./agy-patched.nix {
+      pkgs = pkgs-agy;
+      agypatch = inputs.agypatch;
+    })
     niri-window-pin
     rc-sync
+    pkgs-unfree.ouch-rar
 
     #nvim kickstart
     neovim
@@ -75,6 +85,6 @@
     hyprpicker
     onlyoffice-desktopeditors
     # pixelorama
-    aseprites
+    pkgs-unfree.aseprite
   ];
 }

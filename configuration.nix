@@ -117,7 +117,6 @@
     distrobox
     fastfetch
     yazi
-    ouch-rar
 
     #secrets and shit
     sops
@@ -256,23 +255,12 @@
         colorScheme = "/home/litc/.local/share/color-schemes/noctalia.colors";
         iconTheme = config.home-manager.users.litc.gtk.iconTheme.name;
         style = "breeze";
-
-        # font = {
-        #   family = "Sans Serif";
-        #   # size = 10;
-        #   weight = -1;
-        # };
-        # fontFixed = {
-        #   family = "FiraCode Nerd Font";
-        #   # size = 10;
-        #   weight = -1;
-        # };
       };
-      # misc = {
-      #   singleClickActivate = false;
-      #   menusHaveIcons = true;
-      #   shortcutsForContextMenus = true;
-      # };
+      misc = {
+        singleClickActivate = false;
+        menusHaveIcons = true;
+        shortcutsForContextMenus = true;
+      };
     };
   };
 
