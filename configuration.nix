@@ -96,9 +96,9 @@
   # List packages installed	 in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    foot
+    # foot
     nautilus-python # probably needed for open-any-terminal
     nautilus
     loupe
@@ -107,7 +107,7 @@
     libheif
 
     git
-    xeyes # x11 test utility
+    xeyes # xserver test utility
     xwayland-satellite
     nixd # nix lsp
     nixfmt # nix code formatter
@@ -122,7 +122,7 @@
     sops
     age
 
-    kdePackages.kate
+    # kdePackages.kate
     kdePackages.breeze
   ];
 
@@ -131,18 +131,7 @@
     gui = true;
   };
 
-  # services.dbus.packages = [
-  #   pkgs.loupe
-  #   pkgs.nautilus
-  #   pkgs.file-roller
-  # ];
-
   environment.pathsToLink = [ "/share/icons" ];
-
-  # security.wrappers.sing-box = {
-  #   source = "${pkgs.sing-box}/bin/sing-box";
-  #   capabilities = "cap_net_admin,cap_net_bind_service=+ep";
-  # };
 
   security.polkit.enable = true;
   # Нужно в unstable
@@ -248,6 +237,8 @@
     }
   ];
 
+  boot.zswap.enable = true;
+
   programs.qtengine = {
     enable = true;
     config = {
@@ -278,6 +269,8 @@
     info.enable = false;
     doc.enable = false;
   };
+
+  programs.localsend.enable = true;
 
   system.stateVersion = "26.05"; # DO NOT CHANGE THIS!
 

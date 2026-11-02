@@ -7,20 +7,19 @@ ui_scale = 0.90000000596046448
 background_opacity = 0.96999997831881046
 border = "primary"
 border_width = 1.0
-capsule_border = "outline"
 capsule_opacity = 0.99999997764825821
 capsule_radius = 15
-capsule_thickness = 0.70999998785555363
-margin_edge = 4
+capsule_thickness = 0.73999998718500137
+margin_edge = 2
 radius = 20
 shadow = false
 start = [ "launcher", "group:g1", "taskbar" ]
-thickness = 42
+thickness = 44
 
     [[bar.default.capsule_group]]
     accordion = true
     accordion_direction = "end"
-    border = "outline"
+    border = ""
     enabled = true
     fill = "surface_variant"
     id = "g1"
@@ -31,7 +30,7 @@ thickness = 42
     [[bar.default.capsule_group]]
     accordion = true
     accordion_direction = "start"
-    border = "outline"
+    border = ""
     enabled = true
     fill = "surface_variant"
     id = "g2"
@@ -42,7 +41,7 @@ thickness = 42
     [[bar.default.capsule_group]]
     accordion = false
     accordion_direction = "end"
-    border = "outline"
+    border = ""
     enabled = true
     fill = "surface_variant"
     id = "g3"
@@ -53,7 +52,7 @@ thickness = 42
     [[bar.default.capsule_group]]
     accordion = true
     accordion_direction = "start"
-    border = "outline"
+    border = ""
     enabled = true
     fill = "surface_variant"
     id = "g4"
@@ -64,7 +63,7 @@ thickness = 42
     [[bar.default.capsule_group]]
     accordion = true
     accordion_direction = "end"
-    border = "outline"
+    border = ""
     enabled = true
     fill = "surface_variant"
     id = "g5"
@@ -75,7 +74,7 @@ thickness = 42
     [[bar.default.capsule_group]]
     accordion = false
     accordion_direction = "end"
-    border = "outline"
+    border = ""
     enabled = true
     fill = "surface_variant"
     id = "g6"
@@ -86,18 +85,18 @@ thickness = 42
     [[bar.default.capsule_group]]
     accordion = true
     accordion_direction = "end"
-    border = "outline"
+    border = ""
     enabled = true
     fill = "surface_variant"
     id = "g7"
-    members = [ "group_icon", "status", "launcher_2", "vpn_widget", "toggle_2" ]
+    members = [ "group_icon", "status", "launcher_2", "widget_5", "status_2", "vpn_widget", "toggle_2", "bar" ]
     opacity = 1.0
     padding = 6.0
 
     [[bar.default.capsule_group]]
     accordion = false
     accordion_direction = "end"
-    border = "outline"
+    border = ""
     enabled = true
     fill = "surface_variant"
     id = "g8"
@@ -122,7 +121,12 @@ hidden_tabs = []
 
 [desktop_widgets]
 schema_version = 2
-widget_order = [ "desktop-widget-0000000000000001", "desktop-widget-0000000000000002", "desktop-widget-0000000000000003" ]
+widget_order = [
+    "desktop-widget-0000000000000001",
+    "desktop-widget-0000000000000002",
+    "desktop-widget-0000000000000003",
+    "desktop-widget-0000000000000004"
+]
 
     [desktop_widgets.grid]
     cell_size = 16
@@ -132,8 +136,8 @@ widget_order = [ "desktop-widget-0000000000000001", "desktop-widget-000000000000
     [desktop_widgets.widget.desktop-widget-0000000000000001]
     box_height = 320.0
     box_width = 336.0
-    cx = 187.0
-    cy = 224.0
+    cx = 187.00001525878906
+    cy = 224.00001525878906
     output = "eDP-1"
     placement_height = 768.0
     placement_width = 1366.0
@@ -151,6 +155,7 @@ widget_order = [ "desktop-widget-0000000000000001", "desktop-widget-000000000000
     box_width = 768.0
     cx = 1211.0
     cy = 384.0
+    enabled = false
     flip_x = true
     output = "eDP-1"
     placement_height = 768.0
@@ -179,13 +184,36 @@ widget_order = [ "desktop-widget-0000000000000001", "desktop-widget-000000000000
     rotation = 0.0
     type = "weather"
 
+    [desktop_widgets.widget.desktop-widget-0000000000000004]
+    box_height = 176.0
+    box_width = 320.0
+    cx = 443.0
+    cy = 224.0
+    flip_x = true
+    output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
+    rotation = 1.5707963705062866
+    type = "audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000004.settings]
+        background = false
+        bands = 20
+        centered = false
+        color_1 = "primary"
+        color_2 = "tertiary"
+        mirrored = true
+        reversed = false
+        show_when_idle = false
+
 [dock]
 background_opacity = 0.96999997831881046
 border = "primary"
 border_width = 1.5
-icon_size = 39
+icon_size = 38
 margin_edge = 4
-radius = 20
+pinned = [ "firefox", "code", "org.gnome.Nautilus", "kitty", "dev.zed.Zed" ]
+radius = 33
 shadow = false
 
 [lockscreen_widgets]
@@ -206,11 +234,11 @@ widget_order = [
     [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
     box_height = 196.0
     box_width = 810.0
-    cx = 960.0
-    cy = 898.0
+    cx = 800.00006103515625
+    cy = 748.33331298828125
     output = "HDMI-A-1"
-    placement_height = 1080.0
-    placement_width = 1920.0
+    placement_height = 900.0
+    placement_width = 1600.0
     rotation = 0.0
     type = "login_box"
 
@@ -260,7 +288,7 @@ widget_order = [
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 196.0
     box_width = 720.0
-    cx = 683.00006103515625
+    cx = 683.0001220703125
     cy = 586.0001220703125
     output = "eDP-1"
     placement_height = 768.0
@@ -317,21 +345,40 @@ background_opacity = 0.96999997831881046
 [osd]
 background_opacity = 0.96999997831881046
 
+[plugin_settings."aristides/udiskie"]
+file_manager_cmd = "nautilus"
+
+[plugin_settings."raycursive/niri-displays"]
+panel_placement = "floating"
+
 [plugins]
+auto_update = "all"
 enabled = [
     "noctalia/wallhaven",
     "dotnetrob/cat",
     "knyrps/nix-search",
-    "umedbazarov/ruh-vpn",
     "mindnbytes/nix-status",
     "icefish/phone-operate",
     "alexander/game-launcher",
     "oldirtty/color_picker",
-    "notfinaldev/web-search"
+    "notfinaldev/web-search",
+    "redxtech/super-productivity",
+    "aristides/udiskie",
+    "umedbazarov/ruh-vpn",
+    "noctalia/wallpaper_depth"
 ]
 
 [shell]
 popup_shadows = false
+
+    [shell.launcher]
+    app_grid = true
+
+        [shell.launcher.providers.session]
+        global = true
+
+        [shell.launcher.providers.windows]
+        global = true
 
     [shell.panel]
     shadow = false
@@ -370,7 +417,7 @@ popup_shadows = false
     command = "systemctl soft-reboot"
     countdown_seconds = 0.0
     enabled = true
-    glyph = "building-wind-turbine"
+    glyph = "progress-bolt"
     label = "Soft Reboot"
     shortcut = "5"
     variant = "default"
@@ -387,11 +434,11 @@ popup_shadows = false
 
 [theme]
 builtin = "Tokyo-Night"
-community_palette = "Tokyo Night Moon"
+community_palette = "Tokyo Night Storm"
 custom_palette = "marisa-blue"
 mode = "dark"
-source = "custom"
-wallpaper_scheme = "soft"
+source = "wallpaper"
+wallpaper_scheme = "m3-fruit-salad"
 
     [theme.templates]
     community_ids = [
@@ -409,22 +456,22 @@ wallpaper_scheme = "soft"
     ]
 
 [wallpaper.default]
-path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
+path = "/home/litc/Pictures/Wallpapers/693509.png"
 
 [wallpaper.last]
-path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
+path = "/home/litc/Pictures/Wallpapers/693509.png"
 
 [wallpaper.monitors.HDMI-A-1]
 path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 
 [wallpaper.monitors.eDP-1]
-path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
+path = "/home/litc/Pictures/Wallpapers/693509.png"
 
 [[wallpaper.favorite]]
-custom_palette = "marisa-blue"
-palette_source = "custom"
+palette_source = "wallpaper"
 path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-jx85w5.png"
 theme_mode = "dark"
+wallpaper_scheme = "vibrant"
 
 [[wallpaper.favorite]]
 custom_palette = "marisa-blue"
@@ -444,6 +491,15 @@ path = "/home/litc/Pictures/Wallpapers/wallpaperflare.com_wallpaper.jpg"
 theme_mode = "dark"
 wallpaper_scheme = "m3-content"
 
+[[wallpaper.favorite]]
+palette_source = "wallpaper"
+path = "/home/litc/Pictures/Wallpapers/693509.png"
+theme_mode = "dark"
+wallpaper_scheme = "m3-fruit-salad"
+
+[widget.bar]
+type = "raycursive/niri-displays:bar"
+
 [widget.launcher]
 color = "on_surface_variant"
 
@@ -451,9 +507,15 @@ color = "on_surface_variant"
 max_length = 148
 min_length = 50
 
+[widget.status_2]
+type = "aristides/udiskie:status"
+
 [widget.taskbar]
 inactive_opacity = 0.63
 workspace_label_placement = "inside"
 
 [widget.toggle_2]
 type = "decksters-lab/palette-creator:toggle"
+
+[widget.widget_5]
+type = "thepunkoff/pomodoro:widget"

@@ -9,6 +9,8 @@
     };
     autosuggestion.enable = true;
 
+    enableCompletion = false;
+
     syntaxHighlighting.enable = true;
 
     plugins = [
@@ -70,6 +72,8 @@
         eval "$(zoxide init zsh)"
 
         export MICRO_TRUECOLOR=1;
+
+        zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
       ''
     ];
 

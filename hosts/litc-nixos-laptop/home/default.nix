@@ -28,7 +28,7 @@ in
   gtk = {
     iconTheme = {
       package = lib.mkForce (pkgs.tela-icon-theme);
-      name = lib.mkForce "Tela-yellow-dark";
+      name = lib.mkForce "Tela-blue-dark";
     };
   };
 

@@ -22,7 +22,7 @@ in
         dependencies = (old.dependencies or [ ]) ++ [ python3Packages.pefile ];
       });
     })
-    cine # mpv based video player
+    # cine # mpv based video player
     telegram-desktop
     file-roller
     rclone
@@ -30,13 +30,13 @@ in
 
     #dependencies for youtube music noctalia plugin
     yt-dlp
-    mpv
+    # mpv #installed with hm
     jq
     curl
     netcat-openbsd
 
     # search noctalia plugin
-    xdg-open
+    xdg-utils
 
     #dependencies for ruh vpn noctalia plugin
     sing-box
@@ -61,7 +61,7 @@ in
 
     lazygit
     kitty
-    micro
+    # micro
     chezmoi
 
     # rclone-ui
@@ -93,5 +93,9 @@ in
     onlyoffice-desktopeditors
     # pixelorama
     pkgs-unfree.aseprite
+
+    dotnetCorePackages.dotnet_10.sdk
+    dotnetCorePackages.dotnet_10.aspnetcore
+    devenv
   ];
 }

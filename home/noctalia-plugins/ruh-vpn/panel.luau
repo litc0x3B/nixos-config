@@ -39,43 +39,51 @@ local SECURITIES = { "none", "tls", "reality" }
 local RULE_TYPES = { "force-proxy", "direct", "block" }
 
 -- ── design tokens ───────────────────────────────────────────────
--- The fixed olive/chartreuse palette gives the plugin its own visual identity.
+-- Uses Noctalia Material Design 3 theme tokens for seamless light/dark mode support.
 local T = {
-  bg         = "#1b1c17",
-  card       = "#26271f",
-  cardHi     = "#2e2f25",
-  cardActive = "#34362a",
-  border     = "#33342a",
-  borderSoft = "#2a2b22",
-  accent     = "#cfe04e",
-  accentText = "#1b1c17",
-  text       = "#e8e7df",
-  textDim    = "#a3a497",
-  muted      = "#7d7e71",
-  success    = "#9bd17a",
-  danger     = "#d68a7a",
-  pingGood   = "#9bd17a",
-  pingMid    = "#e0c84e",
-  pingBad    = "#d68a7a",
+  bg         = "surface",
+  card       = "surface_variant/0.5",
+  cardHi     = "surface_variant/0.8",
+  cardActive = "primary/0.14",
+  border     = "outline/0.25",
+  borderSoft = "outline/0.12",
+  accent     = "primary",
+  accentText = "on_primary",
+  text       = "on_surface",
+  textDim    = "on_surface_variant",
+  muted      = "on_surface_variant/0.7",
+  success    = "primary",
+  danger     = "error",
+  pingGood   = "primary",
+  pingMid    = "tertiary",
+  pingBad    = "error",
 }
 
--- Colour props take a role token or a plain hex. Flatten alpha against the
--- backdrop because alpha suffixes are only legal on theme roles.
-local function mix(fg, bg, a)
-  local function ch(h, i) return tonumber(h:sub(i, i + 1), 16) end
-  local r = ch(bg, 2) + (ch(fg, 2) - ch(bg, 2)) * a
-  local g = ch(bg, 4) + (ch(fg, 4) - ch(bg, 4)) * a
-  local b = ch(bg, 6) + (ch(fg, 6) - ch(bg, 6)) * a
-  return string.format("#%02x%02x%02x", math.floor(r + 0.5), math.floor(g + 0.5), math.floor(b + 0.5))
+local function withAlpha(color, a)
+  if not color then return nil end
+  local base = color:match("^([^/]+)") or color
+  return string.format("%s/%.2f", base, a)
 end
 
--- Protocol pill colours, alpha pre-flattened.
+-- Colour mixing helper: interpolates hex if both are hex, or applies alpha suffix to theme roles.
+local function mix(fg, bg, a)
+  if type(fg) == "string" and fg:sub(1, 1) == "#" and type(bg) == "string" and bg:sub(1, 1) == "#" then
+    local function ch(h, i) return tonumber(h:sub(i, i + 1), 16) or 0 end
+    local r = ch(bg, 2) + (ch(fg, 2) - ch(bg, 2)) * a
+    local g = ch(bg, 4) + (ch(fg, 4) - ch(bg, 4)) * a
+    local b = ch(bg, 6) + (ch(fg, 6) - ch(bg, 6)) * a
+    return string.format("#%02x%02x%02x", math.floor(r + 0.5), math.floor(g + 0.5), math.floor(b + 0.5))
+  end
+  return withAlpha(fg, a)
+end
+
+-- Protocol pill colours, adaptive to theme.
 local PROTO_TAG = {
-  SSH    = { fg = "#9ab7d1", a = 0.12 },
-  VLESS  = { fg = "#cfe04e", a = 0.14 },
-  VMess  = { fg = "#c18cd9", a = 0.14 },
-  SS     = { fg = "#d99967", a = 0.14 },
-  SOCKS5 = { fg = "#d99967", a = 0.14 },
+  SSH    = { fg = "secondary", bg = "secondary/0.14" },
+  VLESS  = { fg = "primary",   bg = "primary/0.14" },
+  VMess  = { fg = "tertiary",  bg = "tertiary/0.14" },
+  SS     = { fg = "secondary", bg = "secondary/0.14" },
+  SOCKS5 = { fg = "secondary", bg = "secondary/0.14" },
 }
 
 local PROTO_LABEL = {
@@ -111,7 +119,8 @@ local function protoTag(proto)
   local label = PROTO_LABEL[(proto or ""):lower()]
   if not label then return nil end
   local tag = PROTO_TAG[label]
-  return ui.row({ fill = mix(tag.fg, T.card, tag.a), radius = 4, paddingH = 6, align = "center" }, {
+  return ui.row({ fill = tag.bg or mix(tag.fg, T.card, tag.a or 0.14), radius = 4, paddingH = 6, paddingV = 2,
+                  justify = "center", align = "center" }, {
     ui.label({ text = label:upper(), color = tag.fg, fontSize = 10, fontWeight = "bold" }),
   })
 end
@@ -165,28 +174,28 @@ local function serverRows(servers, status, running, health)
     local isSelected = s.id == status.activeServerId
     local isActive   = isSelected and running
 
-    local dot = (isActive and T.success) or (isSelected and mix(T.accent, T.bg, 0.7)) or T.border
+    local dot = (isActive and T.success) or (isSelected and withAlpha(T.accent, 0.7)) or T.border
     -- Keep idle rows transparent instead of painting over the panel.
-    local fill = (isActive and T.cardActive) or (isSelected and mix(T.accent, T.bg, 0.05)) or nil
-    local edge = (isActive and T.border) or (isSelected and mix(T.accent, T.bg, 0.4)) or nil
+    local fill = (isActive and T.cardActive) or (isSelected and withAlpha(T.accent, 0.05)) or "surface/0.00"
+    local edge = (isSelected and not running and withAlpha(T.accent, 0.4)) or "outline/0.00"
+    local bwidth = (isSelected and not running) and 1 or 0
 
     local pick = "onServer" .. tostring(slot)
-    local title = { ui.button({ text = s.name or s.id or noctalia.tr("panel.fallback-server-name"),
-                                variant = "ghost", contentAlign = "start", onClick = pick }) }
-    local tag = protoTag(s.protocol)
-    if tag then title[#title + 1] = tag end
 
     local cells = { ui.box({ width = 7, height = 7, radius = 4, fill = dot, onClick = pick }) }
     local flag = flagFor(s.country)
     if flag then cells[#cells + 1] = ui.label({ text = flag, fontSize = 16 }) end
     cells[#cells + 1] = ui.column({ gap = 2, flexGrow = 1 }, {
-      ui.row({ gap = 6, align = "center" }, title),
+      ui.button({ text = s.name or s.id or noctalia.tr("panel.fallback-server-name"),
+                  variant = "ghost", contentAlign = "start", onClick = pick }),
       -- Indent to clear the name button's own inner padding so the endpoint
       -- lines up under the name rather than under the button's edge.
       ui.row({ paddingH = 15 }, {
         ui.label({ text = s.host or s.address or "", color = T.muted, fontSize = 11, maxLines = 1 }),
       }),
     })
+    local tag = protoTag(s.protocol)
+    if tag then cells[#cells + 1] = tag end
     if isActive and health.latency_ms and health.latency_ms > 0 then
       cells[#cells + 1] = pingBadge(health.latency_ms)
     end
@@ -195,8 +204,8 @@ local function serverRows(servers, status, running, health)
     cells[#cells + 1] = ui.button({ glyph = "trash", glyphSize = 13, variant = "ghost",
                                     onClick = "onDel" .. tostring(slot) })
 
-    rows[#rows + 1] = ui.row({ gap = 10, align = "center", fill = fill, radius = 10,
-                               border = edge, borderWidth = edge and 1 or nil,
+    rows[#rows + 1] = ui.row({ key = "server-" .. s.id, gap = 10, align = "center", fill = fill, radius = 10,
+                               border = edge, borderWidth = bwidth,
                                paddingH = 12, paddingV = 10 }, cells)
   end
   if #rows == 0 then

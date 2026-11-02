@@ -3,9 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unfree.url = github:NixOS/nixpkgs/0d9e9b832d03ac387417e16ce1febf73b2e631e1;
-    nixpkgs-agy.url = github:NixOS/nixpkgs/b1b875982b17dabde9b4a37f3e229e74913e6db3;
-    
+    nixpkgs-unfree.url = "github:NixOS/nixpkgs/0d9e9b832d03ac387417e16ce1febf73b2e631e1";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,13 +40,17 @@
     #   url = "github:olafkfreund/nix-craftapps";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    agypatch = {
-      type = "github";
-      owner = "QNIX-Dev";
-      repo = "eligibility-antigravity-patcher";
-      rev = "13173ad98620003db2d5097cbb47cd65213892b9";
-      flake = false;
-    };
+    #
+    nixpkgs-agy.url = "github:NixOS/nixpkgs/nixos-unstable/";
+    agypatch.url = "github:QNIX-Dev/eligibility-antigravity-patcher/main";
+    agypatch.flake = false;
+    # agypatch = {
+    #   type = "github";
+    #   owner = "QNIX-Dev";
+    #   repo = "eligibility-antigravity-patcher";
+    #   rev = "13173ad98620003db2d5097cbb47cd65213892b9";
+    #   flake = false;
+    # };
   };
 
   outputs =

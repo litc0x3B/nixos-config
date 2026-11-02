@@ -9,6 +9,29 @@ let
     name = "Vault";
     path = "Obsidian/${name}";
   };
+
+  # Declarative native messaging host for Pywalfox Firefox extension provided by Noctalia
+  noctalia-firefox-theme-host = pkgs.runCommand "noctalia-firefox-theme-host" { } ''
+    wrapper=$out/bin/noctalia-firefox-host
+    mkdir -p $out/bin $out/lib/mozilla/native-messaging-hosts
+    cat > $wrapper << 'EOF'
+#!/usr/bin/env bash
+exec ${pkgs.noctalia}/bin/noctalia "$@"
+EOF
+    chmod +x $wrapper
+
+    cat > $out/lib/mozilla/native-messaging-hosts/pywalfox.json << EOF
+{
+  "name": "pywalfox",
+  "description": "Noctalia Firefox theme native messaging host",
+  "path": "$wrapper",
+  "type": "stdio",
+  "allowed_extensions": [
+    "pywalfox@frewacom.org"
+  ]
+}
+EOF
+  '';
 in
 {
   home.username = "litc";
@@ -37,7 +60,7 @@ in
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode-fhsWithPackages (ps: with ps; []);
+    package = pkgs.vscode-fhsWithPackages (ps: with ps; [ ]);
   };
 
   home.pointerCursor = {
@@ -68,7 +91,7 @@ in
     enable = true;
 
     nativeMessagingHosts = [
-      pkgs.pywalfox-native
+      noctalia-firefox-theme-host
     ];
 
     profiles = {
@@ -202,10 +225,21 @@ in
   };
 
   # Автомонтирование внешних дисков для Wayland-окружения
+  home.packages = [ pkgs.udiskie ];
   services.udiskie = {
     enable = true;
-    notify = true;
-    tray = "auto";
+    notify = false;
+    tray = "never";
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+
+  programs.mpv = {
+    enable = true;
+    scripts = [ pkgs.mpvScripts.uosc ];
+  };
 }

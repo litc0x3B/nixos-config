@@ -270,9 +270,12 @@ noctalia.state.watch("cmd", function(c)
     if method == "RunSpeedTest" and result then noctalia.state.set("speedtest", result) end
     if method == "CheckDnsLeak" and result then noctalia.state.set("dnsleak", result) end
     if method == "ParseShareLink" and not err then refreshServers() end
-    -- refresh affected lists after mutations
+    -- refresh affected lists and status after mutations
     if method == "AddServer" or method == "UpdateServer" or method == "RemoveServer" or method == "SwitchServer" then
       refreshServers()
+      rpc("GetStatus", {}, function(st) if st ~= nil then noctalia.state.set("status", st) end end)
+    elseif method == "StartProxy" or method == "StopProxy" then
+      rpc("GetStatus", {}, function(st) if st ~= nil then noctalia.state.set("status", st) end end)
     elseif method == "AddRoutingRule" or method == "RemoveRoutingRule" then
       refreshRules()
     elseif method == "TogglePreset" then
