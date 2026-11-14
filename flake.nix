@@ -5,6 +5,13 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unfree.url = "github:NixOS/nixpkgs/0d9e9b832d03ac387417e16ce1febf73b2e631e1";
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/cachix";
+    };
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,14 +51,12 @@
     nixpkgs-agy.url = "github:NixOS/nixpkgs/nixos-unstable/";
     agypatch.url = "github:QNIX-Dev/eligibility-antigravity-patcher/main";
     agypatch.flake = false;
-    # agypatch = {
-    #   type = "github";
-    #   owner = "QNIX-Dev";
-    #   repo = "eligibility-antigravity-patcher";
-    #   rev = "13173ad98620003db2d5097cbb47cd65213892b9";
-    #   flake = false;
-    # };
   };
+
+  # nixConfig = {
+  #   extra-substituters = [ "https://noctalia.cachix.org" ];
+  #   extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+  # };
 
   outputs =
     {
@@ -86,6 +91,7 @@
         noctalia-greeter.nixosModules.default
         qtengine.nixosModules.default
         home-manager.nixosModules.home-manager
+        inputs.noctalia.nixosModules.default
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -129,6 +135,7 @@
       nixosConfigurations = {
         litc-nixos-vm = mkHost "litc-nixos-vm" "x86_64-linux";
         litc-nixos-laptop = mkHost "litc-nixos-laptop" "x86_64-linux";
+        litc-nixos-desktop = mkHost "litc-nixos-desktop" "x86_64-linux";
       };
     };
 }

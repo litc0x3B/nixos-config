@@ -31,6 +31,9 @@
     ];
   };
 
+  # Early KMS: загрузка драйвера Intel в initrd для Plymouth
+  boot.initrd.kernelModules = [ "i915" ];
+
   # Bluetooth
   hardware.bluetooth = {
     enable = true;

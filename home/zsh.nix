@@ -5,19 +5,20 @@
     oh-my-zsh = {
       enable = true;
       theme = "gnzh";
+      # theme = "bullet-train";
       plugins = [ "virtualenv" ];
     };
     autosuggestion.enable = true;
 
-    enableCompletion = false;
+    enableCompletion = true;
 
     syntaxHighlighting.enable = true;
 
     plugins = [
       {
-        name = "zsh-autocomplete";
-        src = pkgs.zsh-autocomplete;
-        file = "share/zsh-autocomplete/zsh-autocomplete.plugin.zsh";
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
       }
       {
         name = "zsh-nix-shell";

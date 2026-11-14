@@ -1,37 +1,37 @@
 { lib, pkgs, ... }:
 let
-  nixdWrapper = pkgs.writeShellScriptBin "nixd-devenv-wrapper" ''
-    if command -v devenv >/dev/null 2>&1; then
-      DEVENV_BIN="devenv"
-    else
-      DEVENV_BIN="${pkgs.devenv}/bin/devenv"
-    fi
-
-    if command -v nixd >/dev/null 2>&1; then
-      NIXD_BIN="nixd"
-    else
-      NIXD_BIN="${pkgs.nixd}/bin/nixd"
-    fi
-
-    dir="$PWD"
-    while [ "$dir" != "/" ]; do
-      if [ -f "$dir/devenv.nix" ]; then
-        cd "$dir"
-        exec "$DEVENV_BIN" lsp "$@"
-      fi
-      dir="$(dirname "$dir")"
-    done
-
-    exec "$NIXD_BIN" "$@"
-  '';
+#   nixdWrapper = pkgs.writeShellScriptBin "nixd-devenv-wrapper" ''
+#     if command -v devenv >/dev/null 2>&1; then
+#       DEVENV_BIN="devenv"
+#     else
+#       DEVENV_BIN="${pkgs.devenv}/bin/devenv"
+#     fi
+#
+#     if command -v nixd >/dev/null 2>&1; then
+#       NIXD_BIN="nixd"
+#     else
+#       NIXD_BIN="${pkgs.nixd}/bin/nixd"
+#     fi
+#
+#     dir="$PWD"
+#     while [ "$dir" != "/" ]; do
+#       if [ -f "$dir/devenv.nix" ]; then
+#         cd "$dir"
+#         exec "$DEVENV_BIN" lsp "$@"
+#       fi
+#       dir="$(dirname "$dir")"
+#     done
+#
+#     exec "$NIXD_BIN" "$@"
+#   '';
 in
 {
   programs.zed-editor = {
     enable = true;
     package = pkgs.zed-editor.fhsWithPackages (
       pkgs: with pkgs; [
-        # dotnetCorePackages.dotnet_10.sdk
-        # dotnetCorePackages.dotnet_10.aspnetcore
+        dotnetCorePackages.dotnet_10.sdk
+        dotnetCorePackages.dotnet_10.aspnetcore
       ]
     );
 
@@ -58,7 +58,8 @@ in
       lsp = {
         nixd = {
           binary = {
-            path = "${nixdWrapper}/bin/nixd-devenv-wrapper";
+            # path = "${nixdWrapper}/bin/nixd-devenv-wrapper";
+            path = "${pkgs.nixd}/bin/nixd";
           };
         };
       };

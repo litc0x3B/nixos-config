@@ -13,7 +13,8 @@ in
   home.packages = with pkgs; [
     xdg-terminal-exec # what is that?
     heroic
-    noctalia
+    # installed globally
+    # noctalia
 
     # dorion  #discord client
     vesktop
@@ -47,6 +48,12 @@ in
         aiofiles
         aiohttp
         aiohttp-socks
+
+
+        # wallpaper depth deps
+        numpy
+        onnxruntime
+        pillow
       ]
     ))
 
@@ -97,5 +104,12 @@ in
     dotnetCorePackages.dotnet_10.sdk
     dotnetCorePackages.dotnet_10.aspnetcore
     devenv
+    uv
+
+    pavucontrol
+    tailspin
+    nix-alien
+
+    godotPackages_4_7.godot-mono
   ];
 }

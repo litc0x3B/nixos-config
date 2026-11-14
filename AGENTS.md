@@ -7,9 +7,11 @@ NixOS flake configuration with Home Manager for multiple hosts (`litc-nixos-vm`,
 - `flake.nix` — Flake entrypoint (inputs, outputs, `mkHost` helper, and home-manager integration).
 - `configuration.nix` — Base system-level NixOS configuration shared across hosts.
 - `disko-config.nix` — Declarative disk partitioning configuration (Disko).
+- `mac-style-plymouth/` — Custom Plymouth boot theme package (nixos-mac-style).
 - `hosts/` — Host-specific configurations:
   - `hosts/litc-nixos-vm/` — VM host.
   - `hosts/litc-nixos-laptop/` — Laptop host.
+  - `hosts/litc-nixos-desktop/` — Desktop host (NVIDIA GTX 1060).
 - `home/` — Modular Home Manager configuration for user `litc`:
   - `home/default.nix` — Main entrypoint importing submodules.
   - `home/packages.nix` — User packages and utilities.

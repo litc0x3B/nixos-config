@@ -1,4 +1,4 @@
-config_version = 14
+config_version = 19
 
 [accessibility]
 ui_scale = 0.90000000596046448
@@ -10,7 +10,8 @@ border_width = 1.0
 capsule_opacity = 0.99999997764825821
 capsule_radius = 15
 capsule_thickness = 0.73999998718500137
-margin_edge = 2
+margin_edge = 4
+margin_ends = "3%"
 radius = 20
 shadow = false
 start = [ "launcher", "group:g1", "taskbar" ]
@@ -20,8 +21,9 @@ thickness = 44
     accordion = true
     accordion_direction = "end"
     border = ""
+    border_width = 1.0
     enabled = true
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g1"
     members = [ "wallpaper", "wallhaven" ]
     opacity = 1.0
@@ -31,8 +33,9 @@ thickness = 44
     accordion = true
     accordion_direction = "start"
     border = ""
+    border_width = 1.0
     enabled = true
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g2"
     members = [ "battery", "brightness", "volume" ]
     opacity = 1.0
@@ -42,8 +45,9 @@ thickness = 44
     accordion = false
     accordion_direction = "end"
     border = ""
+    border_width = 1.0
     enabled = true
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g3"
     members = [ "cat", "ram" ]
     opacity = 1.0
@@ -53,8 +57,9 @@ thickness = 44
     accordion = true
     accordion_direction = "start"
     border = ""
+    border_width = 1.0
     enabled = true
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g4"
     members = [ "tray_group_icon", "tray" ]
     opacity = 1.0
@@ -64,8 +69,9 @@ thickness = 44
     accordion = true
     accordion_direction = "end"
     border = ""
+    border_width = 1.0
     enabled = true
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g5"
     members = [ "audio_visualizer", "media" ]
     opacity = 1.0
@@ -75,8 +81,9 @@ thickness = 44
     accordion = false
     accordion_direction = "end"
     border = ""
+    border_width = 1.0
     enabled = true
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g6"
     members = [ "network", "bluetooth" ]
     opacity = 1.0
@@ -86,10 +93,11 @@ thickness = 44
     accordion = true
     accordion_direction = "end"
     border = ""
+    border_width = 1.0
     enabled = true
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g7"
-    members = [ "group_icon", "status", "launcher_2", "widget_5", "status_2", "vpn_widget", "toggle_2", "bar" ]
+    members = [ "group_icon", "launcher_2", "widget_5", "status_2", "vpn_widget", "toggle_2", "bar", "bar_2", "status" ]
     opacity = 1.0
     padding = 6.0
 
@@ -97,12 +105,17 @@ thickness = 44
     accordion = false
     accordion_direction = "end"
     border = ""
+    border_width = 1.0
     enabled = true
-    fill = "surface_variant"
+    fill = "surface_container"
     id = "g8"
     members = [ "notifications", "keyboard_layout", "clock", "control-center" ]
     opacity = 1.0
     padding = 6.0
+
+[bluetooth]
+connect_when_enabled = true
+connection_notifications = true
 
 [control_center]
 hidden_tabs = []
@@ -129,15 +142,15 @@ widget_order = [
 ]
 
     [desktop_widgets.grid]
-    cell_size = 16
+    cell_size = 8
     major_interval = 4
     visible = true
 
     [desktop_widgets.widget.desktop-widget-0000000000000001]
     box_height = 320.0
     box_width = 336.0
-    cx = 187.00001525878906
-    cy = 224.00001525878906
+    cx = 179.0
+    cy = 216.0
     output = "eDP-1"
     placement_height = 768.0
     placement_width = 1366.0
@@ -145,7 +158,7 @@ widget_order = [
     type = "calendar"
 
         [desktop_widgets.widget.desktop-widget-0000000000000001.settings]
-        background_opacity = 0.90000000000000002
+        background_opacity = 0.97999999999999998
         background_padding = 8
         show_events = false
         show_week_numbers = true
@@ -176,19 +189,22 @@ widget_order = [
     [desktop_widgets.widget.desktop-widget-0000000000000003]
     box_height = 0.0
     box_width = 0.0
-    cx = 107.0
-    cy = 441.39999389648438
+    cx = 101.0
+    cy = 432.0
     output = "eDP-1"
     placement_height = 768.0
     placement_width = 1366.0
     rotation = 0.0
     type = "weather"
 
+        [desktop_widgets.widget.desktop-widget-0000000000000003.settings]
+        background_opacity = 0.96999999999999997
+
     [desktop_widgets.widget.desktop-widget-0000000000000004]
     box_height = 176.0
     box_width = 320.0
-    cx = 443.0
-    cy = 224.0
+    cx = 435.0
+    cy = 216.0
     flip_x = true
     output = "eDP-1"
     placement_height = 768.0
@@ -210,20 +226,27 @@ widget_order = [
 background_opacity = 0.96999997831881046
 border = "primary"
 border_width = 1.5
-icon_size = 38
+cross_axis_padding = 6
+icon_size = 36
+item_spacing = 3
+main_axis_padding = 7
 margin_edge = 4
-pinned = [ "firefox", "code", "org.gnome.Nautilus", "kitty", "dev.zed.Zed" ]
+pinned = [ "firefox", "code", "kitty", "dev.zed.Zed", "org.gnome.Nautilus" ]
 radius = 33
 shadow = false
 
+[location]
+auto_locate = true
+
 [lockscreen_widgets]
-enabled = false
+enabled = true
 schema_version = 2
 widget_order = [
     "lockscreen-login-box@HDMI-A-1",
     "lockscreen-login-box@winit",
     "lockscreen-login-box@eDP-1",
-    "lockscreen-login-box@Virtual-1"
+    "lockscreen-login-box@Virtual-1",
+    "lockscreen-widget-0000000000000001"
 ]
 
     [lockscreen_widgets.grid]
@@ -234,16 +257,16 @@ widget_order = [
     [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
     box_height = 196.0
     box_width = 810.0
-    cx = 800.00006103515625
-    cy = 748.33331298828125
+    cx = 960.0001220703125
+    cy = 898.0
     output = "HDMI-A-1"
-    placement_height = 900.0
-    placement_width = 1600.0
+    placement_height = 1080.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -254,6 +277,8 @@ widget_order = [
         show_keyboard_layout = true
         show_login_button = true
         show_media = true
+        show_media_controls = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
@@ -270,7 +295,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -281,6 +306,8 @@ widget_order = [
         show_keyboard_layout = true
         show_login_button = true
         show_media = true
+        show_media_controls = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
@@ -297,7 +324,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -308,6 +335,8 @@ widget_order = [
         show_keyboard_layout = true
         show_login_button = true
         show_media = true
+        show_media_controls = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
@@ -324,7 +353,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@winit".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -335,18 +364,46 @@ widget_order = [
         show_keyboard_layout = true
         show_login_button = true
         show_media = true
+        show_media_controls = true
+        show_password_reveal = true
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
 
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 112.0
+    box_width = 688.0
+    cx = 683.0
+    cy = 384.0
+    output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
+    rotation = 0.0
+    type = "audio_visualizer"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background = false
+        bands = 40
+        centered = false
+        show_when_idle = true
+
 [notification]
 background_opacity = 0.96999997831881046
+monitors = [ "eDP-1" ]
 
 [osd]
 background_opacity = 0.96999997831881046
 
 [plugin_settings."aristides/udiskie"]
 file_manager_cmd = "nautilus"
+
+[plugin_settings."noctalia/translator"]
+target_lang = "ru"
+
+[plugin_settings."noctalia/wallpaper_depth"]
+feather = 2
+manager_placement = "floating"
+threshold = 15
 
 [plugin_settings."raycursive/niri-displays"]
 panel_placement = "floating"
@@ -357,22 +414,30 @@ enabled = [
     "noctalia/wallhaven",
     "dotnetrob/cat",
     "knyrps/nix-search",
-    "mindnbytes/nix-status",
-    "icefish/phone-operate",
     "alexander/game-launcher",
     "oldirtty/color_picker",
     "notfinaldev/web-search",
-    "redxtech/super-productivity",
     "aristides/udiskie",
     "umedbazarov/ruh-vpn",
-    "noctalia/wallpaper_depth"
+    "noctalia/translator"
 ]
 
 [shell]
+button_borders = false
+card_borders = false
+input_borders = false
+launch_apps_as_systemd_services = true
+popup_borders = false
 popup_shadows = false
+
+    [shell.greeter_sync]
+    auto_sync = true
 
     [shell.launcher]
     app_grid = true
+    category_icons_only = true
+    default_view = "all"
+    layout = "simple"
 
         [shell.launcher.providers.session]
         global = true
@@ -416,7 +481,7 @@ popup_shadows = false
     action = "command"
     command = "systemctl soft-reboot"
     countdown_seconds = 0.0
-    enabled = true
+    enabled = false
     glyph = "progress-bolt"
     label = "Soft Reboot"
     shortcut = "5"
@@ -437,7 +502,7 @@ builtin = "Tokyo-Night"
 community_palette = "Tokyo Night Storm"
 custom_palette = "marisa-blue"
 mode = "dark"
-source = "wallpaper"
+source = "custom"
 wallpaper_scheme = "m3-fruit-salad"
 
     [theme.templates]
@@ -456,16 +521,16 @@ wallpaper_scheme = "m3-fruit-salad"
     ]
 
 [wallpaper.default]
-path = "/home/litc/Pictures/Wallpapers/693509.png"
-
-[wallpaper.last]
-path = "/home/litc/Pictures/Wallpapers/693509.png"
-
-[wallpaper.monitors.HDMI-A-1]
 path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 
-[wallpaper.monitors.eDP-1]
+[wallpaper.last]
+path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
+
+[wallpaper.monitors.HDMI-A-1]
 path = "/home/litc/Pictures/Wallpapers/693509.png"
+
+[wallpaper.monitors.eDP-1]
+path = "/home/litc/Pictures/Wallpapers/Wallheaven/wallhaven-rr67vm.png"
 
 [[wallpaper.favorite]]
 palette_source = "wallpaper"
@@ -500,6 +565,9 @@ wallpaper_scheme = "m3-fruit-salad"
 [widget.bar]
 type = "raycursive/niri-displays:bar"
 
+[widget.bar_2]
+type = "noctalia/wallpaper_depth:bar"
+
 [widget.launcher]
 color = "on_surface_variant"
 
@@ -516,6 +584,9 @@ workspace_label_placement = "inside"
 
 [widget.toggle_2]
 type = "decksters-lab/palette-creator:toggle"
+
+[widget.tray]
+icon_type = "symbolic"
 
 [widget.widget_5]
 type = "thepunkoff/pomodoro:widget"

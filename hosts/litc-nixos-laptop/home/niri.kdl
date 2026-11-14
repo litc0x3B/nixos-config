@@ -5,8 +5,8 @@ output "eDP-1" {
 }
 
 output "HDMI-A-1" {
-    scale 1.2
-    position x=0 y=-901
+    // scale 1.2
+    position x=0 y=-1081
 }
 
 environment {
@@ -24,14 +24,13 @@ layer-rule {
     }
 
 }
-
 layout {
     gaps 4
     struts {
         left 5
         right 5
-        top 1   // Adjust this value to change the gap under a top bar
-        bottom 0
+        top 0  // Adjust this value to change the gap under a top bar
+        bottom 2
     }
     // focus-ring {
     //     width 1.5 // Толщина кольца фокуса
@@ -39,6 +38,10 @@ layout {
     // border {
     //     width 10
     // }
+}
+
+window-rule {
+    // geometry-corner-radius 10
 }
 
 binds {

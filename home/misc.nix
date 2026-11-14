@@ -15,9 +15,9 @@ let
     wrapper=$out/bin/noctalia-firefox-host
     mkdir -p $out/bin $out/lib/mozilla/native-messaging-hosts
     cat > $wrapper << 'EOF'
-#!/usr/bin/env bash
-exec ${pkgs.noctalia}/bin/noctalia "$@"
-EOF
+    #!/usr/bin/env bash
+    exec ${pkgs.noctalia}/bin/noctalia "$@"
+    EOF
     chmod +x $wrapper
 
     cat > $out/lib/mozilla/native-messaging-hosts/pywalfox.json << EOF

@@ -20,7 +20,8 @@ in
 
     packages = [
       "com.vysp3r.ProtonPlus"
-      "com.github.tchx84.Flatseale"
+      "com.github.tchx84.Flatseal"
+      "de.haeckerfelix.Fragments"
       # "com.usebottles.bottles"
       # "io.github.giantpinkrobots.varia"
       #

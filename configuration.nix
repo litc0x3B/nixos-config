@@ -45,10 +45,16 @@
   # Enable sound.
   # services.pulseaudio.enable = false;
   # OR
+  security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -91,6 +97,7 @@
       niri-window-pin = inputs.niri-utils.packages.${prev.stdenv.hostPlatform.system}.niri-window-pin;
     })
     inputs.rc-sync.overlays.default
+    inputs.nix-alien.overlays.default
   ];
 
   # List packages installed	 in system profile.
@@ -162,10 +169,22 @@
     "docker.io"
     "quay.io"
   ];
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = [
+      "root"
+      # "@wheel"
+    ];
+    extra-substituters = [
+      "https://noctalia.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -195,12 +214,15 @@
   # Display Manager / Greeter (по умолчанию Noctalia Greeter)
   services.displayManager.noctalia-greeter = {
     enable = lib.mkDefault true;
-    package = pkgs.noctalia-greeter;
     passwordless-sync-users = [ "litc" ];
-    # cursorTheme = {
-    #   package = pkgs.bibata-cursors;
-    #   name = "Bibata-Modern-Ice";
-    # };
+    settings = {
+      #TODO: sync with home manager config values
+      cursor = {
+        theme = "Bibata-Modern-Classic";
+        size = 24;
+        path = pkgs.bibata-cursors;
+      };
+    };
   };
 
   services.greetd = {
@@ -271,6 +293,40 @@
   };
 
   programs.localsend.enable = true;
+
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "nixos-mac-style";
+      themePackages = [
+        (pkgs.callPackage ./mac-style-plymouth { })
+      ];
+    };
+
+    # Enable "Silent boot"
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "rd.udev.log_level=3"
+      "rd.systemd.show_status=auto"
+      "fbcon=nodefer"
+      "vt.global_cursor_default=0"
+    ];
+
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+  };
+
+
+  programs.noctalia = {
+    enable = true;
+
+    # Enables NetworkManager, Bluetooth, UPower, and a power profile service.
+    recommendedServices.enable = true;
+  };
 
   system.stateVersion = "26.05"; # DO NOT CHANGE THIS!
 

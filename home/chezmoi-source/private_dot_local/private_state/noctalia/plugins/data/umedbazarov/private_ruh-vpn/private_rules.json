@@ -1,17 +1,5 @@
 [
   {
-    "id": "7ffa28031d02",
-    "enabled": true,
-    "type": "force-proxy",
-    "pattern": "2ip.io"
-  },
-  {
-    "id": "067e6c4460dd",
-    "enabled": true,
-    "type": "force-proxy",
-    "pattern": "2ip.ru"
-  },
-  {
     "id": "e80c8618b80c",
     "enabled": true,
     "type": "force-proxy",
@@ -22,5 +10,53 @@
     "enabled": true,
     "type": "force-proxy",
     "pattern": "pathbuilder2e-data.b-cdn.net"
+  },
+  {
+    "id": "83d3010727c6",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "redshieldvpn.net"
+  },
+  {
+    "id": "6d1a78f127f8",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.redshieldvpn.com"
+  },
+  {
+    "id": "3aa90c6f261f",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "discuss.ai.google.dev"
+  },
+  {
+    "id": "9aee5bd32aa8",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.cloudfront.net"
+  },
+  {
+    "id": "a4e074730f9c",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.cloudconvert.com"
+  },
+  {
+    "id": "f40c77792a5c",
+    "enabled": true,
+    "type": "direct",
+    "pattern": "*.github.com"
+  },
+  {
+    "id": "55529876175b",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.2ip.io"
+  },
+  {
+    "id": "e8295950d0d9",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.flakehub.com"
   }
 ]

@@ -1,0 +1,101 @@
+config_version = 14
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border = ""
+enabled = true
+fill = "surface"
+id = "g1"
+members = [ "wallpaper", "wallhaven" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = true
+accordion_direction = "start"
+border = ""
+enabled = true
+fill = "surface"
+id = "g2"
+members = [ "volume" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border = ""
+enabled = true
+fill = "surface"
+id = "g3"
+members = [ "cat", "ram" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "start"
+border = ""
+enabled = true
+fill = "surface"
+id = "g4"
+members = [ "tray_group_icon", "tray" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border = ""
+enabled = true
+fill = "surface"
+id = "g5"
+members = [ "audio_visualizer", "media" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+enabled = true
+fill = "surface"
+id = "g6"
+members = [ "network", "bluetooth" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+enabled = true
+fill = "surface"
+id = "g7"
+members = [ "group_icon", "launcher_2", "vpn_widget" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+enabled = true
+fill = "surface"
+id = "g8"
+members = [ "notifications", "keyboard_layout", "clock", "control-center" ]
+opacity = 0.91999995708465576
+padding = 6.0
+
+[shell]
+settings_show_advanced = false
+
+[theme]
+community_palette = "Tokyo Night Storm"
+mode = "dark"
+source = "community"
+wallpaper_scheme = "m3-tonal-spot"
+
+[widget.group_icon]
+enabled = false
+
+[widget.tray_group_icon]
+enabled = false
