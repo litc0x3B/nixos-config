@@ -89,7 +89,7 @@ in
     gcc
     unzip
     gnumake
-    ripgrep
+    ripgrep1
     fd
     tree-sitter
 
@@ -111,5 +111,10 @@ in
     nix-alien
 
     godotPackages_4_7.godot-mono
+    gamescope
+    mission-center
+    # gapless
+    # amberol
+    # semito
   ];
 }

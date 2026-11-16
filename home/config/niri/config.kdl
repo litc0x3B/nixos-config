@@ -6,10 +6,10 @@ spawn-at-startup "sh" "-c" "niri-window-pin -rules ~/.config/niri/pin-rules.json
 
 layout {
     focus-ring {
-        width 1.5 // Толщина кольца фокуса
+        width 1// Толщина кольца фокуса
     }
     // border {
-    //     width 2
+    //     width 1
     // }
     tab-indicator {
       place-within-column
@@ -129,6 +129,7 @@ window-rule {
   // Clips window contents to the rounded corner boundaries.
   clip-to-geometry true
   draw-border-with-background false
+  // baba-is-float true
 }
 
 
@@ -402,13 +403,19 @@ binds {
 
 
     Mod+Z {spawn-sh "noctalia msg panel-toggle oldirtty/color_picker:panel";}
-    Mod+G {spawn-sh "noctalia msg panel-toggle alexander/game-launcher:original";}
+    Mod+G {spawn-sh "noctalia msg panel-toggle control-center audio";}
 }
 
 layer-rule {
   match namespace="^noctalia-backdrop"
   place-within-backdrop true
 }
+
+layer-rule {
+  match namespace="^noctalia-backdrop"
+  place-within-backdrop true
+}
+
 
 recent-windows {
     // off

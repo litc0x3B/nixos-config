@@ -18,10 +18,23 @@ in
   services.flatpak = {
     enable = true;
 
+    remotes = # Flathub is the default initialized by this flake.
+      [
+        {
+          name = "flathub";
+          location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+        }
+        {
+          name = "lalaggi-flatpak";
+          location = "https://flatpak.lalaggi.xyz/lalaggi-flatpak.flatpakrepo";
+        }
+      ];
+
     packages = [
       "com.vysp3r.ProtonPlus"
       "com.github.tchx84.Flatseal"
       "de.haeckerfelix.Fragments"
+      { appId = "xyz.lalaggi.semitone"; origin = "lalaggi-flatpak";  }
       # "com.usebottles.bottles"
       # "io.github.giantpinkrobots.varia"
       #

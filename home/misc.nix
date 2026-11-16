@@ -186,6 +186,7 @@ in
           "gtk"
         ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gnome" ];
+        "org.freedesktop.impl.portal.AppChooser" = [ "gtk" ];
       };
       # niri = {
       #   default = [
@@ -214,7 +215,7 @@ in
       mappings = {
         sync = {
           path1 = "~/Sync";
-          path2 = "gd-vhivhi:save_files";
+          path2 = "gd-loli:save_files";
         };
         wallpaper = {
           path1 = "~/Pictures/Wallpapers";

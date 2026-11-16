@@ -39,7 +39,7 @@
     # Для Pascal (GTX 1060) и старше открытые модули ядра не поддерживаются
     open = false;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
 
   # Early KMS: загрузка драйвера NVIDIA в initrd для Plymouth
@@ -50,11 +50,65 @@
     "nvidia_drm"
   ];
 
+  #boot.kernelParams = [
+  # "nvidia-drm.modeset=1"
+  # "nvidia-drm.fbdev=1"
+  # ];
+
+
   # Переменные окружения для Wayland / Niri
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";
+  };
+
+  # Отключение аппаратного sidetone (мониторинга микрофона) для гарнитуры fifine H13 Chat:
+  # 1. soft-mixer исключает регулировку аппаратных микшеров чипа при изменении громкости в PipeWire
+  services.pipewire.wireplumber.extraConfig."10-fifine-soft-mixer" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [
+          {
+            "device.name" = "alsa_card.usb-MV-SILICON_fifine_H13_Chat_20190808-00";
+          }
+        ];
+        actions = {
+          update-props = {
+            "api.alsa.soft-mixer" = true;
+          };
+        };
+      }
+    ];
+  };
+
+  # 2. Выключение свитча и сброс громкости sidetone при инициализации звуковой карты udev
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="sound", KERNEL=="controlC*", ATTRS{idVendor}=="3142", ATTRS{idProduct}=="0021", RUN+="${pkgs.alsa-utils}/bin/amixer -c %n cset numid=3 off", RUN+="${pkgs.alsa-utils}/bin/amixer -c %n cset numid=4 0"
+  '';
+
+  # Поддержка файловой системы NTFS
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  # Автоматическое монтирование жесткого диска 1TB
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/1E2A51B62A518BA1";
+    fsType = "ntfs3";
+    options = [
+      "nofail"
+      "x-systemd.automount"
+      "x-gvfs-show"
+      "uid=1000"
+      "gid=100"
+      "dmask=027"
+      "fmask=0022"
+      "iocharset=utf8"
+    ];
+  };
+
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
   };
 
   # Дополнительные настройки Home Manager для хоста litc-nixos-desktop
