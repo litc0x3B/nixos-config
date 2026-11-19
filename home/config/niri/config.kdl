@@ -3,10 +3,9 @@ include optional=true "noctalia.kdl"
 spawn-at-startup "noctalia"
 spawn-at-startup "sh" "-c" "niri-window-pin -rules ~/.config/niri/pin-rules.json"
 
-
 layout {
     focus-ring {
-        width 1// Толщина кольца фокуса
+        width 1.5// Толщина кольца фокуса
     }
     // border {
     //     width 1
@@ -127,6 +126,7 @@ window-rule {
   // Rounded corners for a modern look.
   geometry-corner-radius 10
   // Clips window contents to the rounded corner boundaries.
+  // opacity 0.9
   clip-to-geometry true
   draw-border-with-background false
   // baba-is-float true
@@ -136,6 +136,7 @@ window-rule {
 debug {
   // Allows notification actions and window activation from Noctalia.
   honor-xdg-activation-with-invalid-serial
+  disable-cursor-plane
 }
 
 binds {
@@ -143,9 +144,9 @@ binds {
     Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
     Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
-    // Alt+Tab { spawn-sh "noctalia msg window-switcher"; }c
+    Alt+Tab repeat=false { spawn-sh "noctalia msg window-switcher hold"; }
+    Alt+Shift+Tab repeat=false { spawn-sh "noctalia msg window-switcher hold reverse"; }
     Mod+V { spawn-sh "noctalia msg panel-toggle clipboard"; }
-    // Niri has a built-in window switcher you might want to try it to see which one you prefer.
 
     // Audio & Brightness
     XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
@@ -418,34 +419,7 @@ layer-rule {
 
 
 recent-windows {
-    // off
-    debounce-ms 750
-
-    open-delay-ms 150
-
-    highlight {
-        // active-color "#999999ff"
-        // urgent-color "#ffl9ll999ff"l
-        padding 10
-        // corner-radius 0
-    }
-
-    previews {
-        max-height 480
-        max-scale 0.5
-    }
-
-    binds {
-        Alt+Tab         { next-window; }
-        Alt+Shift+Tab   { previous-window; }
-        Alt+grave       { next-window     filter="app-id"; }
-        Alt+Shift+grave { previous-window filter="app-id"; }
-
-        Mod+Tab         { next-window; }
-        Mod+Shift+Tab   { previous-window; }
-        Mod+grave       { next-window     filter="app-id"; }
-        Mod+Shift+grave { previous-window filter="app-id"; }
-    }
+    off
 }
 
 

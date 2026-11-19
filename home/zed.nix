@@ -30,8 +30,7 @@ in
     enable = true;
     package = pkgs.zed-editor.fhsWithPackages (
       pkgs: with pkgs; [
-        dotnetCorePackages.dotnet_10.sdk
-        dotnetCorePackages.dotnet_10.aspnetcore
+        dotnet-sdk_10
       ]
     );
 
@@ -99,10 +98,49 @@ in
       };
     };
 
+
+
+    userTasks = [
+      {
+        label = "Open External Terminal";
+        command = "sh";
+        args = [
+          "-c"
+          ''
+            DIR="''${ZED_WORKTREE_ROOT:-''${ZED_DIRNAME:-$PWD}}"
+            if command -v xdg-terminal-exec >/dev/null 2>&1; then
+              exec setsid -f xdg-terminal-exec --dir="$DIR"
+            elif [ -n "$TERMINAL" ]; then
+              exec setsid -f "$TERMINAL" --working-directory "$DIR"
+            else
+              exec setsid -f kitty --working-directory "$DIR"
+            fi
+          ''
+        ];
+        reveal = "never";
+        hide = "always";
+        allow_concurrent_runs = true;
+      }
+    ];
+
+    # {
+    #   "context": "!Terminal",
+    #   "unbind": {
+    #     "ctrl-shift-c": "collab_panel::ToggleFocus"
+    #   }
+    # }
+
     userKeymaps = [
       {
         context = "Workspace";
-        bindings = { };
+        bindings = {
+          "ctrl-shift-c" = [
+            "task::Spawn"
+            {
+              task_name = "Open External Terminal";
+            }
+          ];
+        };
       }
       {
         context = "Editor && vim_mode == insert";
@@ -111,7 +149,14 @@ in
       {
         context = "Terminal";
         bindings = {
+          "ctrl-shift-c" = "terminal::Copy";
           "ctrl-shift-v" = "terminal::Paste";
+        };
+      }
+      {
+        context = "!Terminal";
+        unbind = {
+          "ctrl-shift-c" = "collab_panel::ToggleFocus";
         };
       }
     ];

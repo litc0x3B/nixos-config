@@ -12,25 +12,25 @@ let
 
   # Declarative native messaging host for Pywalfox Firefox extension provided by Noctalia
   noctalia-firefox-theme-host = pkgs.runCommand "noctalia-firefox-theme-host" { } ''
-    wrapper=$out/bin/noctalia-firefox-host
-    mkdir -p $out/bin $out/lib/mozilla/native-messaging-hosts
-    cat > $wrapper << 'EOF'
-    #!/usr/bin/env bash
-    exec ${pkgs.noctalia}/bin/noctalia "$@"
-    EOF
-    chmod +x $wrapper
+        wrapper=$out/bin/noctalia-firefox-host
+        mkdir -p $out/bin $out/lib/mozilla/native-messaging-hosts
+        cat > $wrapper << 'EOF'
+        #!/usr/bin/env bash
+        exec ${pkgs.noctalia}/bin/noctalia "$@"
+        EOF
+        chmod +x $wrapper
 
-    cat > $out/lib/mozilla/native-messaging-hosts/pywalfox.json << EOF
-{
-  "name": "pywalfox",
-  "description": "Noctalia Firefox theme native messaging host",
-  "path": "$wrapper",
-  "type": "stdio",
-  "allowed_extensions": [
-    "pywalfox@frewacom.org"
-  ]
-}
-EOF
+        cat > $out/lib/mozilla/native-messaging-hosts/pywalfox.json << EOF
+    {
+      "name": "pywalfox",
+      "description": "Noctalia Firefox theme native messaging host",
+      "path": "$wrapper",
+      "type": "stdio",
+      "allowed_extensions": [
+        "pywalfox@frewacom.org"
+      ]
+    }
+    EOF
   '';
 in
 {
@@ -87,6 +87,12 @@ in
   xdg.dataFile."icons/${config.gtk.iconTheme.name}".source =
     "${config.gtk.iconTheme.package}/share/icons/${config.gtk.iconTheme.name}";
 
+  xdg.dataFile."themes/${config.gtk.theme.name}".source =
+    "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}";
+
+    xdg.dataFile."icons/${config.home.pointerCursor.name}".source =
+      "${config.home.pointerCursor.package}/share/icons/${config.home.pointerCursor.name}";
+
   programs.firefox = {
     enable = true;
 
@@ -135,7 +141,7 @@ in
 
     iconTheme = {
       package = pkgs.tela-icon-theme;
-      name = "Tela-blue-dark";
+      name = "Tela-blue-light";
     };
   };
 
@@ -188,12 +194,6 @@ in
         "org.freedesktop.impl.portal.FileChooser" = [ "gnome" ];
         "org.freedesktop.impl.portal.AppChooser" = [ "gtk" ];
       };
-      # niri = {
-      #   default = [
-      #     "gnome"
-      #     "gtk"
-      #   ];
-      # };
     };
   };
 
@@ -238,9 +238,26 @@ in
     enableZshIntegration = true;
   };
 
-
   programs.mpv = {
     enable = true;
     scripts = [ pkgs.mpvScripts.uosc ];
+  };
+
+  xdg.desktopEntries.discord-web = {
+    name = "Discord Web";
+    exec = "${lib.getExe pkgs.chromium} --app=https://discord.com/app";
+    icon = "discord";
+    settings = {
+      StartupWMClass = "chrome-discord.com__app-Default";
+    };
+  };
+
+  xdg.desktopEntries.gemini-web = {
+    name = "Gemini Web";
+    exec = "${lib.getExe pkgs.chromium} --app=https://gemini.google.com/app";
+    icon = ./gemini-icon.svg;
+    settings = {
+      StartupWMClass = "chrome-gemini.google.com__app-Default";
+    };
   };
 }

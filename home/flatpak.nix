@@ -33,7 +33,7 @@ in
     packages = [
       "com.vysp3r.ProtonPlus"
       "com.github.tchx84.Flatseal"
-      "de.haeckerfelix.Fragments"
+      # "de.haeckerfelix.Fragments"
       { appId = "xyz.lalaggi.semitone"; origin = "lalaggi-flatpak";  }
       # "com.usebottles.bottles"
       # "io.github.giantpinkrobots.varia"

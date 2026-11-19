@@ -1,0 +1,543 @@
+[appearance.theme]
+palette_source = "wallpaper"
+
+[audio]
+enable_overdrive = true
+enable_sounds = true
+
+[backdrop]
+enabled = true
+
+[bar]
+order = [ "default" ]
+
+    [bar.default]
+    background_opacity = 0.75999998301267624
+    border_width = 0.5
+    capsule = true
+    capsule_border = "outline_variant"
+    capsule_border_width = 0.5
+    capsule_opacity = 0.99999997764825821
+    center = [ "group:g3", "group:g5", "group:g7" ]
+    concave_edge_corners = false
+    end = [ "group:g4", "group:g6", "group:g2", "group:g8", "session" ]
+    font_family = "FiraCode Nerd Font Med"
+    margin_edge = 8
+    margin_ends = 9
+    radius = 22
+    start = [ "launcher", "group:g1", "taskbar" ]
+    thickness = 45
+
+        [[bar.default.capsule_group]]
+        accordion = true
+        accordion_direction = "end"
+        border = "outline_variant"
+        border_width = 0.5
+        enabled = true
+        fill = "surface_container"
+        id = "g1"
+        members = [ "wallpaper", "wallhaven", "w-engine-widget" ]
+        opacity = 1.0
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        accordion = true
+        accordion_direction = "start"
+        border = "outline_variant"
+        border_width = 0.5
+        enabled = true
+        fill = "surface_container"
+        id = "g2"
+        members = [ "battery", "brightness", "volume" ]
+        opacity = 0.91999995708465576
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline_variant"
+        border_width = 0.5
+        enabled = true
+        fill = "surface_container"
+        id = "g3"
+        members = [ "cat", "ram" ]
+        opacity = 1.0
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        accordion = true
+        accordion_direction = "start"
+        border = "outline_variant"
+        border_width = 0.5
+        enabled = true
+        fill = "surface_container"
+        id = "g4"
+        members = [ "tray_group_icon", "tray" ]
+        opacity = 0.91999995708465576
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline_variant"
+        border_width = 0.5
+        enabled = true
+        fill = "surface_container"
+        id = "g5"
+        members = [ "audio_visualizer", "media" ]
+        opacity = 0.91999995708465576
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline_variant"
+        border_width = 0.5
+        enabled = true
+        fill = "surface_container"
+        id = "g6"
+        members = [ "network", "bluetooth" ]
+        opacity = 0.91999995708465576
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        accordion = true
+        accordion_direction = "end"
+        border = "outline_variant"
+        border_width = 0.5
+        enabled = true
+        fill = "surface_container"
+        id = "g7"
+        members = [ "group_icon", "launcher_2", "widget_5", "status_2", "vpn_widget", "toggle_2", "bar", "bar_2", "status" ]
+        opacity = 0.91999995708465576
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "outline_variant"
+        border_width = 0.5
+        enabled = true
+        fill = "surface_container"
+        id = "g8"
+        members = [ "notifications", "keyboard_layout", "clock", "control-center" ]
+        opacity = 1.0
+        padding = 6.0
+
+[control_center]
+hidden_tabs = [ "power", "bluetooth" ]
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+    [[control_center.shortcuts]]
+    type = "power_profile"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+[dock]
+active_opacity = 0.98999997787177563
+background_opacity = 0.74999998323619366
+border_width = 0.5
+concave_edge_corners = false
+enabled = true
+icon_size = 37
+inactive_opacity = 0.97999997809529305
+launcher_position = "start"
+margin_edge = 8
+pinned = [ "code", "firefox", "org.gnome.Nautilus", "kitty", "dev.zed.Zed", "vesktop" ]
+radius = 32
+reserve_space = false
+show_dots = true
+smart_auto_hide = true
+
+[keybinds]
+down = [ "Down", "Ctrl+n" ]
+up = [ "Up", "Ctrl+p" ]
+
+[location]
+address = "Moscow, Russia"
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@Virtual-1", "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@DVI-D-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DVI-D-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 898.0
+    output = "DVI-D-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DVI-D-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 898.0
+    output = "HDMI-A-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.00006103515625
+    cy = 897.999755859375
+    output = "Virtual-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[notification]
+background_opacity = 0.8399999812245369
+
+[osd]
+background_opacity = 0.87999998033046722
+
+[plugin_settings."aabidk20/yt-music"]
+mini_open_near_click = true
+
+[plugin_settings."aristides/udiskie"]
+file_manager_cmd = "nautilus"
+
+[plugin_settings."dotnetrob/cat"]
+panel_placement = "floating"
+
+[plugin_settings."mindnbytes/nix-status"]
+details_placement = "floating"
+flake_dir = "/home/litc/Nixos"
+nixos_configuration = "litc-nixos-desktop"
+
+[plugin_settings."noctalia/translator"]
+target_lang = "ru"
+
+[plugin_settings."noctalia/wallhaven"]
+browser_open_near_click = true
+browser_placement = "floating"
+download_dir = "/home/litc/Pictures/Wallpapers/Wallheaven"
+
+[plugin_settings."noctalia/wallpaper_depth"]
+feather = 2
+manager_placement = "floating"
+threshold = 15
+
+[plugin_settings."raycursive/niri-displays"]
+panel_placement = "floating"
+
+[plugin_settings."tadomika_ari/w-engine"]
+sync_colors = false
+w-engine-panel_open_near_click = true
+
+[plugin_settings."tordex/nvtop"]
+sort_column_color = "on_surface"
+
+[plugin_settings."umedbazarov/ruh-vpn"]
+auto_start = true
+vpn_panel_placement = "floating"
+vpn_panel_position = "top_center"
+
+[plugins]
+auto_update = "all"
+enabled = [
+    "noctalia/wallhaven",
+    "dotnetrob/cat",
+    "knyrps/nix-search",
+    "umedbazarov/ruh-vpn",
+    "kenn/keybind-cheatsheet",
+    "icefish/phone-operate",
+    "oldirtty/color_picker",
+    "notfinaldev/web-search",
+    "noctalia/translator",
+    "aristides/udiskie",
+    "tadomika_ari/w-engine"
+]
+
+[shell]
+button_borders = true
+card_borders = true
+external_ip_enabled = true
+input_borders = true
+niri_overview_type_to_launch_enabled = true
+polkit_agent = true
+popup_borders = true
+telemetry_enabled = true
+
+    [shell.greeter_sync]
+    auto_sync = true
+
+    [shell.launcher]
+    app_grid = true
+    category_icons_only = true
+    layout = "simple"
+
+    [shell.panel]
+    control_center_placement = "floating"
+    open_near_click_control_center = true
+    open_near_click_wallpaper = true
+    transparency_mode = "soft"
+    wallpaper_placement = "floating"
+
+    [shell.screen_corners]
+    enabled = true
+    size = 30
+
+    [shell.screenshot]
+    confirm_region = true
+    directory = "/home/litc/Pictures/Screenshots"
+    remember_last_region = false
+
+    [shell.shadow]
+    alpha = 0.99999997764825821
+
+    [shell.window_switcher]
+    mru = true
+    style = "icons"
+
+[theme]
+builtin = "Tokyo-Night"
+community_palette = "Tokyo Night Storm"
+custom_palette = "marisa-blue"
+mode = "dark"
+source = "community"
+terminal_colors = "standard"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "kitty", "niri", "qt" ]
+    community_ids = [
+        "antigravity",
+        "pywalfox",
+        "discord",
+        "telegram",
+        "neovim",
+        "obsidian",
+        "vscode",
+        "zed",
+        "heroiclauncher",
+        "yazi"
+    ]
+
+        [theme.templates.user.kcolorscheme]
+        input_path = "/home/litc/Nixos/home/kcolorscheme.colors"
+        output_path = "/home/litc/.local/share/color-schemes/noctalia.colors"
+
+        [theme.templates.user.obsidian_extra]
+        input_path = "/home/litc/.local/state/noctalia/community-templates/obsidian/obsidian.css"
+        output_path = "/home/litc/Obsidian/Vault/.obsidian/snippets/noctalia.css"
+
+        [theme.templates.user.palette_creator_live]
+        input_path = "/home/litc/.local/state/noctalia/plugins/materialized/community/palette-creator/templates/live-snapshot.tpl"
+        output_path = "/home/litc/.local/state/noctalia/plugin-data/kyle-palette-creator/live-snapshot.json"
+
+[wallpaper]
+directory = "/home/litc/Pictures/Wallpapers"
+transition_on_startup = false
+
+    [wallpaper.default]
+    path = "/home/litc/Pictures/Wallpapers/wallpaperflare-cropped (5).jpg"
+
+    [wallpaper.last]
+    path = "/home/litc/Pictures/Wallpapers/wallpaperflare-cropped (5).jpg"
+
+    [wallpaper.monitors.DVI-D-1]
+    path = "/home/litc/Pictures/Wallpapers/wallpaperflare-cropped (5).jpg"
+
+    [wallpaper.monitors.HDMI-A-1]
+    path = "/home/litc/Pictures/Wallpapers/wallpaperflare-cropped (5).jpg"
+
+    [wallpaper.monitors.Virtual-1]
+    path = "/home/litc/Pictures/wallpaper.png"
+
+    [[wallpaper.favorite]]
+    community_palette = "Tokyo Night Storm"
+    palette_source = "community"
+    path = "/home/litc/Pictures/Wallpapers/wallpaperflare-cropped (5).jpg"
+    theme_mode = "dark"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/litc/Pictures/Wallpapers/sakuya_pixiv_cropped.jpg"
+    theme_mode = "light"
+    wallpaper_scheme = "m3-content"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/litc/Pictures/Wallpapers/693509.png"
+    theme_mode = "dark"
+    wallpaper_scheme = "m3-fruit-salad"
+
+[widget.active-workspace]
+type = "salemsayed/niri-active-workspace:active-workspace"
+
+[widget.audio_visualizer]
+bands = 14
+color_2 = "secondary"
+show_when_idle = false
+width = 90
+
+[widget.bar]
+type = "raycursive/niri-displays:bar"
+
+[widget.bar_2]
+type = "noctalia/wallpaper_depth:bar"
+
+[widget.cat]
+cat_size = 35
+show_cpu_percent = true
+type = "dotnetrob/cat:cat"
+
+[widget.clipboard]
+enabled = false
+
+[widget.control-center]
+glyph = "brand-snowflake"
+
+[widget.current]
+type = "thaer99ob/default-apps:current"
+
+[widget.group_icon]
+glyph = "layout-sidebar-left-expand-filled"
+tooltip = "Expand Group"
+type = "custom_button"
+
+    [widget.group_icon.actions]
+    left = "none"
+
+[widget.launcher]
+capsule_border_width = 0.5
+capsule_padding = 5
+
+[widget.launcher_2]
+type = "alexander/game-launcher:launcher"
+
+[widget.media]
+hide_when_no_media = true
+max_length = 138
+title_scroll = "always"
+
+[widget.network]
+show_label = false
+
+[widget.status]
+type = "mindnbytes/nix-status:status"
+
+[widget.status_2]
+type = "aristides/udiskie:status"
+
+[widget.taskbar]
+group_by_workspace = true
+group_single_icon_per_app = false
+hide_empty_workspaces = false
+icon_scale = 1.2000000000000002
+show_active_indicator = false
+show_workspace_label = true
+workspace_group_capsule = true
+workspace_group_content = "icons"
+workspace_label_placement = "corner"
+
+[widget.toggle]
+type = "decksters-lab/palette-creator:toggle"
+
+[widget.toggle_2]
+type = "decksters-lab/palette-creator:toggle"
+
+[widget.tray_group_icon]
+glyph = "chevron-left"
+type = "custom_button"
+
+[widget.vpn_widget]
+show_ping = false
+type = "umedbazarov/ruh-vpn:vpn_widget"
+
+[widget.w-engine-widget]
+type = "tadomika_ari/w-engine:w-engine-widget"
+
+[widget.wallhaven]
+glyph = "cloud-download"
+type = "noctalia/wallhaven:wallhaven"
+
+[widget.widget]
+type = "aabidk20/yt-music:widget"
+
+[widget.widget_2]
+type = "tadomika_ari/config-swap:widget"
+
+[widget.widget_3]
+type = "tordex/processes:widget"
+
+[widget.widget_4]
+type = "weinguyen/procmon:widget"
+
+[widget.widget_5]
+type = "thepunkoff/pomodoro:widget"

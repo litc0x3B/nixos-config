@@ -11,6 +11,10 @@
 }:
 
 {
+  imports = [
+    ./non-nix-fixes.nix
+  ];
+
   # Настройки загрузчика (bootloader) перенесены в hosts/<hostName>/default.nix
 
   # Hostname задается в flake.nix / hosts/<hostName>
@@ -138,6 +142,8 @@
     gui = true;
   };
 
+  # services.tumbler.enable = true;
+
   environment.pathsToLink = [ "/share/icons" ];
 
   security.polkit.enable = true;
@@ -157,6 +163,22 @@
   };
 
   programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs;
+  # [
+  #   icu
+  #   fontconfig
+  # ];
+
+  programs.appimage.enable = true;
+  # programs.appimage.binfmt = true;
+  programs.appimage.package = pkgs.appimage-run.override
+  {
+    extraPkgs = pkgs: with pkgs;
+    [
+      icu
+    ];
+  };
+
   programs.nh = {
     enable = true;
     clean = {
@@ -167,7 +189,7 @@
   };
   virtualisation.containers.registries.search = [
     "docker.io"
-    "quay.io"
+    # "quay.io"
   ];
   nix.settings = {
     experimental-features = [
@@ -320,6 +342,12 @@
     loader.timeout = 0;
   };
 
+  systemd = {
+    settings.Manager.DefaultTimeoutStopSec = "10s";
+    user.extraConfig = ''
+      DefaultTimeoutStopSec=10s
+    '';
+  };
 
   programs.noctalia = {
     enable = true;

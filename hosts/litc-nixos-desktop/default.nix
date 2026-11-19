@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -50,11 +55,10 @@
     "nvidia_drm"
   ];
 
-  #boot.kernelParams = [
+  boot.kernelParams = [
   # "nvidia-drm.modeset=1"
   # "nvidia-drm.fbdev=1"
-  # ];
-
+  ];
 
   # Переменные окружения для Wayland / Niri
   environment.sessionVariables = {
@@ -93,7 +97,7 @@
   # Автоматическое монтирование жесткого диска 1TB
   fileSystems."/mnt/storage" = {
     device = "/dev/disk/by-uuid/1E2A51B62A518BA1";
-    fsType = "ntfs3";
+    fsType = "ntfs-3g";
     options = [
       "nofail"
       "x-systemd.automount"
@@ -102,13 +106,36 @@
       "gid=100"
       "dmask=027"
       "fmask=0022"
-      "iocharset=utf8"
     ];
   };
 
   services.hardware.openrgb = {
     enable = true;
     motherboard = "amd";
+  };
+
+  # Переназначение боковой клавиши мыши (mouse2) на Mod (Super / leftmeta) для niri
+  # services.keyd = {
+  #   enable = true;
+  #   keyboards = {
+  #     mouse = {
+  #       ids = [
+  #         "09da:3130"
+  #         "09da:3130:02e2f35b"
+  #       ];
+  #       settings = {
+  #         main = {
+  #           mouse2 = "leftmeta";
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
+
+  services.displayManager.noctalia-greeter = {
+    settings = {
+      appearance.wallpaper.blur = 0.5;
+    };
   };
 
   # Дополнительные настройки Home Manager для хоста litc-nixos-desktop

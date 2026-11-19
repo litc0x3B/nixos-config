@@ -5,6 +5,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unfree.url = "github:NixOS/nixpkgs/0d9e9b832d03ac387417e16ce1febf73b2e631e1";
 
+    wallpaperengine-gui = {
+      url = "github:AzPepoze/linux-wallpaperengine-gui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # chromium-webapps.url = "github:chobbledotcom/nix-chromium-webapps";
+    # chromium-webapps.inputs.nixpkgs.follows = "nixpkgs";
+
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
     };
@@ -74,7 +82,7 @@
     }@inputs:
     let
       myConfig = { hostName }: rec {
-        # TODO: сделать кастумизируемое им пользователя
+        # TODO: сделать кастумизируемое имя пользователя
         # Вообще это скорее всего можно сделать через опции, а не колхозить свой cfg
         basePath = "/home/litc/Nixos";
         homePath = "home";
@@ -102,6 +110,7 @@
             nix-index-database.homeModules.default
             rc-sync.homeManagerModules.default
             nix-flatpak.homeManagerModules.nix-flatpak
+            # inputs.chromium-webapps.homeManagerModules.default
             { programs.nix-index-database.comma.enable = true; }
           ];
         }

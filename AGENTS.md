@@ -6,6 +6,7 @@ NixOS flake configuration with Home Manager for multiple hosts (`litc-nixos-vm`,
 
 - `flake.nix` — Flake entrypoint (inputs, outputs, `mkHost` helper, and home-manager integration).
 - `configuration.nix` — Base system-level NixOS configuration shared across hosts.
+- `non-nix-fixes.nix` — FHS compatibility mounts for fonts, themes, and icons (bindfs).
 - `disko-config.nix` — Declarative disk partitioning configuration (Disko).
 - `mac-style-plymouth/` — Custom Plymouth boot theme package (nixos-mac-style).
 - `hosts/` — Host-specific configurations:
@@ -29,6 +30,7 @@ NixOS flake configuration with Home Manager for multiple hosts (`litc-nixos-vm`,
   - `home/chezmoi-source/` — Source tree for state/configs managed by chezmoi.
   - `home/agy-patched.nix` — Custom package derivation for Antigravity CLI.
   - `home/flatpak.nix` — Declarative Flatpak configuration via nix-flatpak.
+  - `home/distrobox.nix` — Distrobox configuration and declarative container management.
   - `home/config/` — Dotfiles and application configurations (niri, noctalia, kitty, zed, micro).
   - `home/noctalia-plugins/ruh-vpn` — Local version of Noctalia ruh-vpn plugin with custom fixes.
 

@@ -79,7 +79,13 @@ in
       pkgs = pkgs-agy;
       agypatch = inputs.agypatch;
     })
-    niri-window-pin
+
+    (callPackage ./agy-hub-patched.nix {
+      pkgs = pkgs-agy;
+      agypatch = inputs.agypatch;
+    })
+    # pkgs-agy.antigravity-hub
+    # niri-window-pin
     rc-sync
     pkgs-unfree.ouch-rar
 
@@ -89,7 +95,7 @@ in
     gcc
     unzip
     gnumake
-    ripgrep1
+    ripgrep
     fd
     tree-sitter
 
@@ -100,9 +106,7 @@ in
     onlyoffice-desktopeditors
     # pixelorama
     pkgs-unfree.aseprite
-
-    dotnetCorePackages.dotnet_10.sdk
-    dotnetCorePackages.dotnet_10.aspnetcore
+    dotnet-sdk_10
     devenv
     uv
 
@@ -113,6 +117,10 @@ in
     godotPackages_4_7.godot-mono
     gamescope
     mission-center
+    qbittorrent
+    super-productivity
+    cowsay
+    # ristretto
     # gapless
     # amberol
     # semito

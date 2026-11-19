@@ -13,5 +13,6 @@
     ./chezmoi.nix
     ./zed.nix
     ./flatpak.nix
+    ./distrobox.nix
   ];
 }
