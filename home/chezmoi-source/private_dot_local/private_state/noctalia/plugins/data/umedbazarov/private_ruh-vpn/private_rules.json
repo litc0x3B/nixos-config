@@ -12,12 +12,6 @@
     "pattern": "pathbuilder2e-data.b-cdn.net"
   },
   {
-    "id": "83d3010727c6",
-    "enabled": true,
-    "type": "force-proxy",
-    "pattern": "redshieldvpn.net"
-  },
-  {
     "id": "6d1a78f127f8",
     "enabled": true,
     "type": "force-proxy",
@@ -76,5 +70,35 @@
     "enabled": true,
     "type": "force-proxy",
     "pattern": "*.uptrace.dev"
+  },
+  {
+    "id": "f1cb9e11eef3",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.redshieldvpn.net"
+  },
+  {
+    "id": "3037819aa9ab",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.beyondallreason.dev"
+  },
+  {
+    "id": "6b1becfb71f3",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.flathub.org"
+  },
+  {
+    "id": "0c8168ca5739",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.beyondallreason.info"
+  },
+  {
+    "id": "578c3519936b",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.wikimedia.org"
   }
 ]

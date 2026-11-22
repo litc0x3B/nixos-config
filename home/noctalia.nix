@@ -9,10 +9,10 @@
   xdg.configFile."noctalia/config.toml".text = ''
     [include]
     autoload = false
-    files = ["${myConfig.fullHomePath}/config/noctalia/tokyo-night-new-new-lmao.toml"]
+    files = ["${myConfig.fullHomePath}/config/noctalia/miku-dayo.toml"]
 
-    [wallpaper.default]
-    path = "${./wallpaper.png}"
+    # [wallpaper.default]
+    # path = "${./wallpaper.png}"
 
     [plugin_settings."mindnbytes/nix-status"]
     flake_dir = "${myConfig.basePath}"

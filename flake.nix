@@ -5,8 +5,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unfree.url = "github:NixOS/nixpkgs/0d9e9b832d03ac387417e16ce1febf73b2e631e1";
 
-    wallpaperengine-gui = {
-      url = "github:AzPepoze/linux-wallpaperengine-gui";
+    sda-qt6 = {
+      url = "github:Tenshou170/selectdefaultapplication-Qt6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

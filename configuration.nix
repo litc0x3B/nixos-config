@@ -197,9 +197,11 @@
     ];
     extra-substituters = [
       "https://noctalia.cachix.org"
+      # "https://sda-qt6.cachix.org"
     ];
     extra-trusted-public-keys = [
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      # "sda-qt6.cachix.org-1:f+mZPJwYQKpzaAdGWj2DfdHV5uEjnYx1ZoAWfZfEGoA="
     ];
   };
 

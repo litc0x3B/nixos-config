@@ -14,11 +14,17 @@ layout {
     focus-ring {
         // width 3
     }
-    // gaps 4
+    gaps 4
     // struts {
-    //     // left 5
-    //     // right 5
-    //     // top 0  // Adjust this value to change the gap under a top bar
-    //     bottom 3
+    //     left 5
+    //     right 5
+    //     top 2  // Adjust this value to change the gap under a top bar
+    //     bottom 2
     // }
+    struts {
+        left 7
+        right 7
+        // top 2  // Adjust this value to change the gap under a top bar
+        bottom 6
+    }
 }

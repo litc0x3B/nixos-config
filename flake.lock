@@ -70,6 +70,22 @@
         "type": "github"
       }
     },
+    "flake-compat_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -436,7 +452,29 @@
         "nur": "nur",
         "qtengine": "qtengine",
         "rc-sync": "rc-sync",
-        "wallpaperengine-gui": "wallpaperengine-gui"
+        "sda-qt6": "sda-qt6"
+      }
+    },
+    "sda-qt6": {
+      "inputs": {
+        "flake-compat": "flake-compat_2",
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784958352,
+        "narHash": "sha256-qzF16lQS0rGle8PGZwTRcwRNcEovTQvMTwB8WlpFAbU=",
+        "owner": "Tenshou170",
+        "repo": "selectdefaultapplication-Qt6",
+        "rev": "eeab7c3486369e6241cb753bcfbd277084691a65",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Tenshou170",
+        "repo": "selectdefaultapplication-Qt6",
+        "type": "github"
       }
     },
     "systems": {
@@ -451,27 +489,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "wallpaperengine-gui": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792039934,
-        "narHash": "sha256-h/AB0uL5lP6JMH+RZcGwL5Y/pc/ybgKpclJRvy1fAu8=",
-        "owner": "AzPepoze",
-        "repo": "linux-wallpaperengine-gui",
-        "rev": "da04749ee1510108920ed7ba06c7905e514fbd16",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AzPepoze",
-        "repo": "linux-wallpaperengine-gui",
         "type": "github"
       }
     }

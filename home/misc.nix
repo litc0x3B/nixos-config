@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 let
@@ -185,7 +186,7 @@ in
 
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
+    xdgOpenUsePortal = false;
     extraPortals = [
       pkgs.xdg-desktop-portal-gnome
       pkgs.xdg-desktop-portal-gtk
@@ -265,4 +266,7 @@ in
       StartupWMClass = "chrome-gemini.google.com__app-Default";
     };
   };
+
+  imports = [ inputs.sda-qt6.homeManagerModules.default ];
+  programs.sda-qt6.enable = true;
 }

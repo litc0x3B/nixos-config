@@ -124,6 +124,8 @@ in
     file
     handlr-regex
     inputs.app-manager.packages.x86_64-linux.default
+    pkgs.junction
+    # inputs.sda-qt6.packages.${system}.default
     # ristretto
     # gapless
     # amberol
