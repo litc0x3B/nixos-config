@@ -37,8 +37,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rc-sync = {
-      # url = "github:litc0x3B/rc-sync";
-      url = "git+file:///home/litc/Projects/rc-sync";
+      url = "github:litc0x3B/rc-sync";
+      # url = "git+file:///home/litc/Projects/rc-sync";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     niri-utils = {
