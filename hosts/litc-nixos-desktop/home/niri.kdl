@@ -12,7 +12,7 @@ window-rule {
 
 layout {
     focus-ring {
-        width 3
+        // width 3
     }
     // gaps 4
     // struts {

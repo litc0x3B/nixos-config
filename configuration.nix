@@ -13,6 +13,7 @@
 {
   imports = [
     ./non-nix-fixes.nix
+    ./nix-ld.nix
   ];
 
   # Настройки загрузчика (bootloader) перенесены в hosts/<hostName>/default.nix
@@ -148,7 +149,7 @@
 
   security.polkit.enable = true;
   # Нужно в unstable
-  # security.polkit.enablePkexecWrapper = true;
+  security.polkit.enablePkexecWrapper = true;
   security.sudo.extraConfig = ''
     # Символ \u0007 (BEL) заставит терминал среагировать при появлении промпта:
     Defaults passprompt = "${builtins.fromJSON ''"\u0007"''}[sudo] password for %p: "
@@ -162,13 +163,6 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
-  programs.nix-ld.enable = true;
-  # programs.nix-ld.libraries = with pkgs;
-  # [
-  #   icu
-  #   fontconfig
-  # ];
-
   programs.appimage.enable = true;
   # programs.appimage.binfmt = true;
   programs.appimage.package = pkgs.appimage-run.override
@@ -179,6 +173,8 @@
     ];
   };
 
+  programs.fuse.enable = true;
+
   programs.nh = {
     enable = true;
     clean = {
@@ -187,10 +183,9 @@
     };
     flake = "/home/litc/Nixos";
   };
-  virtualisation.containers.registries.search = [
-    "docker.io"
-    # "quay.io"
-  ];
+  virtualisation.containers.registries.settings = {
+    unqualified-search-registries = [ "docker.io" ];
+  };
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -327,7 +322,7 @@
 
     # Enable "Silent boot"
     consoleLogLevel = 3;
-    initrd.verbose = false;
+    # initrd.verbose = false;
     kernelParams = [
       "quiet"
       "rd.udev.log_level=3"
@@ -344,9 +339,7 @@
 
   systemd = {
     settings.Manager.DefaultTimeoutStopSec = "10s";
-    user.extraConfig = ''
-      DefaultTimeoutStopSec=10s
-    '';
+    user.settings.Manager.DefaultTimeoutStopSec = "10s";
   };
 
   programs.noctalia = {

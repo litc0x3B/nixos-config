@@ -40,5 +40,9 @@ in
     # w engine
     linux-wallpaperengine
     ffmpeg
+
+    gale
+    # osu-lazer-bin
+    # deadlock-mod-manager
   ];
 }

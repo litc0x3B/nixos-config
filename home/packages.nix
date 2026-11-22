@@ -1,11 +1,11 @@
 { pkgs, inputs, ... }:
 let
   pkgs-agy = import inputs.nixpkgs-agy {
-    inherit (pkgs) config;
+    config = { inherit (pkgs.config) allowUnfree; };
     system = pkgs.stdenv.hostPlatform.system;
   };
   pkgs-unfree = import inputs.nixpkgs-unfree {
-    inherit (pkgs) config;
+    config = { inherit (pkgs.config) allowUnfree; };
     system = pkgs.stdenv.hostPlatform.system;
   };
 in
@@ -120,6 +120,10 @@ in
     qbittorrent
     super-productivity
     cowsay
+
+    file
+    handlr-regex
+    inputs.app-manager.packages.x86_64-linux.default
     # ristretto
     # gapless
     # amberol

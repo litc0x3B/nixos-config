@@ -42,12 +42,6 @@
     "pattern": "*.cloudconvert.com"
   },
   {
-    "id": "f40c77792a5c",
-    "enabled": true,
-    "type": "direct",
-    "pattern": "*.github.com"
-  },
-  {
     "id": "55529876175b",
     "enabled": true,
     "type": "force-proxy",
@@ -58,5 +52,29 @@
     "enabled": true,
     "type": "force-proxy",
     "pattern": "*.flakehub.com"
+  },
+  {
+    "id": "2795e44eced6",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "forums.playdeadlock.com"
+  },
+  {
+    "id": "c87adacac24c",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.dropbox.com"
+  },
+  {
+    "id": "4eb22c598283",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.vndb.org"
+  },
+  {
+    "id": "d49412f260aa",
+    "enabled": true,
+    "type": "force-proxy",
+    "pattern": "*.uptrace.dev"
   }
 ]

@@ -2,7 +2,7 @@
   description = "My NixOS Flake Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unfree.url = "github:NixOS/nixpkgs/0d9e9b832d03ac387417e16ce1febf73b2e631e1";
 
     wallpaperengine-gui = {
@@ -12,6 +12,8 @@
 
     # chromium-webapps.url = "github:chobbledotcom/nix-chromium-webapps";
     # chromium-webapps.inputs.nixpkgs.follows = "nixpkgs";
+    #
+    app-manager.url = "github:kem-a/AppManager";
 
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
@@ -25,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -35,8 +37,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rc-sync = {
-      url = "github:litc0x3B/rc-sync";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # url = "github:litc0x3B/rc-sync";
+      url = "git+file:///home/litc/Projects/rc-sync";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     niri-utils = {
       url = "github:lazaroofarrill/niri-utils";

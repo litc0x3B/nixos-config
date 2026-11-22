@@ -76,6 +76,11 @@
 
         zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
       ''
+      (lib.mkAfter ''
+        if [[ -n "$CONTAINER_ID" ]]; then
+          unset -f command_not_found_handler
+        fi
+      '')
     ];
 
   };

@@ -60,7 +60,8 @@ in
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode-fhsWithPackages (ps: with ps; [ ]);
+    # package = pkgs.vscode-fhsWithPackages (ps: with ps; [ ]);
+    #
   };
 
   home.pointerCursor = {
@@ -157,6 +158,10 @@ in
     enable = true;
     createDirectories = true;
   };
+
+  xdg.configFile."handlr/handlr.toml".text = ''
+    expand_wildcards = true
+  '';
 
   # xdg.mimeApps = {
   #   enable = true;
